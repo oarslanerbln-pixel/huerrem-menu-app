@@ -1,0 +1,307 @@
+[
+  {
+    "id": "s1",
+    "name": "Doppel Apfel",
+    "image": "/images/shisha/shisha_concept_apple.png"
+  },
+  {
+    "id": "s2",
+    "name": "Apfel Minze",
+    "image": "/images/shisha/shisha_concept_apple_mint.png"
+  },
+  {
+    "id": "s3",
+    "name": "Traube Minze",
+    "image": "/images/shisha/shisha_concept_grape_mint.png"
+  },
+  {
+    "id": "s4",
+    "name": "Black Nana",
+    "image": "/images/shisha/shisha_concept_black_nana.png"
+  },
+  {
+    "id": "s5",
+    "name": "Sternstaub",
+    "image": "/images/shisha/shisha_concept_sternstaub.png"
+  },
+  {
+    "id": "s6",
+    "name": "Luftschloss",
+    "image": "/images/shisha/shisha_concept_luftschloss.png"
+  },
+  {
+    "id": "s7",
+    "name": "Limette Minze",
+    "image": "/images/shisha/shisha_concept_lime_mint.png"
+  },
+  {
+    "id": "s8",
+    "name": "Lemon Chill",
+    "image": "/images/shisha/shisha_concept_lemon_chill.png"
+  },
+  {
+    "id": "s9",
+    "name": "Blueberry",
+    "image": "/images/shisha/shisha_concept_blueberry.png"
+  },
+  {
+    "id": "s10",
+    "name": "Nasty Girl",
+    "image": "/images/shisha/shisha_concept_nasty_girl.png"
+  },
+  {
+    "id": "s11",
+    "name": "Love 66",
+    "image": "/images/shisha/shisha_concept_love66.png"
+  },
+  {
+    "id": "s12",
+    "name": "Pfirsich Minze",
+    "image": "/images/shisha/shisha_concept_peach_mint.png"
+  },
+  {
+    "id": "s13",
+    "name": "Falim Red",
+    "image": "/images/shisha/shisha_concept_falim_red.png"
+  },
+  {
+    "id": "s14",
+    "name": "Ice Kaktus",
+    "image": "/images/shisha/shisha_concept_ice_kaktus.png"
+  },
+  {
+    "id": "s15",
+    "name": "African Queen",
+    "image": "/images/shisha/shisha_concept_african_queen.png"
+  },
+  {
+    "id": "s16",
+    "name": "Raffaello",
+    "image": "/images/shisha/shisha_concept_raffaello.png"
+  },
+  {
+    "id": "s17",
+    "name": "Ice Apfel",
+    "image": "/images/shisha/shisha_concept_ice_apfel.png"
+  },
+  {
+    "id": "s18",
+    "name": "Hürrem Spezial Hookah",
+    "image": "/images/shisha/shisha_concept_led.png"
+  },
+  {
+    "id": "s19",
+    "name": "Neuer Kopf",
+    "image": "/images/drinks/golden_mango_macchiato.png"
+  },
+  {
+    "id": "d2",
+    "name": "ICED STRAWBERRY VELVET 9, A, H",
+    "image": "/images/drinks/iced_strawberry_velvet.png"
+  },
+  {
+    "id": "d3",
+    "name": "MANGO MATCHA FUSION",
+    "image": "/images/specials/mango-matcha-fusion-transparent.png"
+  },
+  {
+    "id": "d4",
+    "name": "LILA MANGO TRAUM",
+    "image": "/images/specials/lila-mango-traum-transparent.png"
+  },
+  {
+    "id": "d5",
+    "name": "STRAWBERRY MATCHA CHILL",
+    "image": "/images/specials/strawberry-matcha-chill-transparent.png"
+  },
+  {
+    "id": "d6",
+    "name": "Iced Latte G",
+    "image": "/images/drinks/iced_latte.png"
+  },
+  {
+    "id": "d7",
+    "name": "Fritz Cola",
+    "image": "/images/drinks/oreo_shake.png"
+  },
+  {
+    "id": "d22",
+    "name": "Nutella Shake",
+    "image": "/images/drinks/nutella_shake.png"
+  },
+  {
+    "id": "d23",
+    "name": "Mango Lassi",
+    "image": "/images/specials/dragonfruit-sunset-transparent.png"
+  },
+  {
+    "id": "d_fh_8",
+    "name": "Rosé G",
+    "image": "/images/food/hummus.png"
+  },
+  {
+    "id": "f2",
+    "name": "Sigara Böreği",
+    "image": "/images/food/sigara_boregi.png"
+  },
+  {
+    "id": "f3",
+    "name": "Mercimek Çorbası",
+    "image": "/images/food/mercimek_corbasi.png"
+  },
+  {
+    "id": "f4",
+    "name": "Falafel Teller",
+    "image": "/images/food/falafel_teller.png"
+  },
+  {
+    "id": "f5",
+    "name": "Adana Kebab",
+    "image": "/images/food/adana_kebab.png"
+  },
+  {
+    "id": "f6",
+    "name": "Chicken Wings",
+    "image": "/images/food/chicken_wings.png"
+  },
+  {
+    "id": "f7",
+    "name": "Beyti Sarma",
+    "image": "/images/food/beyti_sarma.png"
+  },
+  {
+    "id": "f8",
+    "name": "Pide Kaşarlı",
+    "image": "/images/food/pide_kasarli.png"
+  },
+  {
+    "id": "f9",
+    "name": "Lahmacun",
+    "image": "/images/food/lahmacun.png"
+  },
+  {
+    "id": "f10",
+    "name": "Pommes Frites",
+    "image": "/images/food/pommes_frites.png"
+  },
+  {
+    "id": "f11",
+    "name": "Nachos Supreme",
+    "image": "/images/food/nachos_supreme.png"
+  },
+  {
+    "id": "f12",
+    "name": "Cheese Burger",
+    "image": "/images/food/cheese_burger.png"
+  },
+  {
+    "id": "k1",
+    "name": "Kombi 1",
+    "image": "https://images.unsplash.com/photo-1576092762791-dd9e2220d0f4?auto=format&fit=crop&q=80&w=600"
+  },
+  {
+    "id": "d_tea_kamille",
+    "name": "BIO Kamille Tee mit Honig",
+    "image": "https://images.unsplash.com/photo-1597481499750-3e6b22637e12?auto=format&fit=crop&q=80&w=600"
+  },
+  {
+    "id": "d_tea_salbei",
+    "name": "BIO Salbei Tee mit Honig",
+    "image": "https://images.unsplash.com/photo-1564890369478-c89ca6d9cde9?auto=format&fit=crop&q=80&w=600"
+  },
+  {
+    "id": "d_tea_sencha",
+    "name": "BIO Japanischer Sencha Tee mit Honig",
+    "image": "https://images.unsplash.com/photo-1627490847250-934ab3bda2eb?auto=format&fit=crop&q=80&w=600"
+  },
+  {
+    "id": "d_tea_hotbeauty",
+    "name": "BIO Hot Beauty Tee mit Honig",
+    "image": "https://images.unsplash.com/photo-1558160074-4d7d8bdf4256?auto=format&fit=crop&q=80&w=600"
+  },
+  {
+    "id": "d_tea_fourseason",
+    "name": "BIO Four Season Tee mit Honig",
+    "image": "https://images.unsplash.com/photo-1596484552993-8fbc4c986c75?auto=format&fit=crop&q=80&w=600"
+  },
+  {
+    "id": "d_tea_bluedream",
+    "name": "Blue Dream Tee mit Honig",
+    "image": "https://images.unsplash.com/photo-1620619572115-38fc7183e8fa?auto=format&fit=crop&q=80&w=600"
+  },
+  {
+    "id": "d_tea_mango",
+    "name": "Sweet Mango Tee mit Honig",
+    "image": "https://images.unsplash.com/photo-1622483767028-3f66f32aef97?auto=format&fit=crop&q=80&w=600"
+  },
+  {
+    "id": "d_tea_apple",
+    "name": "Orient Apple Tee mit Honig",
+    "image": "https://images.unsplash.com/photo-1577859714523-5e925c48b26f?auto=format&fit=crop&q=80&w=600"
+  },
+  {
+    "id": "d_tea_blossom",
+    "name": "BIO Blossom Tee mit Honig",
+    "image": "https://images.unsplash.com/photo-1563822249548-9a72b6353cd1?auto=format&fit=crop&q=80&w=600"
+  },
+  {
+    "id": "d_coffee_espresso",
+    "name": "Espresso",
+    "image": "https://images.unsplash.com/photo-1510591509098-f4fdc6d0ff04?auto=format&fit=crop&q=80&w=600"
+  },
+  {
+    "id": "d_coffee_crema",
+    "name": "Cafe Crema",
+    "image": "https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&q=80&w=600"
+  },
+  {
+    "id": "d_coffee_latte",
+    "name": "Latte Macchiato",
+    "image": "https://images.unsplash.com/photo-1570968915860-54d5c301fa9f?auto=format&fit=crop&q=80&w=600"
+  },
+  {
+    "id": "d_coffee_mokka",
+    "name": "Türkischer Mokka",
+    "image": "https://images.unsplash.com/photo-1544253303-c4dbd8ebfcba?auto=format&fit=crop&q=80&w=600"
+  },
+  {
+    "id": "d_fh_1",
+    "name": "Hibiscus Orange Limo",
+    "image": "https://images.unsplash.com/photo-1572442388796-11668a67e53d?auto=format&fit=crop&q=80&w=600"
+  },
+  {
+    "id": "d_coffee_milchkaffee",
+    "name": "Milchkaffee",
+    "image": "https://images.unsplash.com/photo-1541167760496-1628856ab772?auto=format&fit=crop&q=80&w=600"
+  },
+  {
+    "id": "d_coffee_icedlatte",
+    "name": "Iced Latte",
+    "image": "https://images.unsplash.com/photo-1517701550927-30cfcb64db10?auto=format&fit=crop&q=80&w=600"
+  },
+  {
+    "id": "d_coffee_icedcaramel",
+    "name": "Iced Caramel Macchiato",
+    "image": "https://images.unsplash.com/photo-1499961024600-ad094db605d4?auto=format&fit=crop&q=80&w=600"
+  },
+  {
+    "id": "d_hot_chai",
+    "name": "Chai Latte",
+    "image": "https://images.unsplash.com/photo-1576092762791-dd9e2220afa1?auto=format&fit=crop&q=80&w=600"
+  },
+  {
+    "id": "d_hot_matcha",
+    "name": "Matcha Latte",
+    "image": "https://images.unsplash.com/photo-1515823662415-eafdd0b3718a?auto=format&fit=crop&q=80&w=600"
+  },
+  {
+    "id": "d_hot_choco",
+    "name": "Heiße Schokolade",
+    "image": "https://images.unsplash.com/photo-1542990253-0d0f5be5f0ed?auto=format&fit=crop&q=80&w=600"
+  },
+  {
+    "id": "d_hot_sahlep",
+    "name": "Sahlep",
+    "image": "https://images.unsplash.com/photo-1611162458324-aae1eb4129a4?auto=format&fit=crop&q=80&w=600"
+  }
+]

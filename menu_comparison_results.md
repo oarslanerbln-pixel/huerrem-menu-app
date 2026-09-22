@@ -1,0 +1,144 @@
+# Menü Karşılaştırma Raporu (Orjinal vs. Yeni)
+Orjinal menüden (konsol) **132** ürün çekildi.
+Yeni sistemimizde (`menu.ts`) **224** ürün (artı opsiyonlar vb.) bulunuyor.
+Eşleşen temel ürün sayısı: **119**
+
+## 🚨 Eksik Ürünler (Yeni Sistemde Bulunamayanlar)
+
+Şu ürünler `menu.ts` dosyamızda tam olarak bulunamadı (veya isimleri çok farklı yazılmış):
+
+- **Belirtilmemiş Kategori**: `Mineralwasser` ()
+- **Belirtilmemiş Kategori**: `Nutella Shake` ()
+- **Belirtilmemiş Kategori**: `Sigara Böreği` ()
+- **Belirtilmemiş Kategori**: `Mercimek Çorbası` ()
+- **Belirtilmemiş Kategori**: `Falafel Teller` ()
+- **Belirtilmemiş Kategori**: `Adana Kebab` ()
+- **Belirtilmemiş Kategori**: `Chicken Wings` ()
+- **Belirtilmemiş Kategori**: `Beyti Sarma` ()
+- **Belirtilmemiş Kategori**: `Pide Kaşarlı` ()
+- **Belirtilmemiş Kategori**: `Lahmacun` ()
+- **Belirtilmemiş Kategori**: `Pommes Frites` ()
+- **Belirtilmemiş Kategori**: `Nachos Supreme` ()
+- **Belirtilmemiş Kategori**: `Cheese Burger` ()
+
+## 💰 Fiyat Farklılıkları
+
+- `Doppel Apfel`: Orjinal **0.0 €** -> Yeni **16.9 €**
+- `Apfel Minze`: Orjinal **0.0 €** -> Yeni **16.9 €**
+- `Traube Minze`: Orjinal **0.0 €** -> Yeni **16.9 €**
+- `Black Nana`: Orjinal **0.0 €** -> Yeni **16.9 €**
+- `Sternstaub`: Orjinal **0.0 €** -> Yeni **16.9 €**
+- `Luftschloss`: Orjinal **0.0 €** -> Yeni **16.9 €**
+- `Limette Minze`: Orjinal **0.0 €** -> Yeni **16.9 €**
+- `Lemon Chill`: Orjinal **0.0 €** -> Yeni **16.9 €**
+- `Blueberry`: Orjinal **0.0 €** -> Yeni **16.9 €**
+- `Nasty Girl`: Orjinal **0.0 €** -> Yeni **16.9 €**
+- `Love 66`: Orjinal **0.0 €** -> Yeni **16.9 €**
+- `Pfirsich Minze`: Orjinal **0.0 €** -> Yeni **16.9 €**
+- `Falim Red`: Orjinal **0.0 €** -> Yeni **16.9 €**
+- `Ice Kaktus`: Orjinal **0.0 €** -> Yeni **16.9 €**
+- `African Queen`: Orjinal **0.0 €** -> Yeni **16.9 €**
+- `Raffaello`: Orjinal **0.0 €** -> Yeni **16.9 €**
+- `Ice Apfel`: Orjinal **0.0 €** -> Yeni **16.9 €**
+- `Hürrem Spezial Hookah`: Orjinal **0.0 €** -> Yeni **19.9 €**
+- `Neuer Kopf`: Orjinal **0.0 €** -> Yeni **10.0 €**
+- `GOLDEN MANGO MACCHIATTO P, A, H`: Orjinal **0.0 €** -> Yeni **7.5 €**
+- `ICED STRAWBERRY VELVET 9, A, H`: Orjinal **0.0 €** -> Yeni **7.5 €**
+- `MANGO MATCHA FUSION`: Orjinal **0.0 €** -> Yeni **7.5 €**
+- `LILA MANGO TRAUM`: Orjinal **0.0 €** -> Yeni **7.5 €**
+- `STRAWBERRY MATCHA CHILL`: Orjinal **0.0 €** -> Yeni **7.5 €**
+- `Iced Latte G`: Orjinal **0.0 €** -> Yeni **4.8 €**
+- `Fritz Cola`: Orjinal **0.0 €** -> Yeni **3.6 €**
+- `Fritz Cola Zero`: Orjinal **0.0 €** -> Yeni **3.6 €**
+- `Coca-Cola`: Orjinal **0.0 €** -> Yeni **3.6 €**
+- `Coca-Cola Zero`: Orjinal **0.0 €** -> Yeni **3.6 €**
+- `Fanta 1, 3`: Orjinal **0.0 €** -> Yeni **3.6 €**
+- `Sprite`: Orjinal **0.0 €** -> Yeni **3.6 €**
+- `Churchill 0,2l`: Orjinal **0.0 €** -> Yeni **3.8 €**
+- `Stilles Wasser`: Orjinal **0.0 €** -> Yeni **3.2 €**
+- `Schweppes Ginger Ale`: Orjinal **0.0 €** -> Yeni **3.6 €**
+- `Schweppes Wild Berry 1, 3, 9`: Orjinal **0.0 €** -> Yeni **3.6 €**
+- `Rixdorfer Fassbrause 1, 3, 9`: Orjinal **0.0 €** -> Yeni **4.2 €**
+- `Club-Mate 1, 9`: Orjinal **0.0 €** -> Yeni **4.6 €**
+- `Elephant Bay`: Orjinal **0.0 €** -> Yeni **4.6 €**
+- `Oreo Shake`: Orjinal **0.0 €** -> Yeni **7.9 €**
+- `Mango Lassi`: Orjinal **0.0 €** -> Yeni **6.9 €**
+- `Virgin Mojito`: Orjinal **0.0 €** -> Yeni **6.9 €**
+- `Passion Fruit Cooler`: Orjinal **0.0 €** -> Yeni **7.5 €**
+- `Türkischer Kaffee`: Orjinal **0.0 €** -> Yeni **4.5 €**
+- `Cappuccino`: Orjinal **0.0 €** -> Yeni **3.8 €**
+- `Orangensaft`: Orjinal **0.0 €** -> Yeni **3.2 €**
+- `Apfelsaft`: Orjinal **0.0 €** -> Yeni **3.2 €**
+- `Maracujasaft`: Orjinal **0.0 €** -> Yeni **3.2 €**
+- `Mangosaft`: Orjinal **0.0 €** -> Yeni **3.2 €**
+- `KiBa (Kirsch-Bananen-Saft)`: Orjinal **0.0 €** -> Yeni **3.2 €**
+- `Kirschnektar`: Orjinal **0.0 €** -> Yeni **3.2 €**
+- `Bananennektar`: Orjinal **0.0 €** -> Yeni **3.2 €**
+- `Cranberrysaft`: Orjinal **0.0 €** -> Yeni **3.2 €**
+- `Ananassaft`: Orjinal **0.0 €** -> Yeni **3.2 €**
+- `Chai Latte`: Orjinal **0.0 €** -> Yeni **4.5 €**
+- `Matcha Latte`: Orjinal **0.0 €** -> Yeni **4.9 €**
+- `White Chocolate`: Orjinal **0.0 €** -> Yeni **4.9 €**
+- `Dark Chocolate`: Orjinal **0.0 €** -> Yeni **4.9 €**
+- `Sahlep`: Orjinal **0.0 €** -> Yeni **4.5 €**
+- `Yuzu`: Orjinal **0.0 €** -> Yeni **6.9 €**
+- `Peach`: Orjinal **0.0 €** -> Yeni **6.9 €**
+- `Wildberry`: Orjinal **0.0 €** -> Yeni **6.9 €**
+- `Sweet Melon`: Orjinal **0.0 €** -> Yeni **6.9 €**
+- `Acai Strawberry`: Orjinal **0.0 €** -> Yeni **6.9 €**
+- `Cotton Candy`: Orjinal **0.0 €** -> Yeni **6.9 €**
+- `Kaktus Feige`: Orjinal **0.0 €** -> Yeni **6.9 €**
+- `Hibiscus Orange Limo`: Orjinal **0.0 €** -> Yeni **6.9 €**
+- `53`: Orjinal **0.0 €** -> Yeni **6.9 €**
+- `Blue Wonder`: Orjinal **0.0 €** -> Yeni **6.9 €**
+- `Softy Gold G`: Orjinal **0.0 €** -> Yeni **6.9 €**
+- `Aloe Vera`: Orjinal **0.0 €** -> Yeni **6.9 €**
+- `Berry Yakult Peach Limo G`: Orjinal **0.0 €** -> Yeni **6.9 €**
+- `Pink Lover`: Orjinal **0.0 €** -> Yeni **7.4 €**
+- `Rosé G`: Orjinal **0.0 €** -> Yeni **7.4 €**
+- `Hummus`: Orjinal **0.0 €** -> Yeni **6.5 €**
+- `Kombi 1`: Orjinal **0.0 €** -> Yeni **22.9 €**
+- `Kombi 2`: Orjinal **0.0 €** -> Yeni **22.9 €**
+- `Kombi 3`: Orjinal **0.0 €** -> Yeni **22.9 €**
+- `Kombi 4 – Friends`: Orjinal **0.0 €** -> Yeni **44.9 €**
+- `Kombi 5 – Royal`: Orjinal **0.0 €** -> Yeni **54.9 €**
+- `Moloko`: Orjinal **0.0 €** -> Yeni **4.6 €**
+- `RedBull`: Orjinal **0.0 €** -> Yeni **4.9 €**
+- `28 Black (Schwarze Dose)`: Orjinal **0.0 €** -> Yeni **4.9 €**
+- `Türkischer Cay groß`: Orjinal **0.0 €** -> Yeni **3.2 €**
+- `BIO Kamille Tee mit Honig`: Orjinal **0.0 €** -> Yeni **4.5 €**
+- `BIO Salbei Tee mit Honig`: Orjinal **0.0 €** -> Yeni **4.5 €**
+- `BIO Japanischer Sencha Tee mit Honig`: Orjinal **0.0 €** -> Yeni **4.5 €**
+- `BIO Hot Beauty Tee mit Honig`: Orjinal **0.0 €** -> Yeni **5.2 €**
+- `BIO Four Season Tee mit Honig`: Orjinal **0.0 €** -> Yeni **5.2 €**
+- `Blue Dream Tee mit Honig`: Orjinal **0.0 €** -> Yeni **5.2 €**
+- `Sweet Mango Tee mit Honig`: Orjinal **0.0 €** -> Yeni **5.2 €**
+- `Orient Apple Tee mit Honig`: Orjinal **0.0 €** -> Yeni **5.2 €**
+- `BIO Blossom Tee mit Honig`: Orjinal **0.0 €** -> Yeni **5.2 €**
+- `Espresso`: Orjinal **0.0 €** -> Yeni **2.8 €**
+- `Cafe Crema`: Orjinal **0.0 €** -> Yeni **3.4 €**
+- `Latte Macchiato`: Orjinal **0.0 €** -> Yeni **4.6 €**
+- `Türkischer Mokka`: Orjinal **0.0 €** -> Yeni **3.6 €**
+- `Hibiscus Orange Limo`: Orjinal **0.0 €** -> Yeni **6.9 €**
+- `53`: Orjinal **0.0 €** -> Yeni **6.9 €**
+- `Blue Wonder`: Orjinal **0.0 €** -> Yeni **6.9 €**
+- `Softy Gold`: Orjinal **0.0 €** -> Yeni **6.9 €**
+- `Aloe Vera`: Orjinal **0.0 €** -> Yeni **6.9 €**
+- `Berry Yakult Peach Limo`: Orjinal **0.0 €** -> Yeni **7.4 €**
+- `Pink Lover`: Orjinal **0.0 €** -> Yeni **7.4 €**
+- `Rosé`: Orjinal **0.0 €** -> Yeni **7.4 €**
+- `Very Berry`: Orjinal **0.0 €** -> Yeni **7.9 €**
+- `Green Goddess`: Orjinal **0.0 €** -> Yeni **7.9 €**
+- `Pink Punch`: Orjinal **0.0 €** -> Yeni **7.9 €**
+- `Orange Glow`: Orjinal **0.0 €** -> Yeni **7.9 €**
+- `Pina Colada`: Orjinal **0.0 €** -> Yeni **7.9 €**
+- `Cotton Candy`: Orjinal **0.0 €** -> Yeni **6.9 €**
+- `Kaktus Feige`: Orjinal **0.0 €** -> Yeni **6.9 €**
+- `Cappuccino`: Orjinal **0.0 €** -> Yeni **3.8 €**
+- `Milchkaffee`: Orjinal **0.0 €** -> Yeni **4.2 €**
+- `Iced Latte`: Orjinal **0.0 €** -> Yeni **4.8 €**
+- `Iced Caramel Macchiato`: Orjinal **0.0 €** -> Yeni **5.2 €**
+- `Chai Latte`: Orjinal **0.0 €** -> Yeni **4.5 €**
+- `Matcha Latte`: Orjinal **0.0 €** -> Yeni **4.9 €**
+- `Heiße Schokolade`: Orjinal **0.0 €** -> Yeni **4.2 €**
+- `Sahlep`: Orjinal **0.0 €** -> Yeni **4.5 €**

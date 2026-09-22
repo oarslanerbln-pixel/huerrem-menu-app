@@ -1,0 +1,746 @@
+[
+  {
+    "title": "Linsensuppe",
+    "category": [
+      "Suppen"
+    ],
+    "url": "https://d1ib001enzg3sq.cloudfront.net/public/o/b698d53330612af4754a69a8882f19b5/cd1f9dfabb.webp",
+    "local_file": "suppen__linsensuppe.webp"
+  },
+  {
+    "title": "Tomatensuppe",
+    "category": [
+      "Suppen"
+    ],
+    "url": "https://d1ib001enzg3sq.cloudfront.net/public/o/b698d53330612af4754a69a8882f19b5/c323998dfd.webp",
+    "local_file": "suppen__tomatensuppe.webp"
+  },
+  {
+    "title": "Coca-Cola",
+    "category": [
+      "Softdrinks"
+    ],
+    "url": "https://d1ib001enzg3sq.cloudfront.net/public/o/b698d53330612af4754a69a8882f19b5/bbc417b13f.webp",
+    "local_file": "softdrinks__coca_cola.webp"
+  },
+  {
+    "title": "Coca-Cola Zero",
+    "category": [
+      "Softdrinks"
+    ],
+    "url": "https://d1ib001enzg3sq.cloudfront.net/public/o/b698d53330612af4754a69a8882f19b5/b2f990c68c.webp",
+    "local_file": "softdrinks__coca_cola_zero.webp"
+  },
+  {
+    "title": "Fanta",
+    "category": [
+      "Softdrinks"
+    ],
+    "url": "https://d1ib001enzg3sq.cloudfront.net/public/o/b698d53330612af4754a69a8882f19b5/2bd8c87dde.webp",
+    "local_file": "softdrinks__fanta.webp"
+  },
+  {
+    "title": "Sprite",
+    "category": [
+      "Softdrinks"
+    ],
+    "url": "https://d1ib001enzg3sq.cloudfront.net/public/o/b698d53330612af4754a69a8882f19b5/c5dbe77ef4.webp",
+    "local_file": "softdrinks__sprite.webp"
+  },
+  {
+    "title": "Mineralwasser",
+    "category": [
+      "Softdrinks"
+    ],
+    "url": "https://d1ib001enzg3sq.cloudfront.net/public/o/b698d53330612af4754a69a8882f19b5/6021b90499.webp",
+    "local_file": "softdrinks__mineralwasser.webp"
+  },
+  {
+    "title": "Churchill 0,2l",
+    "category": [
+      "Softdrinks"
+    ],
+    "url": "https://d1ib001enzg3sq.cloudfront.net/public/o/b698d53330612af4754a69a8882f19b5/75102ae5c6.webp",
+    "local_file": "softdrinks__churchill_02l.webp"
+  },
+  {
+    "title": "Stilles Wasser",
+    "category": [
+      "Softdrinks"
+    ],
+    "url": "https://d1ib001enzg3sq.cloudfront.net/public/o/b698d53330612af4754a69a8882f19b5/6021b90499.webp",
+    "local_file": "softdrinks__stilles_wasser.webp"
+  },
+  {
+    "title": "Schweppes Ginger Ale",
+    "category": [
+      "Softdrinks"
+    ],
+    "url": "https://d1ib001enzg3sq.cloudfront.net/public/o/b698d53330612af4754a69a8882f19b5/e4a8f41c65.webp",
+    "local_file": "softdrinks__schweppes_ginger_ale.webp"
+  },
+  {
+    "title": "Schweppes Wild Berry",
+    "category": [
+      "Softdrinks"
+    ],
+    "url": "https://d1ib001enzg3sq.cloudfront.net/public/o/b698d53330612af4754a69a8882f19b5/a70e1e322e.webp",
+    "local_file": "softdrinks__schweppes_wild_berry.webp"
+  },
+  {
+    "title": "Rixdorfer Fassbrause",
+    "category": [
+      "Softdrinks"
+    ],
+    "url": "https://d1ib001enzg3sq.cloudfront.net/public/o/b698d53330612af4754a69a8882f19b5/d8b972328f.webp",
+    "local_file": "softdrinks__rixdorfer_fassbrause.webp"
+  },
+  {
+    "title": "Club-Mate",
+    "category": [
+      "Softdrinks"
+    ],
+    "url": "https://d1ib001enzg3sq.cloudfront.net/public/o/b698d53330612af4754a69a8882f19b5/7a103c620a.webp",
+    "local_file": "softdrinks__club_mate.webp"
+  },
+  {
+    "title": "Elephant Bay",
+    "category": [
+      "Softdrinks"
+    ],
+    "url": "https://d1ib001enzg3sq.cloudfront.net/public/o/b698d53330612af4754a69a8882f19b5/324b05e6a9.webp",
+    "local_file": "softdrinks__elephant_bay.webp"
+  },
+  {
+    "title": "Moloko",
+    "category": [
+      "Softdrinks"
+    ],
+    "url": "https://d1ib001enzg3sq.cloudfront.net/public/o/b698d53330612af4754a69a8882f19b5/aa8bd26a03.webp",
+    "local_file": "softdrinks__moloko.webp"
+  },
+  {
+    "title": "RedBull",
+    "category": [
+      "Energydrink"
+    ],
+    "url": "https://d1ib001enzg3sq.cloudfront.net/public/o/b698d53330612af4754a69a8882f19b5/27cb9b61fb.webp",
+    "local_file": "energydrink__redbull.webp"
+  },
+  {
+    "title": "Türkischer Cay groß",
+    "category": [
+      "Traditionell"
+    ],
+    "url": "https://d1ib001enzg3sq.cloudfront.net/public/o/b698d53330612af4754a69a8882f19b5/9c91b1e614.webp",
+    "local_file": "traditionell__tuerkischer_cay_gross.webp"
+  },
+  {
+    "title": "Hürrem Tee",
+    "category": [
+      "Kräuter- und Blütentees"
+    ],
+    "url": "https://d1ib001enzg3sq.cloudfront.net/public/o/b698d53330612af4754a69a8882f19b5/fb898767af.webp",
+    "local_file": "kraeuter_und_bluetentees__huerrem_tee.webp"
+  },
+  {
+    "title": "BIO Kamille Tee mit Honig",
+    "category": [
+      "Kräuter- und Blütentees"
+    ],
+    "url": "https://d1ib001enzg3sq.cloudfront.net/public/o/b698d53330612af4754a69a8882f19b5/74d7e51f4d.webp",
+    "local_file": "kraeuter_und_bluetentees__bio_kamille_tee_mit_honig.webp"
+  },
+  {
+    "title": "BIO Salbei Tee mit Honig",
+    "category": [
+      "Kräuter- und Blütentees"
+    ],
+    "url": "https://d1ib001enzg3sq.cloudfront.net/public/o/b698d53330612af4754a69a8882f19b5/74d7e51f4d.webp",
+    "local_file": "kraeuter_und_bluetentees__bio_salbei_tee_mit_honig.webp"
+  },
+  {
+    "title": "BIO Lindenblüten Tee mit Honig",
+    "category": [
+      "Kräuter- und Blütentees"
+    ],
+    "url": "https://d1ib001enzg3sq.cloudfront.net/public/o/b698d53330612af4754a69a8882f19b5/74d7e51f4d.webp",
+    "local_file": "kraeuter_und_bluetentees__bio_lindenblueten_tee_mit_honig.webp"
+  },
+  {
+    "title": "Frischer Minztee mit Honig",
+    "category": [
+      "Kräuter- und Blütentees"
+    ],
+    "url": "https://d1ib001enzg3sq.cloudfront.net/public/o/b698d53330612af4754a69a8882f19b5/fb898767af.webp",
+    "local_file": "kraeuter_und_bluetentees__frischer_minztee_mit_honig.webp"
+  },
+  {
+    "title": "Ingwer Tee mit Honig",
+    "category": [
+      "Kräuter- und Blütentees"
+    ],
+    "url": "https://d1ib001enzg3sq.cloudfront.net/public/o/b698d53330612af4754a69a8882f19b5/fb898767af.webp",
+    "local_file": "kraeuter_und_bluetentees__ingwer_tee_mit_honig.webp"
+  },
+  {
+    "title": "Ingwer Minze Tee mit Honig",
+    "category": [
+      "Kräuter- und Blütentees"
+    ],
+    "url": "https://d1ib001enzg3sq.cloudfront.net/public/o/b698d53330612af4754a69a8882f19b5/fb898767af.webp",
+    "local_file": "kraeuter_und_bluetentees__ingwer_minze_tee_mit_honig.webp"
+  },
+  {
+    "title": "BIO Japanischer Sencha Tee mit Honig",
+    "category": [
+      "Exklusiv & Aromatisch"
+    ],
+    "url": "https://d1ib001enzg3sq.cloudfront.net/public/o/b698d53330612af4754a69a8882f19b5/74d7e51f4d.webp",
+    "local_file": "exklusiv_and_aromatisch__bio_japanischer_sencha_tee_mit_honig.webp"
+  },
+  {
+    "title": "BIO Hot Beauty Tee mit Honig",
+    "category": [
+      "Exklusiv & Aromatisch"
+    ],
+    "url": "https://d1ib001enzg3sq.cloudfront.net/public/o/b698d53330612af4754a69a8882f19b5/74d7e51f4d.webp",
+    "local_file": "exklusiv_and_aromatisch__bio_hot_beauty_tee_mit_honig.webp"
+  },
+  {
+    "title": "BIO Four Season Tee mit Honig",
+    "category": [
+      "Exklusiv & Aromatisch"
+    ],
+    "url": "https://d1ib001enzg3sq.cloudfront.net/public/o/b698d53330612af4754a69a8882f19b5/74d7e51f4d.webp",
+    "local_file": "exklusiv_and_aromatisch__bio_four_season_tee_mit_honig.webp"
+  },
+  {
+    "title": "Blue Dream Tee mit Honig",
+    "category": [
+      "Exklusiv & Aromatisch"
+    ],
+    "url": "https://d1ib001enzg3sq.cloudfront.net/public/o/b698d53330612af4754a69a8882f19b5/74d7e51f4d.webp",
+    "local_file": "exklusiv_and_aromatisch__blue_dream_tee_mit_honig.webp"
+  },
+  {
+    "title": "Sweet Mango Tee mit Honig",
+    "category": [
+      "Exklusiv & Aromatisch"
+    ],
+    "url": "https://d1ib001enzg3sq.cloudfront.net/public/o/b698d53330612af4754a69a8882f19b5/74d7e51f4d.webp",
+    "local_file": "exklusiv_and_aromatisch__sweet_mango_tee_mit_honig.webp"
+  },
+  {
+    "title": "Orient Apple Tee mit Honig",
+    "category": [
+      "Exklusiv & Aromatisch"
+    ],
+    "url": "https://d1ib001enzg3sq.cloudfront.net/public/o/b698d53330612af4754a69a8882f19b5/74d7e51f4d.webp",
+    "local_file": "exklusiv_and_aromatisch__orient_apple_tee_mit_honig.webp"
+  },
+  {
+    "title": "BIO Blossom Tee mit Honig",
+    "category": [
+      "Exklusiv & Aromatisch"
+    ],
+    "url": "https://d1ib001enzg3sq.cloudfront.net/public/o/b698d53330612af4754a69a8882f19b5/74d7e51f4d.webp",
+    "local_file": "exklusiv_and_aromatisch__bio_blossom_tee_mit_honig.webp"
+  },
+  {
+    "title": "Espresso",
+    "category": [
+      "Kaffeespezialitäten"
+    ],
+    "url": "https://d1ib001enzg3sq.cloudfront.net/public/o/b698d53330612af4754a69a8882f19b5/01396a01d5.webp",
+    "local_file": "kaffeespezialitaeten__espresso.webp"
+  },
+  {
+    "title": "Cafe Crema",
+    "category": [
+      "Kaffeespezialitäten"
+    ],
+    "url": "https://d1ib001enzg3sq.cloudfront.net/public/o/b698d53330612af4754a69a8882f19b5/110c61048a.webp",
+    "local_file": "kaffeespezialitaeten__cafe_crema.webp"
+  },
+  {
+    "title": "Cappuccino",
+    "category": [
+      "Kaffeespezialitäten"
+    ],
+    "url": "https://d1ib001enzg3sq.cloudfront.net/public/o/b698d53330612af4754a69a8882f19b5/adab989803.webp",
+    "local_file": "kaffeespezialitaeten__cappuccino.webp"
+  },
+  {
+    "title": "Latte Macchiato",
+    "category": [
+      "Kaffeespezialitäten"
+    ],
+    "url": "https://d1ib001enzg3sq.cloudfront.net/public/o/b698d53330612af4754a69a8882f19b5/898de0b311.webp",
+    "local_file": "kaffeespezialitaeten__latte_macchiato.webp"
+  },
+  {
+    "title": "Iced Latte",
+    "category": [
+      "Sommer-Specials"
+    ],
+    "url": "https://d1ib001enzg3sq.cloudfront.net/public/o/b698d53330612af4754a69a8882f19b5/29038ac481.webp",
+    "local_file": "sommer_specials__iced_latte.webp"
+  },
+  {
+    "title": "Türkischer Mokka",
+    "category": [
+      "Kaffeespezialitäten"
+    ],
+    "url": "https://d1ib001enzg3sq.cloudfront.net/public/o/b698d53330612af4754a69a8882f19b5/678d757926.webp",
+    "local_file": "kaffeespezialitaeten__tuerkischer_mokka.webp"
+  },
+  {
+    "title": "Sahlep",
+    "category": [
+      "Heiße Specials"
+    ],
+    "url": "https://d1ib001enzg3sq.cloudfront.net/public/o/b698d53330612af4754a69a8882f19b5/2b9fba0bee.webp",
+    "local_file": "heisse_specials__sahlep.webp"
+  },
+  {
+    "title": "Matcha Latte",
+    "category": [
+      "Heiße Specials"
+    ],
+    "url": "https://d1ib001enzg3sq.cloudfront.net/public/o/b698d53330612af4754a69a8882f19b5/d621dbe3e2.webp",
+    "local_file": "heisse_specials__matcha_latte.webp"
+  },
+  {
+    "title": "White Chocolate",
+    "category": [
+      "Heiße Specials"
+    ],
+    "url": "https://d1ib001enzg3sq.cloudfront.net/public/o/b698d53330612af4754a69a8882f19b5/2df942b028.webp",
+    "local_file": "heisse_specials__white_chocolate.webp"
+  },
+  {
+    "title": "Dark Chocolate",
+    "category": [
+      "Heiße Specials"
+    ],
+    "url": "https://d1ib001enzg3sq.cloudfront.net/public/o/b698d53330612af4754a69a8882f19b5/1b25428982.webp",
+    "local_file": "heisse_specials__dark_chocolate.webp"
+  },
+  {
+    "title": "Coconut Kiss",
+    "category": [
+      "Signature Cocktails"
+    ],
+    "url": "https://d1ib001enzg3sq.cloudfront.net/public/o/b698d53330612af4754a69a8882f19b5/72bcd5049e.webp",
+    "local_file": "signature_cocktails__coconut_kiss.webp"
+  },
+  {
+    "title": "Solero",
+    "category": [
+      "Signature Cocktails"
+    ],
+    "url": "https://d1ib001enzg3sq.cloudfront.net/public/o/b698d53330612af4754a69a8882f19b5/21007afc6b.webp",
+    "local_file": "signature_cocktails__solero.webp"
+  },
+  {
+    "title": "Mosquito",
+    "category": [
+      "Signature Cocktails"
+    ],
+    "url": "https://d1ib001enzg3sq.cloudfront.net/public/o/b698d53330612af4754a69a8882f19b5/3f25b72890.webp",
+    "local_file": "signature_cocktails__mosquito.webp"
+  },
+  {
+    "title": "Blue Lychee Mosquito",
+    "category": [
+      "Signature Cocktails"
+    ],
+    "url": "https://d1ib001enzg3sq.cloudfront.net/public/o/b698d53330612af4754a69a8882f19b5/ed8b0e15dc.webp",
+    "local_file": "signature_cocktails__blue_lychee_mosquito.webp"
+  },
+  {
+    "title": "Fancy Love",
+    "category": [
+      "Signature Cocktails"
+    ],
+    "url": "https://d1ib001enzg3sq.cloudfront.net/public/o/b698d53330612af4754a69a8882f19b5/c338569e46.webp",
+    "local_file": "signature_cocktails__fancy_love.webp"
+  },
+  {
+    "title": "Violet (Wood Smoke)",
+    "category": [
+      "High-Class Cocktails"
+    ],
+    "url": "https://d1ib001enzg3sq.cloudfront.net/public/o/b698d53330612af4754a69a8882f19b5/158ab1b306.webp",
+    "local_file": "high_class_cocktails__violet_wood_smoke.webp"
+  },
+  {
+    "title": "Funky Passion (Bubble-Tea)",
+    "category": [
+      "High-Class Cocktails"
+    ],
+    "url": "https://d1ib001enzg3sq.cloudfront.net/public/o/b698d53330612af4754a69a8882f19b5/1818da7aea.webp",
+    "local_file": "high_class_cocktails__funky_passion_bubble_tea.webp"
+  },
+  {
+    "title": "Another One (Wood Smoke)",
+    "category": [
+      "High-Class Cocktails"
+    ],
+    "url": "https://d1ib001enzg3sq.cloudfront.net/public/o/b698d53330612af4754a69a8882f19b5/16f7a03347.webp",
+    "local_file": "high_class_cocktails__another_one_wood_smoke.webp"
+  },
+  {
+    "title": "Cloud Seven (Balloon Glass)",
+    "category": [
+      "High-Class Cocktails"
+    ],
+    "url": "https://d1ib001enzg3sq.cloudfront.net/public/o/b698d53330612af4754a69a8882f19b5/9df26170e1.webp",
+    "local_file": "high_class_cocktails__cloud_seven_balloon_glass.webp"
+  },
+  {
+    "title": "Very Berry",
+    "category": [
+      "Smoothies"
+    ],
+    "url": "https://d1ib001enzg3sq.cloudfront.net/public/o/b698d53330612af4754a69a8882f19b5/8632a6eb7b.webp",
+    "local_file": "smoothies__very_berry.webp"
+  },
+  {
+    "title": "Green Goddess",
+    "category": [
+      "Smoothies"
+    ],
+    "url": "https://d1ib001enzg3sq.cloudfront.net/public/o/b698d53330612af4754a69a8882f19b5/c2824c9b2a.webp",
+    "local_file": "smoothies__green_goddess.webp"
+  },
+  {
+    "title": "Pink Punch",
+    "category": [
+      "Smoothies"
+    ],
+    "url": "https://d1ib001enzg3sq.cloudfront.net/public/o/b698d53330612af4754a69a8882f19b5/ab933ae79f.webp",
+    "local_file": "smoothies__pink_punch.webp"
+  },
+  {
+    "title": "Orange Glow",
+    "category": [
+      "Smoothies"
+    ],
+    "url": "https://d1ib001enzg3sq.cloudfront.net/public/o/b698d53330612af4754a69a8882f19b5/25c6501420.webp",
+    "local_file": "smoothies__orange_glow.webp"
+  },
+  {
+    "title": "28 Black (Schwarze Dose)",
+    "category": [
+      "Energydrink"
+    ],
+    "url": "https://d1ib001enzg3sq.cloudfront.net/public/o/b698d53330612af4754a69a8882f19b5/105341ce45.webp",
+    "local_file": "energydrink__28_black_schwarze_dose.webp"
+  },
+  {
+    "title": "Edamame",
+    "category": [
+      "Vorspeisen"
+    ],
+    "url": "https://d1ib001enzg3sq.cloudfront.net/public/o/b698d53330612af4754a69a8882f19b5/f6e42f345e.webp",
+    "local_file": "vorspeisen__edamame.webp"
+  },
+  {
+    "title": "Acili Ezme",
+    "category": [
+      "Vorspeisen"
+    ],
+    "url": "https://d1ib001enzg3sq.cloudfront.net/public/o/b698d53330612af4754a69a8882f19b5/b9feb71c3a.webp",
+    "local_file": "vorspeisen__acili_ezme.webp"
+  },
+  {
+    "title": "Frühlingsrollen",
+    "category": [
+      "Vorspeisen"
+    ],
+    "url": "https://d1ib001enzg3sq.cloudfront.net/public/o/b698d53330612af4754a69a8882f19b5/eda0e1f10b.webp",
+    "local_file": "vorspeisen__fruehlingsrollen.webp"
+  },
+  {
+    "title": "Hummus",
+    "category": [
+      "Vorspeisen"
+    ],
+    "url": "https://d1ib001enzg3sq.cloudfront.net/public/o/b698d53330612af4754a69a8882f19b5/e7d6d6dc05.webp",
+    "local_file": "vorspeisen__hummus.webp"
+  },
+  {
+    "title": "Grillspieß Oriental",
+    "category": [
+      "Hauptgerichte"
+    ],
+    "url": "https://d1ib001enzg3sq.cloudfront.net/public/o/b698d53330612af4754a69a8882f19b5/7e445cdf3a.webp",
+    "local_file": "hauptgerichte__grillspiess_oriental.webp"
+  },
+  {
+    "title": "Türkische Grillköfte",
+    "category": [
+      "Hauptgerichte"
+    ],
+    "url": "https://d1ib001enzg3sq.cloudfront.net/public/o/b698d53330612af4754a69a8882f19b5/525901449a.webp",
+    "local_file": "hauptgerichte__tuerkische_grillkoefte.webp"
+  },
+  {
+    "title": "Goldenes Hähnchenschnitzel",
+    "category": [
+      "Hauptgerichte"
+    ],
+    "url": "https://d1ib001enzg3sq.cloudfront.net/public/o/b698d53330612af4754a69a8882f19b5/9f960b8bb5.webp",
+    "local_file": "hauptgerichte__goldenes_haehnchenschnitzel.webp"
+  },
+  {
+    "title": "Mexican Style Fajitas",
+    "category": [
+      "Hauptgerichte"
+    ],
+    "url": "https://d1ib001enzg3sq.cloudfront.net/public/o/b698d53330612af4754a69a8882f19b5/b81aaf8c40.webp",
+    "local_file": "hauptgerichte__mexican_style_fajitas.webp"
+  },
+  {
+    "title": "Zarter Grilllachs",
+    "category": [
+      "Hauptgerichte"
+    ],
+    "url": "https://d1ib001enzg3sq.cloudfront.net/public/o/b698d53330612af4754a69a8882f19b5/a843865eb7.webp",
+    "local_file": "hauptgerichte__zarter_grilllachs.webp"
+  },
+  {
+    "title": "Beef Balance Bowl",
+    "category": [
+      "Bowls & Salate"
+    ],
+    "url": "https://d1ib001enzg3sq.cloudfront.net/public/o/b698d53330612af4754a69a8882f19b5/c6d1b4101e.webp",
+    "local_file": "bowls_and_salate__beef_balance_bowl.webp"
+  },
+  {
+    "title": "Chicken Power Bowl",
+    "category": [
+      "Bowls & Salate"
+    ],
+    "url": "https://d1ib001enzg3sq.cloudfront.net/public/o/b698d53330612af4754a69a8882f19b5/007c740ce5.webp",
+    "local_file": "bowls_and_salate__chicken_power_bowl.webp"
+  },
+  {
+    "title": "Salmon Energy Bowl",
+    "category": [
+      "Bowls & Salate"
+    ],
+    "url": "https://d1ib001enzg3sq.cloudfront.net/public/o/b698d53330612af4754a69a8882f19b5/c848382100.webp",
+    "local_file": "bowls_and_salate__salmon_energy_bowl.webp"
+  },
+  {
+    "title": "Classic Caesar Salad",
+    "category": [
+      "Bowls & Salate"
+    ],
+    "url": "https://d1ib001enzg3sq.cloudfront.net/public/o/b698d53330612af4754a69a8882f19b5/5c81fa64d7.webp",
+    "local_file": "bowls_and_salate__classic_caesar_salad.webp"
+  },
+  {
+    "title": "Crispy Chicken Delight",
+    "category": [
+      "Burger Gerichte"
+    ],
+    "url": "https://d1ib001enzg3sq.cloudfront.net/public/o/b698d53330612af4754a69a8882f19b5/85d3ccf474.webp",
+    "local_file": "burger_gerichte__crispy_chicken_delight.webp"
+  },
+  {
+    "title": "Classic Cheeseburger",
+    "category": [
+      "Burger Gerichte"
+    ],
+    "url": "https://d1ib001enzg3sq.cloudfront.net/public/o/b698d53330612af4754a69a8882f19b5/0b7cdbe6f6.webp",
+    "local_file": "burger_gerichte__classic_cheeseburger.webp"
+  },
+  {
+    "title": "Oriental Manti",
+    "category": [
+      "Pasta Gerichte"
+    ],
+    "url": "https://d1ib001enzg3sq.cloudfront.net/public/o/b698d53330612af4754a69a8882f19b5/af33aac091.webp",
+    "local_file": "pasta_gerichte__oriental_manti.webp"
+  },
+  {
+    "title": "Creamy Chicken Penne (Penne-Pollo)",
+    "category": [
+      "Pasta Gerichte"
+    ],
+    "url": "https://d1ib001enzg3sq.cloudfront.net/public/o/b698d53330612af4754a69a8882f19b5/90fc385dec.webp",
+    "local_file": "pasta_gerichte__creamy_chicken_penne_penne_pollo.webp"
+  },
+  {
+    "title": "Seafood Penne",
+    "category": [
+      "Pasta Gerichte"
+    ],
+    "url": "https://d1ib001enzg3sq.cloudfront.net/public/o/b698d53330612af4754a69a8882f19b5/1fed4c4610.webp",
+    "local_file": "pasta_gerichte__seafood_penne.webp"
+  },
+  {
+    "title": "Crunchy Finger Food Platter",
+    "category": [
+      "Finger Food"
+    ],
+    "url": "https://d1ib001enzg3sq.cloudfront.net/public/o/b698d53330612af4754a69a8882f19b5/9c2f11e67c.webp",
+    "local_file": "finger_food__crunchy_finger_food_platter.webp"
+  },
+  {
+    "title": "Classic Fries",
+    "category": [
+      "Finger Food"
+    ],
+    "url": "https://d1ib001enzg3sq.cloudfront.net/public/o/b698d53330612af4754a69a8882f19b5/688a3b05b8.webp",
+    "local_file": "finger_food__classic_fries.webp"
+  },
+  {
+    "title": "Curly Fries",
+    "category": [
+      "Finger Food"
+    ],
+    "url": "https://d1ib001enzg3sq.cloudfront.net/public/o/b698d53330612af4754a69a8882f19b5/688a3b05b8.webp",
+    "local_file": "finger_food__curly_fries.webp"
+  },
+  {
+    "title": "Sweet Potato Fries",
+    "category": [
+      "Finger Food"
+    ],
+    "url": "https://d1ib001enzg3sq.cloudfront.net/public/o/b698d53330612af4754a69a8882f19b5/688a3b05b8.webp",
+    "local_file": "finger_food__sweet_potato_fries.webp"
+  },
+  {
+    "title": "Warm Apple Delight",
+    "category": [
+      "Dessert"
+    ],
+    "url": "https://d1ib001enzg3sq.cloudfront.net/public/o/b698d53330612af4754a69a8882f19b5/3b6a832885.webp",
+    "local_file": "dessert__warm_apple_delight.webp"
+  },
+  {
+    "title": "Lotus Caramel Cheesecake",
+    "category": [
+      "Dessert"
+    ],
+    "url": "https://d1ib001enzg3sq.cloudfront.net/public/o/b698d53330612af4754a69a8882f19b5/1bc7b7ad4c.webp",
+    "local_file": "dessert__lotus_caramel_cheesecake.webp"
+  },
+  {
+    "title": "Golden Churros",
+    "category": [
+      "Dessert"
+    ],
+    "url": "https://d1ib001enzg3sq.cloudfront.net/public/o/b698d53330612af4754a69a8882f19b5/5461294ddd.webp",
+    "local_file": "dessert__golden_churros.webp"
+  },
+  {
+    "title": "Austrian Kaiserschmarrn",
+    "category": [
+      "Dessert"
+    ],
+    "url": "https://d1ib001enzg3sq.cloudfront.net/public/o/b698d53330612af4754a69a8882f19b5/c08cb93179.webp",
+    "local_file": "dessert__austrian_kaiserschmarrn.webp"
+  },
+  {
+    "title": "Obstteller",
+    "category": [
+      "Dessert"
+    ],
+    "url": "https://d1ib001enzg3sq.cloudfront.net/public/o/b698d53330612af4754a69a8882f19b5/154f5f959d.webp",
+    "local_file": "dessert__obstteller.webp"
+  },
+  {
+    "title": "Hürrem Knabbermix",
+    "category": [
+      "Finger Food"
+    ],
+    "url": "https://d1ib001enzg3sq.cloudfront.net/public/o/b698d53330612af4754a69a8882f19b5/f5b7bcf1d8.webp",
+    "local_file": "finger_food__huerrem_knabbermix.webp"
+  },
+  {
+    "title": "Hürrem Nuss Deluxe",
+    "category": [
+      "Finger Food"
+    ],
+    "url": "https://d1ib001enzg3sq.cloudfront.net/public/o/b698d53330612af4754a69a8882f19b5/1f899057ec.webp",
+    "local_file": "finger_food__huerrem_nuss_deluxe.webp"
+  },
+  {
+    "title": "Mini Pancakes",
+    "category": [
+      "Dessert"
+    ],
+    "url": "https://d1ib001enzg3sq.cloudfront.net/public/o/b698d53330612af4754a69a8882f19b5/597fbe98f8.webp",
+    "local_file": "dessert__mini_pancakes.webp"
+  },
+  {
+    "title": "Original San Sebastián Cheesecake",
+    "category": [
+      "Dessert"
+    ],
+    "url": "https://d1ib001enzg3sq.cloudfront.net/public/o/b698d53330612af4754a69a8882f19b5/527ec86648.webp",
+    "local_file": "dessert__original_san_sebastián_cheesecake.webp"
+  },
+  {
+    "title": "DRAGONFRUIT SUNSET",
+    "category": [
+      "Signature Cocktails"
+    ],
+    "url": "https://d1ib001enzg3sq.cloudfront.net/public/o/b698d53330612af4754a69a8882f19b5/c52105170d.webp",
+    "local_file": "signature_cocktails__dragonfruit_sunset.webp"
+  },
+  {
+    "title": "STRAWBERRY MATCHA CHILL",
+    "category": [
+      "Sommer-Specials"
+    ],
+    "url": "https://d1ib001enzg3sq.cloudfront.net/public/o/b698d53330612af4754a69a8882f19b5/438c10fba1.webp",
+    "local_file": "sommer_specials__strawberry_matcha_chill.webp"
+  },
+  {
+    "title": "MANGO MATCHA FUSION",
+    "category": [
+      "Sommer-Specials"
+    ],
+    "url": "https://d1ib001enzg3sq.cloudfront.net/public/o/b698d53330612af4754a69a8882f19b5/ae1b1d5ffb.webp",
+    "local_file": "sommer_specials__mango_matcha_fusion.webp"
+  },
+  {
+    "title": "LILA MANGO TRAUM",
+    "category": [
+      "Sommer-Specials"
+    ],
+    "url": "https://d1ib001enzg3sq.cloudfront.net/public/o/b698d53330612af4754a69a8882f19b5/86c7ea6559.webp",
+    "local_file": "sommer_specials__lila_mango_traum.webp"
+  },
+  {
+    "title": "GOLDEN MANGO MACCHIATTO",
+    "category": [
+      "Sommer-Specials"
+    ],
+    "url": "https://d1ib001enzg3sq.cloudfront.net/public/o/b698d53330612af4754a69a8882f19b5/a4cd989e49.webp",
+    "local_file": "sommer_specials__golden_mango_macchiatto.webp"
+  },
+  {
+    "title": "ICED STRAWBERRY VELVET",
+    "category": [
+      "Sommer-Specials"
+    ],
+    "url": "https://d1ib001enzg3sq.cloudfront.net/public/o/b698d53330612af4754a69a8882f19b5/f4131500f9.webp",
+    "local_file": "sommer_specials__iced_strawberry_velvet.webp"
+  },
+  {
+    "title": "RIGATONI CREAMY SUCUK",
+    "category": [
+      "Pasta Gerichte"
+    ],
+    "url": "https://d1ib001enzg3sq.cloudfront.net/public/o/b698d53330612af4754a69a8882f19b5/a0b57a8928.webp",
+    "local_file": "pasta_gerichte__rigatoni_creamy_sucuk.webp"
+  }
+]

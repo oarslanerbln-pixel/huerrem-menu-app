@@ -1,0 +1,76 @@
+﻿s1 | Doppel Apfel | NO_IMAGE_FIELD
+s2 | Apfel Minze | NO_IMAGE_FIELD
+s3 | Traube Minze | NO_IMAGE_FIELD
+s4 | Black Nana | NO_IMAGE_FIELD
+s5 | Sternstaub | NO_IMAGE_FIELD
+s6 | Luftschloss | NO_IMAGE_FIELD
+s7 | Limette Minze | NO_IMAGE_FIELD
+s8 | Lemon Chill | NO_IMAGE_FIELD
+s9 | Blueberry | NO_IMAGE_FIELD
+s10 | Nasty Girl | NO_IMAGE_FIELD
+s11 | Love 66 | NO_IMAGE_FIELD
+s12 | Pfirsich Minze | NO_IMAGE_FIELD
+s13 | Falim Red | NO_IMAGE_FIELD
+s14 | Ice Kaktus | NO_IMAGE_FIELD
+s15 | African Queen | NO_IMAGE_FIELD
+s16 | Raffaello | NO_IMAGE_FIELD
+s17 | Ice Apfel | NO_IMAGE_FIELD
+s18 | H³rrem Spezial Hookah | NO_IMAGE_FIELD
+s19 | Neuer Kopf | NO_IMAGE_FIELD
+d1 | GOLDEN MANGO MACCHIATTO P, A, H | NO_IMAGE_FIELD
+d2 | ICED STRAWBERRY VELVET 9, A, H | NO_IMAGE_FIELD
+d3 | MANGO MATCHA FUSION | NO_IMAGE_FIELD
+d4 | LILA MANGO TRAUM | NO_IMAGE_FIELD
+d5 | STRAWBERRY MATCHA CHILL | NO_IMAGE_FIELD
+d6 | Iced Latte G | NO_IMAGE_FIELD
+d7 | Fritz Cola | NO_IMAGE_FIELD
+d8 | Fritz Cola Zero | NO_IMAGE_FIELD
+d9 | Coca-Cola | NO_IMAGE_FIELD
+d10 | Coca-Cola Zero | NO_IMAGE_FIELD
+d11 | Fanta 1, 3 | NO_IMAGE_FIELD
+d12 | Sprite | NO_IMAGE_FIELD
+d13 | Mineralwasser | NO_IMAGE_FIELD
+d14 | Churchill 0,2l | NO_IMAGE_FIELD
+d15 | Stilles Wasser | NO_IMAGE_FIELD
+d16 | Schweppes Ginger Ale | NO_IMAGE_FIELD
+d17 | Schweppes Wild Berry 1, 3, 9 | NO_IMAGE_FIELD
+d18 | Rixdorfer Fassbrause 1, 3, 9 | NO_IMAGE_FIELD
+d19 | Club-Mate 1, 9 | NO_IMAGE_FIELD
+d20 | Elephant Bay | NO_IMAGE_FIELD
+d21 | Oreo Shake | NO_IMAGE_FIELD
+d22 | Nutella Shake | NO_IMAGE_FIELD
+d23 | Mango Lassi | NO_IMAGE_FIELD
+d24 | Virgin Mojito | NO_IMAGE_FIELD
+d25 | Passion Fruit Cooler | NO_IMAGE_FIELD
+d26 | T³rkischer Kaffee | NO_IMAGE_FIELD
+d27 | Cappuccino | NO_IMAGE_FIELD
+d_juice_1 | Orangensaft | NO_IMAGE_FIELD
+d_juice_2 | Apfelsaft | NO_IMAGE_FIELD
+d_juice_3 | Maracujasaft | NO_IMAGE_FIELD
+d_juice_4 | Mangosaft | NO_IMAGE_FIELD
+d_juice_5 | KiBa (Kirsch-Bananen-Saft) | NO_IMAGE_FIELD
+d_juice_6 | Kirschnektar | NO_IMAGE_FIELD
+d_juice_7 | Bananennektar | NO_IMAGE_FIELD
+d_juice_8 | Cranberrysaft | NO_IMAGE_FIELD
+d_juice_9 | Ananassaft | NO_IMAGE_FIELD
+d_hs_1 | Chai Latte | NO_IMAGE_FIELD
+d_hs_2 | Matcha Latte | NO_IMAGE_FIELD
+d_hs_3 | White Chocolate | NO_IMAGE_FIELD
+d_hs_4 | Dark Chocolate | NO_IMAGE_FIELD
+d_hs_5 | Sahlep | NO_IMAGE_FIELD
+d_hit_1 | Yuzu | NO_IMAGE_FIELD
+d_hit_2 | Peach | NO_IMAGE_FIELD
+d_hit_3 | Wildberry | NO_IMAGE_FIELD
+d_hit_4 | Sweet Melon | NO_IMAGE_FIELD
+d_hit_5 | Acai Strawberry | NO_IMAGE_FIELD
+d_hit_6 | Cotton Candy | NO_IMAGE_FIELD
+d_hit_7 | Kaktus Feige | NO_IMAGE_FIELD
+d_fh_1 | Hibiscus Orange Limo | NO_IMAGE_FIELD
+d_fh_2 | 53 | NO_IMAGE_FIELD
+d_fh_3 | Blue Wonder | NO_IMAGE_FIELD
+d_fh_4 | Softy Gold G | NO_IMAGE_FIELD
+d_fh_5 | Aloe Vera | NO_IMAGE_FIELD
+d_fh_6 | Berry Yakult Peach Limo G | NO_IMAGE_FIELD
+d_fh_7 | Pink Lover | NO_IMAGE_FIELD
+d_fh_8 | RosÚ G | NO_IMAGE_FIELD
+f1 | Hummus | NO_IMAGE_FIELD

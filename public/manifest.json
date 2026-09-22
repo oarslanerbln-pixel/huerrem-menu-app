@@ -1,0 +1,17 @@
+{
+  "name": "Hürrem Sultan Premium Lounge",
+  "short_name": "Hürrem",
+  "description": "Exclusive Interactive Digital Menu for Hürrem Sultan Lounge.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0A0908",
+  "theme_color": "#0A0908",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "192x192 512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

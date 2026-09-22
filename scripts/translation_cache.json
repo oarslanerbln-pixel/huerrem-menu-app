@@ -1,0 +1,333 @@
+{
+  "GOLDEN MANGO MACCHIATTO P, A, H": {
+    "FR": "MACCHIATTO À LA MANGUE DORÉE P, A, H",
+    "ES": "MANGO DORADO MACCHIATTO P, A, H",
+    "RU": "ЗОЛОТОЙ МАНГО МАККИАТТО P, A, H"
+  },
+  "Die perfekte Fusion aus Orient und Okzident: Eine fruchtig-süße Basis aus goldenem Mangopüree, geschichtet mit eiskalter, cremiger Milch und abgerundet durch einen kräftigen, frisch gebrühten Espresso-Shot. Ein erfrischendes Geschmackserlebnis voller Energie.": {
+    "FR": "La fusion parfaite de l'Orient et de l'Occident : une base fruitée et sucrée de purée de mangue dorée, recouverte de lait glacé et crémeux et complétée par un expresso puissant fraîchement infusé. Une expérience gustative rafraîchissante et pleine d'énergie.",
+    "ES": "La fusión perfecta de Oriente y Occidente: una base dulce y afrutada de puré de mango dorado, cubierta con leche cremosa helada y rematada con un trago de espresso fuerte y recién hecho. Una experiencia de sabor refrescante y llena de energía.",
+    "RU": "Идеальное сочетание Востока и Запада: фруктово-сладкая основа из пюре золотистого манго, прослоенная ледяным сливочным молоком и дополненная крепким свежесваренным эспрессо. Освежающий вкус, полный энергии."
+  },
+  "ICED STRAWBERRY VELVET 9, A, H": {
+    "FR": "VELOURS DE FRAISE GLACÉ 9, A, H",
+    "ES": "TERCIOPELO HELADO DE FRESA 9, A, H",
+    "RU": "ЗАМОРОЖЕННАЯ КЛУБНИКА БАРХАТ 9, А, Н"
+  },
+  "Ein samtig-cremiger Sommertraum im Glas. Fruchtiges Erdbeer-Püree trifft auf sanfte, gekühlte Milch und die edle, herbe Note von feinstem Espresso. Intensiv, fruchtig und unbeschreiblich cremig.": {
+    "FR": "Un rêve d'été velouté et crémeux dans un verre. La purée de fraises fruitée rencontre le lait doux et frais et la note noble et acidulée du meilleur expresso. Intense, fruité et incroyablement crémeux.",
+    "ES": "Un sueño de verano cremoso y aterciopelado en una copa. El puré de fresas afrutado se une a la suave leche fría y a la nota noble y ácida del mejor espresso. Intenso, afrutado e indescriptiblemente cremoso.",
+    "RU": "Бархатистая, сливочная летняя мечта в бокале. Фруктовое клубничное пюре сочетается с нежным охлажденным молоком и благородной терпкой ноткой лучшего эспрессо. Интенсивный, фруктовый и неописуемо сливочный."
+  },
+  "Iced Latte G": {
+    "FR": "Latté glacé G",
+    "ES": "Latte helado G",
+    "RU": "Ледяной латте G"
+  },
+  "Schweppes Wild Berry 1, 3, 9": {
+    "FR": "Baies sauvages Schweppes 1, 3, 9",
+    "ES": "Schweppes Baya Silvestre 1, 3, 9",
+    "RU": "Швепс Вайлд Берри 1, 3, 9"
+  },
+  "Rixdorfer Fassbrause 1, 3, 9": {
+    "FR": "Rixdorfer Fassbrause 1, 3, 9",
+    "ES": "Rixdorfer Fassbrause 1, 3, 9",
+    "RU": "Риксдорфер Фассбраузе 1, 3, 9"
+  },
+  "Club-Mate 1, 9": {
+    "FR": "Club Mate 1, 9",
+    "ES": "Compañero de club 1, 9",
+    "RU": "Товарищ по клубу 1, 9"
+  },
+  "Mango Lassi": {
+    "FR": "Lassi à la mangue",
+    "ES": "Lassi de mango",
+    "RU": "Манго ласси"
+  },
+  "Fruchtig-cremiger indischer Klassiker mit reifer Mango.": {
+    "FR": "Un classique indien fruité et crémeux avec de la mangue mûre.",
+    "ES": "Clásico indio cremoso y afrutado con mango maduro.",
+    "RU": "Фруктовый, сливочный индийский классический вкус со спелым манго."
+  },
+  "Virgin Mojito": {
+    "FR": "Mojito Vierge",
+    "ES": "mojito virgen",
+    "RU": "Вирджин Мохито"
+  },
+  "Frische Minze, Limette und Soda - erfrischend ohne Alkohol.": {
+    "FR": "Menthe fraîche, citron vert et soda – rafraîchissant sans alcool.",
+    "ES": "Menta fresca, lima y refresco: refrescante sin alcohol.",
+    "RU": "Свежая мята, лайм и содовая – освежает без алкоголя."
+  },
+  "Passion Fruit Cooler": {
+    "FR": "Refroidisseur Fruit de la Passion",
+    "ES": "Enfriador de maracuyá",
+    "RU": "Холодильник для маракуйи"
+  },
+  "Exotische Passionsfrucht mit Limette und Crushed Ice.": {
+    "FR": "Fruit de la passion exotique au citron vert et glace pilée.",
+    "ES": "Maracuyá exótica con lima y hielo picado.",
+    "RU": "Экзотическая маракуйя с лаймом и колотым льдом."
+  },
+  "Cremige Kombination aus frischen Mangostückchen, Joghurt, Zucker und Milch - tropisch und samtig.": {
+    "ES": "Cremosa combinación de trozos de mango fresco, yogur, azúcar y leche: tropical y aterciopelada.",
+    "RU": "Сливочное сочетание кусочков свежего манго, йогурта, сахара и молока – тропическое и бархатистое."
+  },
+  "Eine bezaubernde Mischung aus Mineralwasser, frischem Zitronensaft und Drachenfruchtpüree.": {
+    "FR": "Un mélange enchanteur d'eau minérale, de jus de citron frais et de purée de fruit du dragon.",
+    "ES": "Una encantadora mezcla de agua mineral, jugo de limón fresco y puré de fruta del dragón.",
+    "RU": "Очаровательная смесь минеральной воды, свежевыжатого лимонного сока и пюре из драконьего фрукта."
+  },
+  "Seafood Penne": {
+    "FR": "Pennes aux fruits de mer",
+    "ES": "penne de mariscos",
+    "RU": "Пенне с морепродуктами"
+  },
+  "Penne-Nudeln mit Scampi, Champignons und Parmesan, wahlweise in Sahne-, Tomatensahne- oder Tomatensoße. Ein Genuss für Meeresfrüchte-Fans!": {
+    "FR": "Penne aux langoustines, champignons et parmesan, éventuellement à la crème, crème de tomate ou sauce tomate. Un régal pour les amateurs de fruits de mer !",
+    "ES": "Pasta penne con gambas, champiñones y parmesano, opcionalmente en nata, crema de tomate o salsa de tomate. ¡Un placer para los amantes del marisco!",
+    "RU": "Паста пенне с креветками, грибами и пармезаном, по желанию в сливках, томатном креме или томатном соусе. Наслаждение для любителей морепродуктов!"
+  },
+  "Pesto Scampi Penne": {
+    "FR": "Penne de langoustines au pesto",
+    "ES": "Penne con pesto y gambas",
+    "RU": "Песто пенне с креветками"
+  },
+  "Penne mit saftigen Scampi, Brokkoli und getrockneten Tomaten, abgerundet mit einer Pesto-Soße.": {
+    "FR": "Penne aux langoustines juteuses, brocoli et tomates séchées, agrémentées d'une sauce au pesto.",
+    "ES": "Penne con jugosas gambas, brócoli y tomates secos, rematado con salsa pesto.",
+    "RU": "Пенне с сочными креветками, брокколи и сушеными помидорами, дополненными соусом песто."
+  },
+  "Beef & Broccoli Penne": {
+    "FR": "Penne au bœuf et au brocoli",
+    "ES": "Penne de carne y brócoli",
+    "RU": "Пенне из говядины и брокколи"
+  },
+  "Penne-Nudeln mit zarten Rinderfiletstreifen, Champignons und Brokkoli, wahlweise in Sahne-, Tomatensahne- oder Tomatensoße. Mit Parmesan verfeinert.": {
+    "FR": "Pâtes penne avec de tendres lanières de filet de bœuf, champignons et brocolis, éventuellement à la crème, à la crème de tomate ou à la sauce tomate. Affiné avec du parmesan.",
+    "ES": "Pasta penne con tiernas tiras de solomillo de ternera, champiñones y brócoli, opcionalmente en nata, crema de tomate o salsa de tomate. Refinado con parmesano.",
+    "RU": "Паста пенне с нежными полосками говяжьего филе, грибами и брокколи, по желанию в сливках, томатном креме или томатном соусе. Утончен пармезаном."
+  },
+  "Edamame": {
+    "FR": "Édamame",
+    "ES": "Edamame",
+    "RU": "Эдамаме"
+  },
+  "Gedämpfte Sojabohnen mit grobem Meersalz.": {
+    "FR": "Soja cuit à la vapeur avec du gros sel marin.",
+    "ES": "Soja al vapor con sal marina gruesa.",
+    "RU": "Соевые бобы, приготовленные на пару с крупной морской солью."
+  },
+  "Frühlingsrollen": {
+    "FR": "Rouleaux de printemps",
+    "ES": "rollitos de primavera",
+    "RU": "Спринг-роллы"
+  },
+  "Fünf knusprige, vegetarische Frühlingsrollen, serviert mit unserer süß-scharfen Chili-Sauce.": {
+    "FR": "Cinq rouleaux de printemps végétariens croustillants, servis avec notre sauce chili sucrée et épicée.",
+    "ES": "Cinco rollitos de primavera crujientes y vegetarianos, servidos con nuestra salsa de chile dulce y picante.",
+    "RU": "Пять хрустящих вегетарианских блинчиков с начинкой, подаются со сладким и острым соусом чили."
+  },
+  "Acılı Ezme": {},
+  "Würzige türkische Tomaten-Paprika-Paste, fein gehackt mit frischen Kräutern.": {
+    "FR": "Pâte de tomates et poivrons turcs épicés, finement hachés avec des herbes fraîches.",
+    "ES": "Pasta turca picante de tomate y pimiento, finamente picada con hierbas frescas.",
+    "RU": "Острая турецкая паста из томатов и перца, мелко нарезанная со свежей зеленью."
+  },
+  "Hummus": {
+    "FR": "Houmous",
+    "ES": "Hummus",
+    "RU": "Хумус"
+  },
+  "Cremiger Kichererbsen-Hummus mit Olivenöl, serviert mit warmem Fladenbrot.": {
+    "FR": "Houmous crémeux de pois chiches à l'huile d'olive, servi avec du pain pita chaud.",
+    "ES": "Hummus cremoso de garbanzos con aceite de oliva, servido con pan pita tibio.",
+    "RU": "Сливочный хумус из нута с оливковым маслом, подается с теплым лавашем."
+  },
+  "Linsensuppe": {
+    "FR": "Soupe aux lentilles",
+    "ES": "sopa de lentejas",
+    "RU": "Чечевичный суп"
+  },
+  "Traditionelle türkische Linsensuppe, samtig püriert und mit einem Hauch Minze verfeinert.": {
+    "FR": "Soupe turque traditionnelle aux lentilles, purée veloutée et raffinée avec un soupçon de menthe.",
+    "ES": "Sopa tradicional turca de lentejas, aterciopelada en puré y refinada con un toque de menta.",
+    "RU": "Традиционный турецкий суп из чечевицы, бархатистое пюре и изысканный вкус с оттенком мяты."
+  },
+  "Tomatensuppe": {
+    "FR": "Soupe à la tomate",
+    "ES": "Sopa de tomate",
+    "RU": "Томатный суп"
+  },
+  "Fruchtige Tomatensuppe mit Basilikum.": {
+    "FR": "Soupe fruitée de tomates au basilic.",
+    "ES": "Sopa de tomate afrutada con albahaca.",
+    "RU": "Фруктовый томатный суп с базиликом."
+  },
+  "Hürrem Nuss Deluxe": {
+    "FR": "Hurrem Noix Deluxe",
+    "ES": "Nuez Hurrem Deluxe",
+    "RU": "Хюррем Орех Делюкс"
+  },
+  "Eine edle Auswahl feinster Nüsse: Pistazien, Walnüsse, Cashews, Haselnüsse, Erdnüsse und gesalzene Mandeln.": {
+    "FR": "Une belle sélection des plus belles noix : pistaches, noix, noix de cajou, noisettes, cacahuètes et amandes salées.",
+    "ES": "Una cuidada selección de los mejores frutos secos: pistachos, nueces, anacardos, avellanas, cacahuetes y almendras saladas.",
+    "RU": "Прекрасный выбор лучших орехов: фисташки, грецкие орехи, кешью, фундук, арахис и соленый миндаль."
+  },
+  "Crunchy Finger Food Platter": {
+    "FR": "Plateau d'amuse-gueules croquants",
+    "ES": "Plato crujiente para picar",
+    "RU": "Хрустящая тарелка с закусками"
+  },
+  "Ein Mix aus knusprigen Klassikern: 3x Mozzarella-Sticks, 3x Onion Rings, 3x Shrimps, 3x Chicken Filet, 3x pikante Chicken Wings. Serviert mit Pommes und drei Dips: Salsa, Sour Cream und Guacamole.": {
+    "FR": "Un mélange de classiques croustillants : 3x bâtonnets de mozzarella, 3x rondelles d'oignon, 3x crevettes, 3x filet de poulet, 3x ailes de poulet épicées. Servi avec frites et trois trempettes : salsa, crème sure et guacamole.",
+    "ES": "Una mezcla de clásicos crujientes: 3 palitos de mozzarella, 3 aros de cebolla, 3 camarones, 3 filetes de pollo, 3 alitas de pollo picantes. Servido con papas fritas y tres dips: salsa, crema agria y guacamole.",
+    "RU": "Микс хрустящей классики: 3 палочки моцареллы, 3 колечка лука, 3 креветки, 3 куриных филе, 3 острых куриных крылышка. Подается с картофелем фри и тремя соусами: сальса, сметана и гуакамоле."
+  },
+  "Hürrem Knabbermix": {
+    "FR": "Mélange de collations Hürrem",
+    "ES": "Mezcla de snacks Hürrem",
+    "RU": "Закусочная смесь Хюррем"
+  },
+  "Der perfekte Mix für den kleinen Hunger! Knusprige Original Pringles, herzhafte Lorenz Double Crunch Peanuts, knusprige Salzstangen und luftige Erdnuss Flips.": {
+    "FR": "Le mélange parfait pour une petite faim ! Pringles originaux croustillants, cacahuètes Lorenz Double Crunch copieuses, bâtonnets de bretzel croquants et flips de cacahuètes aérés.",
+    "ES": "¡La mezcla perfecta para un poco de hambre! Pringles originales crujientes, maní crujiente doble Lorenz, palitos de pretzel crujientes y volteretas de maní aireadas.",
+    "RU": "Идеальная смесь для небольшого голода! Хрустящие оригинальные чипсы Pringles, сытный арахис Lorenz Double Crunch, хрустящие палочки кренделя и воздушные блинчики с арахисом."
+  },
+  "Loaded Nachos": {
+    "FR": "Nachos chargés",
+    "ES": "nachos cargados",
+    "RU": "Загруженные начос"
+  },
+  "Knusprige Nachos, serviert mit Salsa, Sour Cream und Guacamole.\\nnatur: 9,90 € | mit Käse überbacken: 10,90 € | mit Käse überbacken + Jalapenos: 11,90 € | mit marinierter Hähnchenbrust: 12,90 €": {
+    "ES": "Nachos crujientes, servidos con salsa, crema agria y guacamole. Naturales: 9,90€ | gratinado con queso: 10,90 € | gratinado con queso + jalapeños: 11,90 € | con pechuga de pollo marinada: 12,90 €",
+    "RU": "Хрустящие начос, подаются с сальсой, сметаной и гуакамоле. Натуральный: 9,90 евро | запеченный с сыром: 10,90 € | запеченный с сыром + халапеньо: 11,90 € | с маринованной куриной грудкой: €12,90"
+  },
+  "Classic Fries": {
+    "FR": "Frise classique",
+    "ES": "friso clásico",
+    "RU": "Классический фриз"
+  },
+  "Knusprige Pommes, heiß und perfekt gesalzen – ein zeitloser Klassiker.": {
+    "FR": "Des frites croustillantes, chaudes et parfaitement salées, un classique intemporel.",
+    "ES": "Patatas fritas crujientes, calientes y perfectamente saladas: un clásico atemporal.",
+    "RU": "Хрустящий картофель фри, горячий и идеально соленый – вечная классика."
+  },
+  "Extra Finger Food": {
+    "FR": "Des amuse-gueules supplémentaires",
+    "ES": "comida extra para picar",
+    "RU": "Дополнительная еда, которую едят руками"
+  },
+  "Wähle einzeln: je 5 Mozzarella-Sticks, Onion Rings, Shrimps, Chicken Filet oder pikante Chicken Wings.": {
+    "FR": "Choisissez individuellement : 5 bâtonnets de mozzarella, rondelles d'oignon, crevettes, filet de poulet ou ailes de poulet épicées.",
+    "ES": "Elija individualmente: 5 de cada uno de palitos de mozzarella, aros de cebolla, camarones, filete de pollo o alitas de pollo picantes.",
+    "RU": "Выбирайте индивидуально: по 5 палочек моцареллы, кольца лука, креветки, куриное филе или острые куриные крылышки."
+  },
+  "Kombi 1": {
+    "FR": "Combinaison 1",
+    "ES": "Combinación 1",
+    "RU": "Комбо 1"
+  },
+  "Classic Shisha und ein erfrischender Softdrink.": {
+    "FR": "Chicha classique et boisson gazeuse rafraîchissante.",
+    "ES": "Shisha clásica y refresco refrescante.",
+    "RU": "Классический кальян и освежающий безалкогольный напиток."
+  },
+  "Kombi 2": {
+    "FR": "Combinaison 2",
+    "ES": "Combinación 2",
+    "RU": "Комбо 2"
+  },
+  "Classic Shisha kombiniert mit einem unserer leckeren Signature Shakes.": {
+    "FR": "Shisha classique combinée à l'un de nos délicieux shakes signature.",
+    "ES": "Shisha clásica combinada con uno de nuestros deliciosos batidos exclusivos.",
+    "RU": "Классический кальян в сочетании с одним из наших восхитительных фирменных коктейлей."
+  },
+  "Kombi 3": {
+    "FR": "Combinaison 3",
+    "ES": "Combinación 3",
+    "RU": "Комбо 3"
+  },
+  "Classic Shisha, traditioneller türkischer Çay und eine köstliche Vorspeise nach Wahl.": {
+    "FR": "Chicha classique, Çay turc traditionnel et une délicieuse entrée de votre choix.",
+    "ES": "Shisha clásica, Çay tradicional turco y un delicioso entrante a tu elección.",
+    "RU": "Классический кальян, традиционный турецкий чай и вкусная закуска на ваш выбор."
+  },
+  "Kombi 4 – Friends": {
+    "FR": "Combo 4 – Amis",
+    "ES": "Combinación 4 – Amigos",
+    "RU": "Комбо 4 — Друзья"
+  },
+  "Perfekt für zwei Personen. Zwei Classic Shishas, Softdrinks und reichlich Nachos.": {
+    "FR": "Parfait pour deux personnes. Deux chichas classiques, des boissons gazeuses et de nombreux nachos.",
+    "ES": "Perfecto para dos personas. Dos shishas clásicas, refrescos y muchos nachos.",
+    "RU": "Идеально подходит для двух человек. Два классических кальяна, безалкогольные напитки и много начос."
+  },
+  "Kombi 5 – Royal": {
+    "FR": "Combo 5 – Royale",
+    "ES": "Combinación 5 – Real",
+    "RU": "Комбо 5 – Королевское"
+  },
+  "Das ultimative VIP-Lounge-Erlebnis mit Premium Shishas, Shakes und Vorspeisen.": {
+    "FR": "L'expérience ultime du salon VIP avec des chichas, des shakes et des apéritifs haut de gamme.",
+    "ES": "La mejor experiencia en sala VIP con shishas, ​​batidos y aperitivos premium.",
+    "RU": "Непревзойденный опыт VIP-зала с кальянами премиум-класса, коктейлями и закусками."
+  },
+  "Another One Wood Smoke": {
+    "FR": "Une autre fumée de bois",
+    "ES": "Otro Humo De Leña",
+    "RU": "Еще один древесный дым"
+  },
+  "Exklusiver Cocktail mit Rauch-Aroma.": {
+    "FR": "Cocktail exclusif à l'arôme de fumée.",
+    "ES": "Cóctel exclusivo con aroma a humo.",
+    "RU": "Эксклюзивный коктейль с ароматом дыма."
+  },
+  "Cloud Seven Balloon Glass": {
+    "FR": "Verre ballon Cloud Seven",
+    "ES": "Vaso Globo Nube Siete",
+    "RU": "Стекло Cloud Seven для воздушных шаров"
+  },
+  "Ein himmlischer Genuss im Ballonglas.": {
+    "FR": "Un délice paradisiaque dans un verre ballon.",
+    "ES": "Una delicia celestial en una copa globo.",
+    "RU": "Райское наслаждение в бокале из воздушного шара."
+  },
+  "Violet Wood Smoke": {
+    "FR": "Fumée De Bois De Violette",
+    "ES": "Humo de madera violeta",
+    "RU": "Фиолетовый древесный дым"
+  },
+  "Mystischer lila Cocktail mit Rauch-Effekt.": {
+    "FR": "Cocktail violet mystique avec effet fumée.",
+    "ES": "Cóctel morado místico con efecto humo.",
+    "RU": "Мистический фиолетовый коктейль с эффектом дыма."
+  },
+  "Cremige weiße Schokolade, (Auf Wunsch mit Sahne und zerbröselten Spekulatius) - perfekt für süße Genussmomente.": {
+    "FR": "Chocolat blanc crémeux (avec crème et spéculoos émiettés si désiré) - parfait pour de doux moments de gourmandise.",
+    "ES": "Chocolate blanco cremoso (con nata y speculoos desmenuzados si lo desea): perfecto para momentos dulces de placer.",
+    "RU": "Сливочный белый шоколад (по желанию со сливками и раскрошенными спекулосами) – идеально подходит для сладких моментов наслаждения."
+  },
+  "Intensive dunkle Schokolade, (Auf Wunsch mit Sahne) - ein Traum für Schokoladenliebhaber.": {
+    "FR": "Chocolat noir intense (avec crème si désiré) - un rêve pour les amateurs de chocolat.",
+    "ES": "Chocolate negro intenso (con nata si se desea): un sueño para los amantes del chocolate.",
+    "RU": "Насыщенный темный шоколад (по желанию со сливками) – мечта любителей шоколада."
+  },
+  "Classic Pfeife + Tee (Schwarztee, Apfeltee, Früchtetee oder Grüntee). Premium Pfeife: +3€. (Mo-Fr 10:00 - 15:00)": {
+    "FR": "Pipe classique + thé (thé noir, thé aux pommes, thé aux fruits ou thé vert). Pipe premium : +3€. (du lundi au vendredi de 10h00 à 15h00)",
+    "ES": "Pipa clásica + té (té negro, té de manzana, té de frutas o té verde). Pipa premium: +3€. (Lunes a viernes de 10:00 a. m. a 3:00 p. m.)",
+    "RU": "Классическая трубка + чай (черный чай, яблочный чай, фруктовый чай или зеленый чай). Премиум трубка: +3€. (пн-пт с 10:00 до 15:00)"
+  },
+  "Classic Pfeife + Softdrink / Saft. Premium Pfeife: +3€. (Mo-Fr 10:00 - 15:00)": {
+    "FR": "Pipe classique + boisson gazeuse/jus. Pipe premium : +3€. (du lundi au vendredi de 10h00 à 15h00)",
+    "ES": "Pipa clásica + refresco/zumo. Pipa premium: +3€. (Lunes a viernes de 10:00 a. m. a 3:00 p. m.)",
+    "RU": "Классическая трубка + безалкогольный напиток/сок. Премиум трубка: +3€. (пн-пт с 10:00 до 15:00)"
+  },
+  "Classic Pfeife + Milchshake. Premium Pfeife: +3€. (Mo-Fr 10:00 - 15:00)": {
+    "FR": "Sifflet classique + milkshake. Pipe premium : +3€. (du lundi au vendredi de 10h00 à 15h00)",
+    "ES": "Silbato clásico + batido. Pipa premium: +3€. (Lunes a viernes de 10:00 a. m. a 3:00 p. m.)",
+    "RU": "Классический свисток + молочный коктейль. Премиум трубка: +3€. (пн-пт с 10:00 до 15:00)"
+  }
+}�исток + молочный коктейль. Премиум трубка: +3€. (пн-пт с 10:00 до 15:00)"
+  }
+}

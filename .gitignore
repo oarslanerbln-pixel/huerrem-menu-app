@@ -1,0 +1,55 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+.vercel
+
+# --- Repo push icin eklenenler ---
+node_modules/
+dist/
+dist-ssr/
+.env
+.env.*
+.firebase/
+
+# --- Build ciktilari / arsivler (kaynak degil) ---
+*.zip
+
+# --- Uretilmis artefaktlar (menury_data.json bilerek haric tutulmadi) ---
+app.js
+menury.html
+debug.json
+diff.txt
+temp_*
+old_menu.ts
+old_menu_ac4.ts
+screenshot.png
+netlify.toml.bak
+Users*scratchpad*
+
+# --- Yerel dagitim durumu ---
+.netlify/
+
+# --- Yedek gorseller (public/images ile ayni) ---
+public/images_backup/

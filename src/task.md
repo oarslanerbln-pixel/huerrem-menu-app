@@ -1,0 +1,8 @@
+- [x] Multi-Language Support
+- [x] Allergen Legend Integration
+- [ ] Cryptic Historical Marquee Background
+  - [ ] Create `historicalNames.ts` data file
+  - [ ] Create `MysticScrambleText.tsx` for performant text scrambling
+  - [ ] Create `CrypticBackground.tsx` for marquee rows
+  - [ ] Integrate into `App.tsx`
+- [ ] Fix Waiter Call Button (Hardware Integration)

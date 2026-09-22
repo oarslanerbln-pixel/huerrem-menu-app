@@ -1,0 +1,1774 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+:root {
+  /* HSL Color System - Light Marble & Gold Theme */
+  
+  /* Brand Gold — Extended Palette */
+  --gold-50: hsl(43, 60%, 95%);
+  --gold-100: hsl(43, 60%, 85%);
+  --gold-200: hsl(43, 55%, 75%);
+  --gold-300: hsl(43, 50%, 65%);
+  --gold-400: hsl(43, 50%, 58%);
+  --gold-500: hsl(43, 50%, 55%); /* #C5A55A */
+  --gold-600: hsl(43, 52%, 46%);
+  --gold-700: hsl(43, 50%, 40%);
+  --gold-800: hsl(43, 48%, 30%);
+  --gold-glow: hsla(43, 50%, 55%, 0.25);
+  
+  /* Category Synesthesia Colors */
+  --cat-shisha: hsl(0, 65%, 62%);     /* Ruby Red */
+  --cat-shisha-glow: hsla(0, 65%, 62%, 0.25);
+  --cat-drinks: hsl(207, 80%, 72%);   /* Ice Blue */
+  --cat-drinks-glow: hsla(207, 80%, 72%, 0.25);
+  --cat-food: hsl(145, 45%, 58%);     /* Fresh Green */
+  --cat-food-glow: hsla(145, 45%, 58%, 0.25);
+  --cat-happy-hour: hsl(43, 50%, 55%);    /* Crown Gold */
+  --cat-happy-hour-glow: hsla(43, 50%, 55%, 0.25);
+  
+  /* Marble & Warm Backgrounds - Dark Theme */
+  --marble-base: hsl(43, 25%, 8%); /* Deep Luxury Charcoal #13110E */
+  --surface-100: hsl(43, 20%, 12%); /* Dark Surface #1A1713 */
+  --surface-200: hsl(43, 15%, 16%); /* Hover/Secondary Dark Surface */
+  
+  /* Typography Text Colors - Light Text */
+  --text-primary: hsl(43, 30%, 96%); /* Creamy White */
+  --text-secondary: hsl(43, 20%, 80%); /* Light Gold/Cream */
+  --text-tertiary: hsl(43, 25%, 65%); /* Muted Gold */
+  
+  /* Borders */
+  --border-light: rgba(197, 165, 90, 0.2); /* Elegant gold transparent border */
+  --border-gold: rgba(197, 165, 90, 0.45);
+  
+  /* Type Scale (Golden Ratio) */
+  --font-display: 'Josefin Sans', sans-serif;
+  --font-body: 'Inter', 'Helvetica Neue', sans-serif;
+  
+  --text-xs: clamp(0.694rem, 0.65vw, 0.75rem);
+  --text-sm: clamp(0.833rem, 0.8vw, 0.875rem);
+  --text-base: clamp(1rem, 1vw, 1.05rem);
+  --text-lg: clamp(1.2rem, 1.25vw, 1.25rem);
+  --text-xl: clamp(1.44rem, 1.5vw, 1.5rem);
+  --text-2xl: clamp(1.728rem, 2vw, 1.875rem);
+  --text-3xl: clamp(2.074rem, 2.5vw, 2.25rem);
+  
+  /* Spacing */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-8: 3rem;
+  --space-12: 6rem;
+  
+  /* Radii - Sharp Fine Dining Aesthetic */
+  --radius-sm: 0px;
+  --radius-md: 2px;
+  --radius-lg: 4px;
+  --radius-full: 9999px;
+  
+  /* Shadows & Glows */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 6px 18px rgba(197, 165, 90, 0.08);
+  --shadow-lg: 0 12px 30px rgba(197, 165, 90, 0.12);
+  --shadow-glow: 0 0 20px rgba(197, 165, 90, 0.15);
+  --shadow-glow-lg: 0 0 40px rgba(197, 165, 90, 0.25);
+}
+
+/* ============================================
+   THEME ENGINE (DATA-CONCEPT)
+   ============================================ */
+
+/* 1. NEO-CLASSIC (Default) — Premium Fine Dining */
+:root, :root.dark, [data-concept="neo-classic"] {
+  --theme-bg: var(--marble-base);
+  --theme-card-bg: rgba(8, 6, 4, 0.80);
+  --theme-card-border: rgba(197, 165, 90, 0.12);
+  --theme-text-primary: hsl(43, 30%, 96%);
+  --theme-text-secondary: hsl(43, 20%, 80%);
+  --theme-accent: var(--gold-500);
+  --theme-radius: 6px;
+  --theme-shadow: 0 24px 64px rgba(0, 0, 0, 0.95), 0 0 0 1px rgba(197, 165, 90, 0.06), inset 0 1px 0 rgba(197, 165, 90, 0.08);
+  --theme-modal-bg: rgba(10, 8, 6, 0.97);
+  --theme-modal-text: #FDFBF7;
+  --theme-card-padding: 16px 16px 20px;
+}
+
+/* 2. BRUTALIST LUXURY */
+:root.silver, [data-concept="brutalist"] {
+  --theme-bg: #EAEAEA;
+  --theme-card-bg: #FFFFFF;
+  --theme-card-border: #000000;
+  --theme-text-primary: #000000;
+  --theme-text-secondary: #333333;
+  --theme-accent: #000000;
+  --theme-radius: 0px;
+  --theme-shadow: 8px 8px 0px 0px #000000;
+  --theme-modal-bg: #FFFFFF;
+  --theme-modal-text: #000000;
+  --theme-card-padding: 20px;
+
+  /* Override gold palette → black/grey for Brutalist */
+  --marble-base: #EAEAEA;
+  --gold-50: #f5f5f5;
+  --gold-100: #e0e0e0;
+  --gold-200: #c0c0c0;
+  --gold-300: #555555;
+  --gold-400: #333333;
+  --gold-500: #111111;
+  --gold-600: #000000;
+  --gold-700: #000000;
+  --gold-800: #000000;
+  --gold-glow: rgba(0,0,0,0.15);
+  --border-light: rgba(0, 0, 0, 0.15);
+  --border-gold: rgba(0, 0, 0, 0.5);
+  --text-primary: #000000;
+  --text-secondary: #333333;
+  --text-tertiary: #555555;
+  --shadow-glow: 4px 4px 0px 0px #000000;
+  --shadow-md: 4px 4px 0px 0px #000000;
+}
+
+
+/* 3. SKEUOMORPHIC VELVET */
+[data-concept="skeuomorphic"] {
+  --theme-bg: #1a1515;
+  --theme-card-bg: linear-gradient(145deg, #2a2020, #151010);
+  --theme-card-border: rgba(255, 100, 100, 0.1);
+  --theme-text-primary: #f5e6e6;
+  --theme-text-secondary: #c2a3a3;
+  --theme-accent: #b33939;
+  --theme-radius: 20px;
+  --theme-shadow: inset 0 2px 10px rgba(255,255,255,0.05), 0 15px 35px rgba(0,0,0,0.9);
+  --theme-modal-bg: linear-gradient(145deg, #2a2020, #151010);
+  --theme-modal-text: #f5e6e6;
+  --theme-card-padding: 16px;
+}
+
+/* 4. CYBER-GOLD */
+[data-concept="cyber-gold"] {
+  --theme-bg: #050505;
+  --theme-card-bg: rgba(0, 0, 0, 0.8);
+  --theme-card-border: rgba(197, 165, 90, 0.6);
+  --theme-text-primary: #C5A55A;
+  --theme-text-secondary: rgba(197, 165, 90, 0.7);
+  --theme-accent: #FFD700;
+  --theme-radius: 8px;
+  --theme-shadow: 0 0 20px rgba(197, 165, 90, 0.2);
+  --theme-modal-bg: #050505;
+  --theme-modal-text: #FFD700;
+  --theme-card-padding: 16px;
+}
+
+/* 5. AZURE CREAM */
+:root.light, [data-concept="azure-cream"] {
+  --theme-bg: #F5F3ED;
+  --theme-card-bg: rgba(255, 255, 255, 0.7);
+  --theme-card-border: rgba(31, 58, 75, 0.1);
+  --theme-text-primary: #1A2F3D;
+  --theme-text-secondary: #425F75;
+  --theme-accent: #2A4B61;
+  --theme-radius: 16px;
+  --theme-shadow: 0 8px 32px rgba(31, 58, 75, 0.08);
+  --theme-modal-bg: rgba(245, 243, 237, 0.95);
+  --theme-modal-text: #1A2F3D;
+  --theme-card-padding: 16px;
+
+  /* Overrides for utility classes */
+  --text-primary: #1A2F3D;
+  --text-secondary: #425F75;
+  --text-tertiary: #607D8B;
+  --marble-base: #F5F3ED;
+  --border-light: rgba(31, 58, 75, 0.15);
+  --border-gold: rgba(31, 58, 75, 0.3);
+  --gold-500: hsl(210, 45%, 35%);
+  --gold-300: hsl(210, 45%, 45%);
+  --gold-400: hsl(210, 45%, 40%);
+  --gold-600: hsl(210, 45%, 30%);
+  --gold-700: hsl(210, 45%, 25%);
+  --shadow-glow: 0 0 20px rgba(31, 58, 75, 0.1);
+}
+
+/* 6. MONOLITHIC MATTE */
+[data-concept="monolithic-matte"] {
+  --theme-bg: #32302F;
+  --theme-card-bg: #3C3A39;
+  --theme-card-border: transparent;
+  --theme-text-primary: #E2DCD3;
+  --theme-text-secondary: #A8A199;
+  --theme-accent: #82786F;
+  --theme-radius: 4px;
+  --theme-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  --theme-modal-bg: #3C3A39;
+  --theme-modal-text: #E2DCD3;
+  --theme-card-padding: 16px;
+}
+
+/* 7. OTTOMAN PALACE */
+[data-concept="ottoman-palace"] {
+  --theme-bg: #1B0F13;
+  --theme-card-bg: rgba(43, 20, 27, 0.85);
+  --theme-card-border: rgba(212, 175, 55, 0.4);
+  --theme-text-primary: #F3E5AB;
+  --theme-text-secondary: #C8B568;
+  --theme-accent: #9B1B30;
+  --theme-radius: 24px 4px 24px 4px;
+  --theme-shadow: 0 10px 40px rgba(155, 27, 48, 0.15);
+  --theme-modal-bg: rgba(27, 15, 19, 0.98);
+  --theme-modal-text: #F3E5AB;
+  --theme-card-padding: 20px;
+}
+
+/* 8. WORLD CUP VIP MODE */
+[data-concept="world-cup"] {
+  --theme-bg: #0A1A12;
+  --theme-card-bg: rgba(10, 30, 20, 0.85);
+  --theme-card-border: rgba(16, 185, 129, 0.3);
+  --theme-text-primary: #F0FDF4;
+  --theme-text-secondary: #A7F3D0;
+  --theme-accent: #10B981;
+  --theme-radius: 16px;
+  --theme-shadow: 0 8px 30px rgba(16, 185, 129, 0.15);
+  --theme-modal-bg: rgba(10, 26, 18, 0.95);
+  --theme-modal-text: #F0FDF4;
+  --theme-card-padding: 16px;
+}
+
+/* Global Theme Classes */
+body {
+  background-color: var(--theme-bg) !important;
+  color: var(--theme-text-primary) !important;
+  transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+.theme-card {
+  background: var(--theme-card-bg);
+  padding: var(--theme-card-padding);
+  border: 1px solid var(--theme-card-border);
+  border-radius: var(--theme-radius);
+  box-shadow: var(--theme-shadow);
+  color: var(--theme-text-primary);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.theme-modal {
+  background: var(--theme-modal-bg);
+  border: 1px solid var(--theme-card-border);
+  border-radius: var(--theme-radius);
+  box-shadow: 0 25px 80px rgba(0,0,0,0.3);
+  color: var(--theme-modal-text);
+  -webkit-backdrop-filter: blur(25px);
+  backdrop-filter: blur(25px);
+}
+
+.theme-text {
+  color: var(--theme-text-primary);
+}
+
+.theme-text-muted {
+  color: var(--theme-text-secondary);
+}
+
+.theme-border {
+  border-color: var(--theme-card-border);
+}
+
+.theme-accent-bg {
+  background-color: var(--theme-accent);
+}
+
+.theme-accent-text {
+  color: var(--theme-accent);
+}
+
+/* ============================================
+   THEME-AWARE OVERLAY UTILITIES
+   Used by FilterBar, SearchBar, Nav etc.
+   ============================================ */
+
+/* Default (dark): semi-transparent dark overlays */
+.theme-overlay-bar {
+  background: rgba(8, 6, 4, 0.55);
+  border-color: rgba(255,255,255,0.06);
+  -webkit-backdrop-filter: blur(24px);
+  backdrop-filter: blur(24px);
+}
+.theme-overlay-search {
+  background: rgba(6, 5, 4, 0.97);
+  border-color: rgba(197, 165, 90, 0.1);
+}
+.theme-overlay-nav {
+  background: rgba(8, 6, 4, 0.88);
+}
+.theme-search-input-pill {
+  background: rgba(255,255,255,0.05);
+  border-color: rgba(255,255,255,0.1);
+}
+.theme-search-input-underline {
+  border-color: rgba(255,255,255,0.1);
+}
+.theme-subcat-inactive {
+  color: rgba(255,255,255,0.4);
+}
+.theme-subcat-inactive:hover {
+  color: rgba(255,255,255,0.8);
+}
+.theme-subcat-border {
+  border-color: rgba(255,255,255,0.05);
+}
+.theme-search-count {
+  color: rgba(255,255,255,0.4);
+}
+.theme-no-result-text {
+  color: rgba(255,255,255,0.5);
+}
+.theme-image-card-bg {
+  background: rgba(0,0,0,0.4);
+}
+.theme-img-blend {
+  mix-blend-mode: normal;
+}
+
+/* LIGHT theme overrides */
+:root.light .theme-overlay-bar {
+  background: rgba(245, 243, 237, 0.88);
+  border-color: rgba(31, 58, 75, 0.1);
+}
+:root.light .theme-overlay-search {
+  background: rgba(240, 238, 232, 0.99);
+  border-color: rgba(31, 58, 75, 0.08);
+}
+:root.light .theme-overlay-nav {
+  background: rgba(245, 243, 237, 0.92);
+}
+:root.light .theme-search-input-pill {
+  background: rgba(255,255,255,0.8);
+  border-color: rgba(31, 58, 75, 0.15);
+}
+:root.light .theme-search-input-underline {
+  border-color: rgba(31, 58, 75, 0.15);
+}
+:root.light .theme-subcat-inactive {
+  color: rgba(26, 47, 61, 0.45);
+}
+:root.light .theme-subcat-inactive:hover {
+  color: rgba(26, 47, 61, 0.85);
+}
+:root.light .theme-subcat-border {
+  border-color: rgba(31, 58, 75, 0.1);
+}
+:root.light .theme-search-count {
+  color: rgba(26, 47, 61, 0.5);
+}
+:root.light .theme-no-result-text {
+  color: rgba(26, 47, 61, 0.5);
+}
+:root.light .theme-image-card-bg {
+  background: rgba(245,243,237,0.6);
+}
+
+/* SILVER (Brutalist) theme overrides */
+:root.silver .theme-overlay-bar {
+  background: rgba(234, 234, 234, 0.92);
+  border-color: rgba(0,0,0,0.1);
+}
+:root.silver .theme-overlay-search {
+  background: rgba(234, 234, 234, 0.99);
+  border-color: rgba(0,0,0,0.08);
+}
+:root.silver .theme-overlay-nav {
+  background: rgba(240, 240, 240, 0.95);
+}
+:root.silver .theme-search-input-pill {
+  background: rgba(255,255,255,0.9);
+  border-color: rgba(0,0,0,0.2);
+}
+:root.silver .theme-search-input-underline {
+  border-color: rgba(0,0,0,0.2);
+}
+:root.silver .theme-subcat-inactive {
+  color: rgba(0,0,0,0.4);
+}
+:root.silver .theme-subcat-inactive:hover {
+  color: rgba(0,0,0,0.8);
+}
+:root.silver .theme-subcat-border {
+  border-color: rgba(0,0,0,0.1);
+}
+:root.silver .theme-search-count {
+  color: rgba(0,0,0,0.4);
+}
+:root.silver .theme-no-result-text {
+  color: rgba(0,0,0,0.5);
+}
+:root.silver .theme-image-card-bg {
+  background: rgba(255,255,255,0.8);
+}
+
+/* Base override for default marble background only in dark */
+body {
+  background-image: none !important;
+}
+:root.dark body, :root:not(.light):not(.silver) body {
+  background-image: radial-gradient(circle at 50% 50%, rgba(197, 165, 90, 0.05) 0%, transparent 60%) !important;
+}
+:root.light body {
+  background-image: radial-gradient(circle at 50% 50%, rgba(31, 58, 75, 0.03) 0%, transparent 60%) !important;
+}
+:root.silver body {
+  background-image: none !important;
+}
+
+[data-concept="brutalist"] .theme-card:hover,
+:root.silver .theme-card:hover {
+  transform: translate(-4px, -4px);
+  box-shadow: 12px 12px 0px 0px #000000;
+}
+
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--text-primary);
+  background-color: var(--marble-base);
+  
+  /* Ambient center glow */
+  background-image: radial-gradient(circle at 50% 50%, rgba(197, 165, 90, 0.05) 0%, transparent 60%);
+  background-attachment: fixed;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Base utility classes */
+.container-mobile {
+  max-width: min(480px, 100vw - 2rem);
+  margin: 0 auto;
+  padding: 0 var(--space-5);
+  padding-left: max(var(--space-5), env(safe-area-inset-left));
+  padding-right: max(var(--space-5), env(safe-area-inset-right));
+  position: relative;
+}
+
+/* Frosted glass panel/card styling — theme-aware */
+.glass-panel {
+  background: rgba(15, 12, 10, 0.65);
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border-light);
+}
+:root.light .glass-panel {
+  background: rgba(245, 243, 237, 0.75);
+}
+:root.silver .glass-panel {
+  background: rgba(234, 234, 234, 0.82);
+}
+
+.glass-card {
+  background: rgba(15, 12, 10, 0.45);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--border-light);
+  border-radius: var(--radius-sm);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+:root.light .glass-card {
+  background: rgba(255, 255, 255, 0.6);
+}
+:root.silver .glass-card {
+  background: rgba(255, 255, 255, 0.8);
+}
+
+.glass-card:hover {
+  border-color: var(--border-gold);
+  box-shadow: var(--shadow-glow), var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+/* Typography styles */
+.font-display {
+  font-family: var(--font-display);
+}
+
+.text-gold {
+  color: var(--gold-500);
+  background: linear-gradient(135deg, var(--gold-700) 0%, var(--gold-500) 50%, var(--gold-300) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(197, 165, 90, 0.15); border-radius: 2px; }
+::-webkit-scrollbar-thumb:hover { background: var(--gold-500); }
+
+::selection {
+  background: hsla(43, 50%, 55%, 0.15);
+  color: var(--text-primary);
+}
+
+@keyframes shimmer {
+  100% { transform: translateX(100%); }
+}
+
+/* Concentric rotating neon animation classes */
+@keyframes rotate-clockwise {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes rotate-counter-clockwise {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(-360deg); }
+}
+
+@keyframes neon-glow-pulse {
+  0%, 100% {
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.3), 0 0 25px rgba(255, 255, 255, 0.15);
+  }
+  50% {
+    box-shadow: 0 0 25px rgba(255, 255, 255, 0.65), 0 0 45px rgba(255, 255, 255, 0.35);
+  }
+}
+
+.animate-rotate-cw {
+  animation: rotate-clockwise 8s linear infinite;
+}
+
+.animate-rotate-ccw {
+  animation: rotate-counter-clockwise 12s linear infinite;
+}
+
+/* Premium Rotating Conic Border */
+@property --angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+@keyframes rotate-border {
+  to { --angle: 360deg; }
+}
+
+.premium-neon-ring-1 {
+  background: conic-gradient(from var(--angle), transparent 40%, rgba(255, 255, 255, 0.9) 80%, transparent 100%);
+  animation: rotate-border 4s linear infinite;
+  -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 2px), black calc(100% - 2px));
+  mask: radial-gradient(farthest-side, transparent calc(100% - 2px), black calc(100% - 2px));
+  border-radius: 50%;
+}
+
+.premium-neon-ring-2 {
+  background: conic-gradient(from calc(var(--angle) * -1), transparent 20%, rgba(255, 255, 255, 0.6) 50%, transparent 80%);
+  animation: rotate-border 6s linear infinite;
+  -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 1px), black calc(100% - 1px));
+  mask: radial-gradient(farthest-side, transparent calc(100% - 1px), black calc(100% - 1px));
+  border-radius: 50%;
+}
+
+.premium-neon-ring-orange-1 {
+  background: conic-gradient(from var(--angle), transparent 40%, #ff5f1f 80%, transparent 100%);
+  animation: rotate-border 3s linear infinite;
+  -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 2px), black calc(100% - 2px));
+  mask: radial-gradient(farthest-side, transparent calc(100% - 2px), black calc(100% - 2px));
+  border-radius: 50%;
+}
+
+.premium-neon-ring-orange-2 {
+  background: conic-gradient(from calc(var(--angle) * -1), transparent 20%, rgba(255, 95, 31, 0.6) 50%, transparent 80%);
+  animation: rotate-border 4.5s linear infinite;
+  -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 1px), black calc(100% - 1px));
+  mask: radial-gradient(farthest-side, transparent calc(100% - 1px), black calc(100% - 1px));
+  border-radius: 50%;
+}
+
+.animate-neon-pulse {
+  animation: neon-glow-pulse 2.5s ease-in-out infinite;
+}
+
+/* Navigation Dock — theme-aware */
+.nav-dock {
+  background: rgba(15, 12, 10, 0.85);
+  -webkit-backdrop-filter: blur(24px);
+  backdrop-filter: blur(24px);
+  border: 1px solid rgba(197, 165, 90, 0.2);
+  box-shadow: 0 8px 32px rgba(197, 165, 90, 0.08), var(--shadow-glow);
+}
+:root.light .nav-dock {
+  background: rgba(245, 243, 237, 0.88);
+  border-color: rgba(31, 58, 75, 0.15);
+  box-shadow: 0 8px 32px rgba(31, 58, 75, 0.08);
+}
+:root.silver .nav-dock {
+  background: rgba(240, 240, 240, 0.95);
+  border-color: rgba(0, 0, 0, 0.15);
+  box-shadow: 4px 4px 0px 0px #000000;
+}
+
+/* Hide default tap highlight on mobile browsers */
+button, a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.webkit-overflow-scrolling-touch {
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Gold caret for inputs */
+.caret-gold {
+  caret-color: var(--gold-500);
+}
+
+/* z-index 45 utility for WishlistPanel — between bottom nav (40) and quiz button (50) */
+.z-45 {
+  z-index: 45;
+}
+
+/* Blur-in animation for scroll reveals */
+@keyframes blur-in {
+  from {
+    opacity: 0;
+    filter: blur(8px);
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    filter: blur(0px);
+    transform: translateY(0px);
+  }
+}
+
+.animate-blur-in {
+  animation: blur-in 0.55s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* No scrollbar utility */
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* IntroScreen CSS classes — replaces inline styles */
+.intro-bg {
+  background: radial-gradient(ellipse at 50% 60%, hsl(43, 25%, 8%) 0%, hsl(0, 0%, 3%) 65%);
+}
+
+.canvas-screen-blend {
+  mix-blend-mode: screen;
+}
+
+.intro-letter-gradient {
+  background-image: linear-gradient(135deg, hsl(43, 60%, 55%) 0%, hsl(43, 80%, 75%) 50%, hsl(43, 55%, 50%) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: 0.18em;
+}
+
+.intro-divider {
+  background: linear-gradient(90deg, transparent, hsl(43, 60%, 55%), transparent);
+}
+
+/* WishlistPanel glass card — replaces inline styles */
+.wishlist-glass {
+  background: rgba(15, 12, 10, 0.85);
+  -webkit-backdrop-filter: blur(24px);
+  backdrop-filter: blur(24px);
+  box-shadow: 0 -8px 32px rgba(0, 0, 0, 0.5), 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* ============================================
+   ASTROLABE RITUAL EXPERIENCE — QUIZ STYLES
+   ============================================ */
+
+/* Dark Modal Container */
+.quiz-modal-dark {
+  background: hsl(43, 15%, 6%);
+  border: 1px solid rgba(197, 165, 90, 0.28);
+  box-shadow:
+    inset 0 1px 0 rgba(197, 165, 90, 0.18),
+    0 40px 80px rgba(0, 0, 0, 0.65),
+    0 0 0 1px rgba(197, 165, 90, 0.06);
+}
+
+/* Backdrop */
+.quiz-backdrop {
+  background: rgba(5, 4, 3, 0.88);
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+}
+
+/* Progress bar track */
+.quiz-progress-track {
+  background: rgba(197, 165, 90, 0.12);
+  border-radius: 9999px;
+  overflow: hidden;
+}
+
+/* Progress bar fill */
+.quiz-progress-fill {
+  background: linear-gradient(90deg, hsl(43, 60%, 42%) 0%, hsl(43, 80%, 62%) 100%);
+  border-radius: 9999px;
+  height: 100%;
+  box-shadow: 0 0 8px rgba(197, 165, 90, 0.5);
+}
+
+/* Option card */
+.quiz-option-card {
+  position: relative;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: border-color 0.3s ease, background 0.3s ease;
+  will-change: transform;
+}
+
+.quiz-option-card:hover {
+  border-color: rgba(197, 165, 90, 0.45);
+  background: rgba(197, 165, 90, 0.07);
+}
+
+/* Shimmer sweep effect on option cards */
+.quiz-option-shimmer {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(197, 165, 90, 0.12) 40%,
+    rgba(197, 165, 90, 0.22) 50%,
+    rgba(197, 165, 90, 0.12) 60%,
+    transparent 100%
+  );
+  transform: translateX(-100%);
+  transition: transform 0s;
+  pointer-events: none;
+}
+
+.quiz-option-card:hover .quiz-option-shimmer {
+  transform: translateX(100%);
+  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Result recommendation card */
+.quiz-result-card {
+  position: relative;
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: background 0.3s ease;
+  will-change: transform, opacity;
+}
+
+.quiz-result-card:hover {
+  background: rgba(255, 255, 255, 0.065);
+}
+
+/* Left gold accent line on result cards */
+.quiz-result-card-line {
+  width: 1px;
+  align-self: stretch;
+  background: linear-gradient(to bottom, hsl(43, 70%, 55%), transparent);
+  flex-shrink: 0;
+  transition: background 0.3s ease;
+}
+
+.quiz-result-card:hover .quiz-result-card-line {
+  background: linear-gradient(to bottom, hsl(43, 80%, 68%), rgba(197, 165, 90, 0.1));
+}
+
+/* Close / return button — outline gold */
+.quiz-return-btn {
+  border: 1px solid rgba(197, 165, 90, 0.5);
+  color: hsl(43, 70%, 62%);
+  background: transparent;
+  border-radius: 14px;
+  position: relative;
+  overflow: hidden;
+  transition: background 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+}
+
+.quiz-return-btn:hover {
+  background: rgba(197, 165, 90, 0.08);
+  border-color: rgba(197, 165, 90, 0.75);
+  color: hsl(43, 80%, 70%);
+}
+
+.quiz-return-btn-shimmer {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(197, 165, 90, 0.18) 50%,
+    transparent 100%
+  );
+  transform: translateX(-100%);
+  pointer-events: none;
+}
+
+.quiz-return-btn:hover .quiz-return-btn-shimmer {
+  transform: translateX(100%);
+  transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Wishlist add button on result cards */
+.quiz-add-btn {
+  font-size: 9px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  border: 1px solid rgba(197, 165, 90, 0.3);
+  color: rgba(197, 165, 90, 0.8);
+  background: transparent;
+  border-radius: 6px;
+  padding: 3px 7px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  white-space: nowrap;
+}
+
+.quiz-add-btn:hover {
+  background: rgba(197, 165, 90, 0.12);
+  border-color: rgba(197, 165, 90, 0.55);
+  color: hsl(43, 80%, 68%);
+}
+
+.quiz-add-btn.added {
+  background: rgba(197, 165, 90, 0.15);
+  border-color: rgba(197, 165, 90, 0.6);
+  color: hsl(43, 75%, 60%);
+}
+
+/* FAB breathing aura */
+@keyframes aura-breathe {
+  0%, 100% { transform: scale(1); opacity: 0.35; }
+  50%       { transform: scale(1.55); opacity: 0.08; }
+}
+
+.quiz-fab-aura {
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 95, 31, 0.55) 0%, rgba(197, 165, 90, 0.2) 55%, transparent 75%);
+  animation: aura-breathe 3s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+
+/* FAB label tag */
+@keyframes fade-in-delayed {
+  0%, 80%  { opacity: 0; transform: translateY(4px); }
+  100%     { opacity: 1; transform: translateY(0); }
+}
+
+.quiz-fab-label {
+  animation: fade-in-delayed 4s ease-out forwards;
+  will-change: opacity, transform;
+}
+
+/* Gold burst for results reveal */
+@keyframes gold-burst {
+  0%   { transform: scale(0); opacity: 0; }
+  40%  { transform: scale(1.25); opacity: 0.85; }
+  100% { transform: scale(2.2); opacity: 0; }
+}
+
+.quiz-gold-burst {
+  border-radius: 50%;
+  background: radial-gradient(circle, hsl(43, 80%, 68%) 0%, transparent 70%);
+  animation: gold-burst 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  will-change: transform, opacity;
+  pointer-events: none;
+}
+
+/* Astrolabe ring base — spin handled by framer motion */
+.quiz-astrolabe-ring {
+  border-radius: 50%;
+  position: absolute;
+  pointer-events: none;
+}
+
+/* Divider in dark modal */
+.quiz-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(197, 165, 90, 0.2), transparent);
+}
+
+/* ============================================
+   LIQUID SMOKE AMBIENT BACKGROUND
+   ============================================ */
+
+.ambient-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  will-change: transform;
+}
+
+@keyframes blob-1 {
+  0% { transform: translate(0px, 0px) scale(1); }
+  33% { transform: translate(30px, -50px) scale(1.1); }
+  66% { transform: translate(-20px, 20px) scale(0.9); }
+  100% { transform: translate(0px, 0px) scale(1); }
+}
+
+@keyframes blob-2 {
+  0% { transform: translate(0px, 0px) scale(1); }
+  33% { transform: translate(-50px, 30px) scale(0.95); }
+  66% { transform: translate(20px, -20px) scale(1.05); }
+  100% { transform: translate(0px, 0px) scale(1); }
+}
+
+@keyframes blob-3 {
+  0% { transform: translate(0px, 0px) scale(1); }
+  33% { transform: translate(20px, -30px) scale(1.05); }
+  66% { transform: translate(-40px, 10px) scale(0.95); }
+  100% { transform: translate(0px, 0px) scale(1); }
+}
+
+.animate-blob-1 {
+  animation: blob-1 25s infinite alternate ease-in-out;
+}
+
+.animate-blob-2 {
+  animation: blob-2 30s infinite alternate-reverse ease-in-out;
+}
+
+.animate-blob-3 {
+  animation: blob-3 35s infinite alternate ease-in-out;
+}
+
+/* Premium Noise Texture */
+.bg-noise {
+  background: transparent;
+}
+
+/* ============================================
+   TEXT SHIMMER SWEEP
+   ============================================ */
+
+@keyframes shimmer-sweep {
+  0% { background-position: 200% center; }
+  100% { background-position: -200% center; }
+}
+
+.text-shimmer {
+  background: linear-gradient(
+    120deg,
+    var(--gold-700) 20%,
+    #FFF 40%,
+    var(--gold-500) 60%,
+    var(--gold-700) 80%
+  );
+  background-size: 200% auto;
+  color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: shimmer-sweep 6s linear infinite;
+}
+
+/* ============================================
+   STRATEGY 10 — TYPOGRAPHY & TOUCH TARGETS
+   ============================================ */
+
+/* Minimum touch target for all interactive elements */
+.touch-target {
+  min-width: 44px;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Safe-area aware padding for full-bleed layouts */
+.safe-top { padding-top: env(safe-area-inset-top); }
+.safe-bottom { padding-bottom: env(safe-area-inset-bottom); }
+
+/* ============================================
+   STRATEGY 3 — BOTTOM NAV CATEGORY GLOWS
+   ============================================ */
+
+/* Premium Fine Dining — All nav glows unified to gold */
+.nav-glow-shisha,
+.nav-glow-drinks,
+.nav-glow-food,
+.nav-glow-happy_hour {
+  background: radial-gradient(circle, rgba(197, 165, 90, 0.18) 0%, transparent 70%);
+}
+
+/* Nav indicator — single gold line for all categories */
+.nav-indicator-shisha,
+.nav-indicator-drinks,
+.nav-indicator-food,
+.nav-indicator-happy_hour {
+  background: linear-gradient(90deg, transparent, var(--gold-400), var(--gold-300), var(--gold-400), transparent);
+  box-shadow: 0 -1px 8px rgba(197, 165, 90, 0.4), 0 0 4px rgba(255,255,255,0.3);
+}
+
+/* Active icon float animation */
+@keyframes icon-float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-2px); }
+}
+.animate-icon-float {
+  animation: icon-float 3s ease-in-out infinite;
+}
+
+/* ============================================
+   STRATEGY 2 — MENU ITEM CARD ENHANCEMENTS
+   ============================================ */
+
+/* Signature card accent — wider 3px gold bar for fine dining emphasis */
+.signature-accent-line {
+  position: absolute;
+  left: 0;
+  top: 12px;
+  bottom: 12px;
+  width: 3px;
+  background: linear-gradient(to bottom, var(--gold-300), var(--gold-500) 50%, transparent);
+  border-radius: 0 2px 2px 0;
+  box-shadow: 2px 0 12px rgba(197, 165, 90, 0.3);
+}
+
+/* Signature badge pill */
+.signature-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 10px;
+  border-radius: 9999px;
+  background: linear-gradient(135deg, var(--gold-500), var(--gold-700));
+  color: #fff;
+  font-family: var(--font-display);
+  font-size: 8px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  box-shadow: 0 2px 8px rgba(197, 165, 90, 0.3);
+}
+
+/* Intensity bar chart */
+.intensity-bar {
+  width: 3px;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+.intensity-bar.active {
+  box-shadow: 0 0 6px currentColor;
+}
+
+/* Price pill */
+.price-pill {
+  background: rgba(197, 165, 90, 0.08);
+  padding: 2px 10px;
+  border-radius: 8px;
+}
+
+/* ============================================
+   STRATEGY 6 — SPECIAL EVENT SHIMMER BORDER
+   ============================================ */
+
+@keyframes shimmer-border-rotate {
+  to { --angle: 360deg; }
+}
+
+.event-banner-border {
+  position: relative;
+  overflow: hidden;
+}
+
+.event-banner-border::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  padding: 1px;
+  border-radius: inherit;
+  background: conic-gradient(from var(--angle, 0deg), transparent 40%, var(--gold-400) 50%, transparent 60%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  animation: shimmer-border-rotate 4s linear infinite;
+}
+
+/* Sparkle pulse */
+@keyframes sparkle-pulse {
+  0%, 100% { opacity: 0.6; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.3); }
+}
+.animate-sparkle-pulse {
+  animation: sparkle-pulse 2s ease-in-out infinite;
+}
+
+/* Arrow pulse */
+@keyframes arrow-nudge {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(3px); }
+}
+.animate-arrow-nudge {
+  animation: arrow-nudge 1.5s ease-in-out infinite;
+}
+
+/* ============================================
+   STRATEGY 7 — WISHLIST PANEL SHIMMER TOP
+   ============================================ */
+
+@keyframes wishlist-shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.wishlist-top-shimmer {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--gold-300) 25%,
+    var(--gold-500) 50%,
+    var(--gold-300) 75%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  animation: wishlist-shimmer 3s linear infinite;
+}
+
+/* Sparkle burst on add */
+@keyframes sparkle-burst {
+  0% { transform: scale(0); opacity: 1; }
+  100% { transform: scale(2); opacity: 0; }
+}
+.animate-sparkle-burst {
+  animation: sparkle-burst 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* ============================================
+   STRATEGY 9 — FAB GEM AESTHETICS
+   ============================================ */
+
+.fab-gem {
+  position: relative;
+  clip-path: polygon(50% 0%, 95% 25%, 95% 75%, 50% 100%, 5% 75%, 5% 25%);
+}
+
+@keyframes compass-spin {
+  0% { transform: rotate(0deg); }
+  25% { transform: rotate(45deg); }
+  50% { transform: rotate(0deg); }
+  75% { transform: rotate(-30deg); }
+  100% { transform: rotate(0deg); }
+}
+.animate-compass {
+  animation: compass-spin 4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+@keyframes fab-tada {
+  0%, 90%, 100% { transform: scale(1) rotate(0deg); }
+  92% { transform: scale(1.1) rotate(-3deg); }
+  94% { transform: scale(1.1) rotate(3deg); }
+  96% { transform: scale(1.1) rotate(-2deg); }
+  98% { transform: scale(1.05) rotate(0deg); }
+}
+.animate-fab-tada {
+  animation: fab-tada 6s ease-in-out infinite;
+  animation-delay: 3s;
+}
+
+/* FAB rotating ring */
+.fab-ring {
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+  background: conic-gradient(from var(--angle, 0deg), transparent 60%, var(--gold-400) 80%, transparent 100%);
+  animation: shimmer-border-rotate 3s linear infinite;
+  -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 2px), black calc(100% - 2px));
+  mask: radial-gradient(farthest-side, transparent calc(100% - 2px), black calc(100% - 2px));
+}
+
+/* ============================================
+   STRATEGY 1 — CATEGORY HERO CARD
+   ============================================ */
+
+.hero-gradient-shisha {
+  background: linear-gradient(135deg, hsl(0, 40%, 15%) 0%, hsl(15, 50%, 25%) 50%, hsl(30, 45%, 20%) 100%);
+}
+.hero-gradient-drinks {
+  background: linear-gradient(135deg, hsl(207, 45%, 15%) 0%, hsl(195, 50%, 25%) 50%, hsl(220, 40%, 18%) 100%);
+}
+.hero-gradient-food {
+  background: linear-gradient(135deg, hsl(145, 30%, 12%) 0%, hsl(90, 35%, 22%) 50%, hsl(45, 40%, 20%) 100%);
+}
+.hero-gradient-happy_hour {
+  background: linear-gradient(135deg, hsl(43, 45%, 12%) 0%, hsl(35, 55%, 22%) 50%, hsl(25, 50%, 18%) 100%);
+}
+
+@keyframes sweep {
+  0% { transform: translateX(-150%) skewX(-20deg); opacity: 0; }
+  15% { opacity: 1; }
+  85% { opacity: 1; }
+  100% { transform: translateX(200%) skewX(-20deg); opacity: 0; }
+}
+.animate-sweep {
+  animation: sweep 3.5s cubic-bezier(0.25, 0.1, 0.25, 1) infinite;
+}
+
+@keyframes float-particle {
+  0% { transform: translate(0, 0) scale(0.5); opacity: 0; }
+  20% { opacity: 0.8; }
+  80% { opacity: 0.8; }
+  100% { transform: translate(var(--tx, 10px), var(--ty, -100px)) scale(1.2); opacity: 0; }
+}
+.animate-float-particle {
+  animation: float-particle var(--duration, 4s) ease-in-out infinite var(--delay, 0s);
+}
+
+/* Component Specific Variables */
+[data-concept="neo-classic"] {
+  --theme-title-font: 'Outfit', sans-serif;
+  --theme-title-size: 1.2rem;
+  --theme-title-weight: 700;
+  --theme-title-transform: none;
+  --theme-title-shadow: drop-shadow(0 2px 8px rgba(0,0,0,0.8));
+  --theme-price-bg: transparent;
+  --theme-price-color: var(--gold-300);
+  --theme-price-shadow: drop-shadow(0 0 12px rgba(197,165,90,0.5));
+  --theme-price-border: none;
+  --theme-price-padding: 0;
+  --theme-badge-bg: rgba(197, 165, 90, 0.12);
+  --theme-badge-color: var(--gold-300);
+  --theme-badge-border: 1px solid rgba(197, 165, 90, 0.25);
+  --theme-img-gradient: transparent;
+  --theme-card-padding: 16px 16px 20px;
+}
+
+/* Azure Cream (Light) — no neon shadow, blue colour preserved */
+:root.light, [data-concept="azure-cream"] {
+  --theme-title-font: 'Outfit', sans-serif;
+  --theme-title-size: 1.2rem;
+  --theme-title-weight: 700;
+  --theme-title-transform: none;
+  --theme-title-shadow: none;
+  --theme-price-bg: transparent;
+  --theme-price-color: var(--gold-500);
+  --theme-price-shadow: none;
+  --theme-price-border: none;
+  --theme-price-padding: 0;
+  --theme-badge-bg: rgba(31, 58, 75, 0.08);
+  --theme-badge-color: var(--gold-500);
+  --theme-badge-border: 1px solid rgba(31, 58, 75, 0.2);
+  --theme-img-gradient: transparent;
+  --theme-card-padding: 16px;
+}
+
+:root.silver, [data-concept="brutalist"] {
+  --theme-title-font: 'Outfit', sans-serif;
+  --theme-title-size: 1.2rem;
+  --theme-title-weight: 700;
+  --theme-title-transform: uppercase;
+  --theme-title-shadow: none;
+  --theme-price-bg: var(--gold-500);
+  --theme-price-color: #000;
+  --theme-price-shadow: 3px 3px 0 0 #000;
+  --theme-price-border: 2px solid #000;
+  --theme-price-padding: 0.25rem 0.75rem;
+  --theme-badge-bg: #000;
+  --theme-badge-color: #fff;
+  --theme-badge-border: 1px solid #000;
+  --theme-img-gradient: transparent;
+  --theme-card-padding: 20px;
+}
+
+[data-concept="skeuomorphic"] {
+  --theme-title-font: 'Outfit', sans-serif;
+  --theme-title-size: 1.2rem;
+  --theme-title-weight: 700;
+  --theme-title-transform: none;
+  --theme-title-shadow: drop-shadow(0 2px 4px rgba(0,0,0,0.8));
+  --theme-price-bg: #0c0a09;
+  --theme-price-color: var(--gold-400);
+  --theme-price-shadow: inset 0 2px 8px rgba(0,0,0,0.9);
+  --theme-price-border: 1px solid rgba(197, 165, 90, 0.3);
+  --theme-price-padding: 0.25rem 0.75rem;
+  --theme-badge-bg: rgba(197, 165, 90, 0.2);
+  --theme-badge-color: var(--gold-400);
+  --theme-badge-border: 1px solid rgba(197, 165, 90, 0.3);
+  --theme-img-gradient: linear-gradient(to top, #0c0a09 0%, rgba(12,10,9,0.5) 30%, transparent 70%);
+  --theme-card-padding: 16px;
+}
+
+[data-concept="cyber-gold"] {
+  --theme-title-font: 'Outfit', sans-serif;
+  --theme-title-size: 1.2rem;
+  --theme-title-weight: 700;
+  --theme-title-transform: none;
+  --theme-title-shadow: 0 0 10px rgba(197, 165, 90, 0.5);
+  --theme-price-bg: transparent;
+  --theme-price-color: #FFD700;
+  --theme-price-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
+  --theme-price-border: 1px solid rgba(255, 215, 0, 0.4);
+  --theme-price-padding: 0.15rem 0.5rem;
+  --theme-badge-bg: rgba(255, 215, 0, 0.2);
+  --theme-badge-color: #FFD700;
+  --theme-badge-border: 1px solid rgba(255, 215, 0, 0.5);
+  --theme-img-gradient: linear-gradient(to top, rgba(0,0,0,1), transparent);
+  --theme-card-padding: 16px;
+}
+
+[data-concept="avant-garde"] {
+  --theme-title-font: 'Outfit', sans-serif;
+  --theme-title-size: 1.2rem;
+  --theme-title-weight: 700;
+  --theme-title-transform: none;
+  --theme-title-shadow: none;
+  --theme-price-bg: transparent;
+  --theme-price-color: #e53935;
+  --theme-price-shadow: none;
+  --theme-price-border: none;
+  --theme-price-padding: 0;
+  --theme-badge-bg: transparent;
+  --theme-badge-color: #e53935;
+  --theme-badge-border: 1px solid #e53935;
+  --theme-img-gradient: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.4) 30%, transparent 70%);
+  --theme-card-padding: 0px;
+}
+
+[data-concept="monolithic-matte"] {
+  --theme-title-font: 'Outfit', sans-serif;
+  --theme-title-size: 1.2rem;
+  --theme-title-weight: 700;
+  --theme-title-transform: none;
+  --theme-title-shadow: none;
+  --theme-price-bg: transparent;
+  --theme-price-color: #a8a29e;
+  --theme-price-shadow: none;
+  --theme-price-border: none;
+  --theme-price-padding: 0;
+  --theme-badge-bg: rgba(0,0,0,0.2);
+  --theme-badge-color: #a8a29e;
+  --theme-badge-border: none;
+  --theme-img-gradient: transparent;
+  --theme-card-padding: 16px;
+}
+
+[data-concept="ottoman-palace"] {
+  --theme-title-font: 'Outfit', sans-serif;
+  --theme-title-size: 1.2rem;
+  --theme-title-weight: 700;
+  --theme-title-transform: none;
+  --theme-title-shadow: drop-shadow(0 2px 4px rgba(0,0,0,0.8));
+  --theme-price-bg: transparent;
+  --theme-price-color: #C8B568;
+  --theme-price-shadow: drop-shadow(0 0 8px rgba(197,165,90,0.5));
+  --theme-price-border: none;
+  --theme-price-padding: 0;
+  --theme-badge-bg: #8B0000;
+  --theme-badge-color: #F3E5AB;
+  --theme-badge-border: 1px solid rgba(212, 175, 55, 0.4);
+  --theme-img-gradient: transparent;
+  --theme-card-padding: 20px;
+}
+
+.theme-card-title {
+  font-family: var(--theme-title-font);
+  font-size: var(--theme-title-size);
+  font-weight: var(--theme-title-weight);
+  text-transform: var(--theme-title-transform);
+  filter: var(--theme-title-shadow);
+  color: var(--theme-text-primary);
+  transition: color 0.3s ease;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  hyphens: auto;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .theme-card-title:hover {
+    color: var(--theme-accent);
+  }
+}
+
+.theme-price-pill {
+  background: var(--theme-price-bg);
+  color: var(--theme-price-color);
+  box-shadow: var(--theme-price-shadow);
+  border: var(--theme-price-border);
+  padding: var(--theme-price-padding);
+  border-radius: 8px;
+  font-weight: bold;
+}
+
+.theme-badge {
+  background: var(--theme-badge-bg);
+  color: var(--theme-badge-color);
+  border: var(--theme-badge-border);
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+.theme-image-gradient {
+  background: var(--theme-img-gradient);
+}
+
+html, body { overflow-x: clip; width: 100%; max-width: 100%; }
+
+/* ============================================
+   PREMIUM FINE DINING ADDITIONS
+   ============================================ */
+
+/* Cormorant editorial serif utility */
+.font-editorial {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-feature-settings: 'liga' 1, 'kern' 1;
+}
+
+/* Card bottom hairline — fine dining separator */
+.card-hairline {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(197, 165, 90, 0.12) 30%, rgba(197, 165, 90, 0.12) 70%, transparent);
+  margin-top: 1.25rem;
+}
+
+/* Fine dining price — no pill, clean number */
+.price-fine-dining {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--gold-300);
+  filter: drop-shadow(0 0 8px rgba(197, 165, 90, 0.4));
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+@media (min-width: 640px) {
+  .price-fine-dining {
+    font-size: 1.05rem;
+  }
+}
+
+/* Description italic serif */
+.desc-editorial {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-style: italic;
+  font-size: 0.875rem;
+  line-height: 1.65;
+  letter-spacing: 0.01em;
+  color: hsl(43, 20%, 70%);
+}
+
+/* Filterbar underline tab */
+.filter-tab {
+  position: relative;
+  padding: 0.5rem 0;
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  transition: color 0.25s ease;
+  white-space: nowrap;
+}
+.filter-tab::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: transparent;
+  transition: background 0.3s ease, opacity 0.3s ease;
+  opacity: 0;
+}
+.filter-tab.active {
+  color: var(--gold-300);
+}
+.filter-tab.active::after {
+  background: linear-gradient(90deg, transparent, var(--gold-400), transparent);
+  opacity: 1;
+}
+
+/* Intro silk wave */
+@keyframes silk-wave {
+  0%   { transform: translateX(-100%) skewX(-15deg) scaleY(0.8); opacity: 0; }
+  20%  { opacity: 0.6; }
+  80%  { opacity: 0.4; }
+  100% { transform: translateX(200%) skewX(-15deg) scaleY(1.1); opacity: 0; }
+}
+.animate-silk-wave {
+  animation: silk-wave 5s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
+}
+
+/* Brand header diamond divider */
+.brand-diamond::before,
+.brand-diamond::after {
+  content: '';
+  display: inline-block;
+  width: 40px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(197, 165, 90, 0.5));
+  vertical-align: middle;
+  margin: 0 0.5rem;
+}
+.brand-diamond::after {
+  background: linear-gradient(90deg, rgba(197, 165, 90, 0.5), transparent);
+}
+
+/* Stagger reveal for brand words */
+@keyframes word-reveal {
+  from { opacity: 0; transform: translateY(8px); filter: blur(6px); }
+  to   { opacity: 1; transform: translateY(0);  filter: blur(0); }
+}
+.animate-word-reveal {
+  animation: word-reveal 1.2s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* Bottom nav refined height */
+.nav-refined {
+  height: 5rem;
+  -webkit-backdrop-filter: blur(32px);
+  backdrop-filter: blur(32px);
+}
+
+/* Cyber scan suppressed — leave for brutalist only */
+@keyframes cyber-scan {
+  0%   { transform: translateY(-100%); }
+  100% { transform: translateY(100%); }
+}
+.animate-cyber-scan {
+  animation: cyber-scan 3s linear infinite;
+}
+
+/* Sweep shine */
+@keyframes sweep-shine {
+  0%   { transform: translateX(-200%) skewX(-15deg); }
+  100% { transform: translateX(300%) skewX(-15deg); }
+}
+.animate-sweep-shine {
+  animation: sweep-shine 4s cubic-bezier(0.25, 0.1, 0.25, 1) infinite;
+  animation-delay: 1.5s;
+}
+@keyframes aura-flow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* 1. Default Card: Golden Radiance Loop */
+@keyframes golden-radiance-shift {
+  0% {
+    background-position: 0% 0%;
+    filter: hue-rotate(0deg) brightness(1);
+  }
+  33% {
+    background-position: 50% 100%;
+    filter: hue-rotate(8deg) brightness(1.15);
+  }
+  66% {
+    background-position: 100% 50%;
+    filter: hue-rotate(-8deg) brightness(1.05);
+  }
+  100% {
+    background-position: 0% 0%;
+    filter: hue-rotate(0deg) brightness(1);
+  }
+}
+
+.animate-golden-radiance {
+  background-size: 250% 250%;
+  animation: golden-radiance-shift 8s ease-in-out infinite;
+}
+
+/* 2. Compact Card: Aurora Plasma Fluid Loop */
+@keyframes aurora-plasma-flow {
+  0% {
+    background-position: 0% 50%;
+    filter: saturate(1.2) brightness(1);
+  }
+  25% {
+    background-position: 50% 100%;
+    filter: saturate(1.5) brightness(1.12);
+  }
+  50% {
+    background-position: 100% 50%;
+    filter: saturate(1.3) brightness(1.2);
+  }
+  75% {
+    background-position: 50% 0%;
+    filter: saturate(1.4) brightness(1.08);
+  }
+  100% {
+    background-position: 0% 50%;
+    filter: saturate(1.2) brightness(1);
+  }
+}
+
+.animate-aurora-plasma {
+  background-size: 300% 300%;
+  animation: aurora-plasma-flow 7s ease-in-out infinite;
+}
+
+/* Continuous light sweep line for Compact */
+@keyframes continuous-laser-sweep {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0.3;
+  }
+  50% {
+    transform: translateX(100%);
+    opacity: 0.9;
+  }
+  100% {
+    transform: translateX(300%);
+    opacity: 0.3;
+  }
+}
+
+.animate-laser-continuous {
+  animation: continuous-laser-sweep 3.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+/* 3. Minimal Card: Iridescent Chromatic Edge & Backlight Loop */
+@keyframes iridescent-chroma-loop {
+  0% {
+    background-position: 0% 50%;
+    border-color: rgba(197, 165, 90, 0.3);
+    box-shadow: 0 8px 32px -4px rgba(197, 165, 90, 0.15);
+  }
+  25% {
+    background-position: 50% 100%;
+    border-color: rgba(224, 86, 126, 0.35);
+    box-shadow: 0 8px 32px -4px rgba(224, 86, 126, 0.18);
+  }
+  50% {
+    background-position: 100% 50%;
+    border-color: rgba(147, 112, 219, 0.35);
+    box-shadow: 0 8px 32px -4px rgba(147, 112, 219, 0.18);
+  }
+  75% {
+    background-position: 50% 0%;
+    border-color: rgba(64, 224, 208, 0.3);
+    box-shadow: 0 8px 32px -4px rgba(64, 224, 208, 0.15);
+  }
+  100% {
+    background-position: 0% 50%;
+    border-color: rgba(197, 165, 90, 0.3);
+    box-shadow: 0 8px 32px -4px rgba(197, 165, 90, 0.15);
+  }
+}
+
+.animate-iridescent-chroma {
+  background-size: 300% 300%;
+  animation: iridescent-chroma-loop 9s ease-in-out infinite;
+}
+
+/* Rotating conic border beam for premium cards */
+@keyframes border-beam-rotate {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.animate-border-beam {
+  animation: border-beam-rotate 6s linear infinite;
+}
+
+/* ============================================
+   THEME-AWARE UTILITY CLASSES
+   Used by MenuItemCard (layout-minimal) and general text helpers
+   ============================================ */
+
+/* Genel tema metin sınıfları */
+.theme-text {
+  color: var(--theme-text-primary);
+}
+.theme-text-muted {
+  color: var(--theme-text-secondary);
+}
+.theme-accent-text {
+  color: var(--theme-accent);
+}
+
+/* Minimal kart bileşeni */
+.minimal-card-bg {
+  background-color: var(--theme-card-bg);
+  transition: background-color 0.4s ease;
+}
+.minimal-card-bg:hover {
+  filter: brightness(1.05);
+}
+.minimal-card-border {
+  border-color: var(--theme-card-border);
+}
+.minimal-card-noimg {
+  background-color: color-mix(in srgb, var(--theme-card-bg) 80%, transparent);
+}
+.minimal-card-price {
+  color: var(--theme-accent);
+}
+/* Hover: başlık rengi tema vurgu rengine geçer */
+.group:hover .minimal-card-title {
+  color: var(--theme-accent);
+}
+
+/* Light / Silver overrides — marka kökenleri zaten CSS var'larına
+   yedeklendiğinden ayrıca kural gerekmez; var() zinciri otomatik çalışır. */
+
+
+
+/* ============================================
+   CAROUSEL HIGHLIGHT (Mobile Scroll Active State)
+   ============================================ */
+
+/* Default / Dark Theme Active State */
+.carousel-active {
+  transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1) !important;
+  transform: scale(1.03) !important;
+  /* Glowing Gold + Amber */
+  border-color: rgba(197, 165, 90, 0.7) !important;
+  box-shadow: 0 0 25px rgba(197, 165, 90, 0.35), inset 0 0 25px rgba(249, 115, 22, 0.15), 0 10px 40px rgba(0,0,0,0.5) !important;
+  z-index: 30;
+}
+
+.carousel-active::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, rgba(197,165,90, 1) 0%, rgba(249, 115, 22, 0.8) 50%, rgba(197,165,90, 0.2) 100%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  opacity: 1;
+}
+
+.carousel-active .minimal-card-title {
+  color: var(--gold-500) !important;
+  text-shadow: 0 0 10px rgba(197, 165, 90, 0.4);
+}
+
+/* Light Theme Active State */
+:root.light .carousel-active {
+  /* Dark Gold + Bordeaux */
+  border-color: rgba(150, 110, 40, 0.6) !important;
+  box-shadow: 0 0 25px rgba(150, 110, 40, 0.25), inset 0 0 25px rgba(139, 0, 40, 0.08), 0 10px 30px rgba(0,0,0,0.1) !important;
+}
+
+:root.light .carousel-active::before {
+  background: linear-gradient(135deg, rgba(150, 110, 40, 1) 0%, rgba(139, 0, 40, 0.7) 50%, rgba(150, 110, 40, 0.2) 100%);
+}
+
+:root.light .carousel-active .minimal-card-title {
+  color: rgba(139, 0, 40, 1) !important;
+  text-shadow: 0 0 8px rgba(139, 0, 40, 0.15);
+}

@@ -1,0 +1,62 @@
+[
+  {
+    "id": "d13",
+    "name": "Mineralwasser",
+    "image": ""
+  },
+  {
+    "id": "f2",
+    "name": "Sigara Böreği",
+    "image": ""
+  },
+  {
+    "id": "f3",
+    "name": "Mercimek Çorbası",
+    "image": ""
+  },
+  {
+    "id": "f4",
+    "name": "Falafel Teller",
+    "image": ""
+  },
+  {
+    "id": "f5",
+    "name": "Adana Kebab",
+    "image": ""
+  },
+  {
+    "id": "f6",
+    "name": "Chicken Wings",
+    "image": ""
+  },
+  {
+    "id": "f7",
+    "name": "Beyti Sarma",
+    "image": ""
+  },
+  {
+    "id": "f8",
+    "name": "Pide Kaşarlı",
+    "image": ""
+  },
+  {
+    "id": "f9",
+    "name": "Lahmacun",
+    "image": ""
+  },
+  {
+    "id": "f10",
+    "name": "Pommes Frites",
+    "image": ""
+  },
+  {
+    "id": "f11",
+    "name": "Nachos Supreme",
+    "image": ""
+  },
+  {
+    "id": "f12",
+    "name": "Cheese Burger",
+    "image": ""
+  }
+]

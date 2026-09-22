@@ -1,0 +1,662 @@
+[
+  {
+    "id": "s1",
+    "name": "Doppel Apfel",
+    "image": ""
+  },
+  {
+    "id": "s2",
+    "name": "Apfel Minze",
+    "image": ""
+  },
+  {
+    "id": "s3",
+    "name": "Traube Minze",
+    "image": ""
+  },
+  {
+    "id": "s4",
+    "name": "Black Nana",
+    "image": ""
+  },
+  {
+    "id": "s5",
+    "name": "Sternstaub",
+    "image": ""
+  },
+  {
+    "id": "s6",
+    "name": "Luftschloss",
+    "image": ""
+  },
+  {
+    "id": "s7",
+    "name": "Limette Minze",
+    "image": ""
+  },
+  {
+    "id": "s8",
+    "name": "Lemon Chill",
+    "image": ""
+  },
+  {
+    "id": "s9",
+    "name": "Blueberry",
+    "image": ""
+  },
+  {
+    "id": "s10",
+    "name": "Nasty Girl",
+    "image": ""
+  },
+  {
+    "id": "s11",
+    "name": "Love 66",
+    "image": ""
+  },
+  {
+    "id": "s12",
+    "name": "Pfirsich Minze",
+    "image": ""
+  },
+  {
+    "id": "s13",
+    "name": "Falim Red",
+    "image": ""
+  },
+  {
+    "id": "s14",
+    "name": "Ice Kaktus",
+    "image": ""
+  },
+  {
+    "id": "s15",
+    "name": "African Queen",
+    "image": ""
+  },
+  {
+    "id": "s16",
+    "name": "Raffaello",
+    "image": ""
+  },
+  {
+    "id": "s17",
+    "name": "Ice Apfel",
+    "image": ""
+  },
+  {
+    "id": "s18",
+    "name": "Hürrem Spezial Hookah",
+    "image": ""
+  },
+  {
+    "id": "s19",
+    "name": "Neuer Kopf",
+    "image": ""
+  },
+  {
+    "id": "d1",
+    "name": "GOLDEN MANGO MACCHIATTO P, A, H",
+    "image": ""
+  },
+  {
+    "id": "d2",
+    "name": "ICED STRAWBERRY VELVET 9, A, H",
+    "image": ""
+  },
+  {
+    "id": "d3",
+    "name": "MANGO MATCHA FUSION",
+    "image": ""
+  },
+  {
+    "id": "d4",
+    "name": "LILA MANGO TRAUM",
+    "image": ""
+  },
+  {
+    "id": "d5",
+    "name": "STRAWBERRY MATCHA CHILL",
+    "image": ""
+  },
+  {
+    "id": "d6",
+    "name": "Iced Latte G",
+    "image": ""
+  },
+  {
+    "id": "d7",
+    "name": "Fritz Cola",
+    "image": ""
+  },
+  {
+    "id": "d8",
+    "name": "Fritz Cola Zero",
+    "image": ""
+  },
+  {
+    "id": "d9",
+    "name": "Coca-Cola",
+    "image": ""
+  },
+  {
+    "id": "d10",
+    "name": "Coca-Cola Zero",
+    "image": ""
+  },
+  {
+    "id": "d11",
+    "name": "Fanta 1, 3",
+    "image": ""
+  },
+  {
+    "id": "d12",
+    "name": "Sprite",
+    "image": ""
+  },
+  {
+    "id": "d13",
+    "name": "Mineralwasser",
+    "image": ""
+  },
+  {
+    "id": "d14",
+    "name": "Churchill 0,2l",
+    "image": ""
+  },
+  {
+    "id": "d15",
+    "name": "Stilles Wasser",
+    "image": ""
+  },
+  {
+    "id": "d16",
+    "name": "Schweppes Ginger Ale",
+    "image": ""
+  },
+  {
+    "id": "d17",
+    "name": "Schweppes Wild Berry 1, 3, 9",
+    "image": ""
+  },
+  {
+    "id": "d18",
+    "name": "Rixdorfer Fassbrause 1, 3, 9",
+    "image": ""
+  },
+  {
+    "id": "d19",
+    "name": "Club-Mate 1, 9",
+    "image": ""
+  },
+  {
+    "id": "d20",
+    "name": "Elephant Bay",
+    "image": ""
+  },
+  {
+    "id": "d21",
+    "name": "Oreo Shake",
+    "image": ""
+  },
+  {
+    "id": "d22",
+    "name": "Nutella Shake",
+    "image": ""
+  },
+  {
+    "id": "d23",
+    "name": "Mango Lassi",
+    "image": ""
+  },
+  {
+    "id": "d24",
+    "name": "Virgin Mojito",
+    "image": ""
+  },
+  {
+    "id": "d25",
+    "name": "Passion Fruit Cooler",
+    "image": ""
+  },
+  {
+    "id": "d26",
+    "name": "Türkischer Kaffee",
+    "image": ""
+  },
+  {
+    "id": "d27",
+    "name": "Cappuccino",
+    "image": ""
+  },
+  {
+    "id": "d_juice_1",
+    "name": "Orangensaft",
+    "image": ""
+  },
+  {
+    "id": "d_juice_2",
+    "name": "Apfelsaft",
+    "image": ""
+  },
+  {
+    "id": "d_juice_3",
+    "name": "Maracujasaft",
+    "image": ""
+  },
+  {
+    "id": "d_juice_4",
+    "name": "Mangosaft",
+    "image": ""
+  },
+  {
+    "id": "d_juice_5",
+    "name": "KiBa (Kirsch-Bananen-Saft)",
+    "image": ""
+  },
+  {
+    "id": "d_juice_6",
+    "name": "Kirschnektar",
+    "image": ""
+  },
+  {
+    "id": "d_juice_7",
+    "name": "Bananennektar",
+    "image": ""
+  },
+  {
+    "id": "d_juice_8",
+    "name": "Cranberrysaft",
+    "image": ""
+  },
+  {
+    "id": "d_juice_9",
+    "name": "Ananassaft",
+    "image": ""
+  },
+  {
+    "id": "d_hs_1",
+    "name": "Chai Latte",
+    "image": ""
+  },
+  {
+    "id": "d_hs_2",
+    "name": "Matcha Latte",
+    "image": ""
+  },
+  {
+    "id": "d_hs_3",
+    "name": "White Chocolate",
+    "image": ""
+  },
+  {
+    "id": "d_hs_4",
+    "name": "Dark Chocolate",
+    "image": ""
+  },
+  {
+    "id": "d_hs_5",
+    "name": "Sahlep",
+    "image": ""
+  },
+  {
+    "id": "d_hit_1",
+    "name": "Yuzu",
+    "image": ""
+  },
+  {
+    "id": "d_hit_2",
+    "name": "Peach",
+    "image": ""
+  },
+  {
+    "id": "d_hit_3",
+    "name": "Wildberry",
+    "image": ""
+  },
+  {
+    "id": "d_hit_4",
+    "name": "Sweet Melon",
+    "image": ""
+  },
+  {
+    "id": "d_hit_5",
+    "name": "Acai Strawberry",
+    "image": ""
+  },
+  {
+    "id": "d_hit_6",
+    "name": "Cotton Candy",
+    "image": ""
+  },
+  {
+    "id": "d_hit_7",
+    "name": "Kaktus Feige",
+    "image": ""
+  },
+  {
+    "id": "d_fh_1",
+    "name": "Hibiscus Orange Limo",
+    "image": ""
+  },
+  {
+    "id": "d_fh_2",
+    "name": "53",
+    "image": ""
+  },
+  {
+    "id": "d_fh_3",
+    "name": "Blue Wonder",
+    "image": ""
+  },
+  {
+    "id": "d_fh_4",
+    "name": "Softy Gold G",
+    "image": ""
+  },
+  {
+    "id": "d_fh_5",
+    "name": "Aloe Vera",
+    "image": ""
+  },
+  {
+    "id": "d_fh_6",
+    "name": "Berry Yakult Peach Limo G",
+    "image": ""
+  },
+  {
+    "id": "d_fh_7",
+    "name": "Pink Lover",
+    "image": ""
+  },
+  {
+    "id": "d_fh_8",
+    "name": "Rosé G",
+    "image": ""
+  },
+  {
+    "id": "f1",
+    "name": "Hummus",
+    "image": ""
+  },
+  {
+    "id": "f2",
+    "name": "Sigara Böreği",
+    "image": ""
+  },
+  {
+    "id": "f3",
+    "name": "Mercimek Çorbası",
+    "image": ""
+  },
+  {
+    "id": "f4",
+    "name": "Falafel Teller",
+    "image": ""
+  },
+  {
+    "id": "f5",
+    "name": "Adana Kebab",
+    "image": ""
+  },
+  {
+    "id": "f6",
+    "name": "Chicken Wings",
+    "image": ""
+  },
+  {
+    "id": "f7",
+    "name": "Beyti Sarma",
+    "image": ""
+  },
+  {
+    "id": "f8",
+    "name": "Pide Kaşarlı",
+    "image": ""
+  },
+  {
+    "id": "f9",
+    "name": "Lahmacun",
+    "image": ""
+  },
+  {
+    "id": "f10",
+    "name": "Pommes Frites",
+    "image": ""
+  },
+  {
+    "id": "f11",
+    "name": "Nachos Supreme",
+    "image": ""
+  },
+  {
+    "id": "f12",
+    "name": "Cheese Burger",
+    "image": ""
+  },
+  {
+    "id": "k1",
+    "name": "Kombi 1",
+    "image": ""
+  },
+  {
+    "id": "k2",
+    "name": "Kombi 2",
+    "image": ""
+  },
+  {
+    "id": "k3",
+    "name": "Kombi 3",
+    "image": ""
+  },
+  {
+    "id": "k4 – Friends",
+    "name": "Kombi 4 – Friends",
+    "image": ""
+  },
+  {
+    "id": "k5 – Royal",
+    "name": "Kombi 5 – Royal",
+    "image": ""
+  },
+  {
+    "id": "d_sd_moloko",
+    "name": "Moloko",
+    "image": ""
+  },
+  {
+    "id": "d_sd_redbull",
+    "name": "RedBull",
+    "image": ""
+  },
+  {
+    "id": "d_sd_28black",
+    "name": "28 Black (Schwarze Dose)",
+    "image": ""
+  },
+  {
+    "id": "d_tea_cay",
+    "name": "Türkischer Cay groß",
+    "image": ""
+  },
+  {
+    "id": "d_tea_kamille",
+    "name": "BIO Kamille Tee mit Honig",
+    "image": ""
+  },
+  {
+    "id": "d_tea_salbei",
+    "name": "BIO Salbei Tee mit Honig",
+    "image": ""
+  },
+  {
+    "id": "d_tea_sencha",
+    "name": "BIO Japanischer Sencha Tee mit Honig",
+    "image": ""
+  },
+  {
+    "id": "d_tea_hotbeauty",
+    "name": "BIO Hot Beauty Tee mit Honig",
+    "image": ""
+  },
+  {
+    "id": "d_tea_fourseason",
+    "name": "BIO Four Season Tee mit Honig",
+    "image": ""
+  },
+  {
+    "id": "d_tea_bluedream",
+    "name": "Blue Dream Tee mit Honig",
+    "image": ""
+  },
+  {
+    "id": "d_tea_mango",
+    "name": "Sweet Mango Tee mit Honig",
+    "image": ""
+  },
+  {
+    "id": "d_tea_apple",
+    "name": "Orient Apple Tee mit Honig",
+    "image": ""
+  },
+  {
+    "id": "d_tea_blossom",
+    "name": "BIO Blossom Tee mit Honig",
+    "image": ""
+  },
+  {
+    "id": "d_coffee_espresso",
+    "name": "Espresso",
+    "image": ""
+  },
+  {
+    "id": "d_coffee_crema",
+    "name": "Cafe Crema",
+    "image": ""
+  },
+  {
+    "id": "d_coffee_latte",
+    "name": "Latte Macchiato",
+    "image": ""
+  },
+  {
+    "id": "d_coffee_mokka",
+    "name": "Türkischer Mokka",
+    "image": ""
+  },
+  {
+    "id": "d_fh_1",
+    "name": "Hibiscus Orange Limo",
+    "image": ""
+  },
+  {
+    "id": "d_fh_2",
+    "name": "53",
+    "image": ""
+  },
+  {
+    "id": "d_fh_3",
+    "name": "Blue Wonder",
+    "image": ""
+  },
+  {
+    "id": "d_fh_4",
+    "name": "Softy Gold",
+    "image": ""
+  },
+  {
+    "id": "d_fh_5",
+    "name": "Aloe Vera",
+    "image": ""
+  },
+  {
+    "id": "d_fh_6",
+    "name": "Berry Yakult Peach Limo",
+    "image": ""
+  },
+  {
+    "id": "d_fh_7",
+    "name": "Pink Lover",
+    "image": ""
+  },
+  {
+    "id": "d_fh_8",
+    "name": "Rosé",
+    "image": ""
+  },
+  {
+    "id": "d_sm_1",
+    "name": "Very Berry",
+    "image": ""
+  },
+  {
+    "id": "d_sm_2",
+    "name": "Green Goddess",
+    "image": ""
+  },
+  {
+    "id": "d_sm_3",
+    "name": "Pink Punch",
+    "image": ""
+  },
+  {
+    "id": "d_sm_4",
+    "name": "Orange Glow",
+    "image": ""
+  },
+  {
+    "id": "d_sm_5",
+    "name": "Pina Colada",
+    "image": ""
+  },
+  {
+    "id": "d_hit_6",
+    "name": "Cotton Candy",
+    "image": ""
+  },
+  {
+    "id": "d_hit_7",
+    "name": "Kaktus Feige",
+    "image": ""
+  },
+  {
+    "id": "d_coffee_cappuccino",
+    "name": "Cappuccino",
+    "image": ""
+  },
+  {
+    "id": "d_coffee_milchkaffee",
+    "name": "Milchkaffee",
+    "image": ""
+  },
+  {
+    "id": "d_coffee_icedlatte",
+    "name": "Iced Latte",
+    "image": ""
+  },
+  {
+    "id": "d_coffee_icedcaramel",
+    "name": "Iced Caramel Macchiato",
+    "image": ""
+  },
+  {
+    "id": "d_hot_chai",
+    "name": "Chai Latte",
+    "image": ""
+  },
+  {
+    "id": "d_hot_matcha",
+    "name": "Matcha Latte",
+    "image": ""
+  },
+  {
+    "id": "d_hot_choco",
+    "name": "Heiße Schokolade",
+    "image": ""
+  },
+  {
+    "id": "d_hot_sahlep",
+    "name": "Sahlep",
+    "image": ""
+  }
+]

@@ -1,0 +1,132 @@
+s1 | Doppel Apfel
+s2 | Apfel Minze
+s3 | Traube Minze
+s4 | Black Nana
+s5 | Sternstaub
+s6 | Luftschloss
+s7 | Limette Minze
+s8 | Lemon Chill
+s9 | Blueberry
+s10 | Nasty Girl
+s11 | Love 66
+s12 | Pfirsich Minze
+s13 | Falim Red
+s14 | Ice Kaktus
+s15 | African Queen
+s16 | Raffaello
+s17 | Ice Apfel
+s18 | Hürrem Spezial Hookah
+s19 | Neuer Kopf
+d1 | GOLDEN MANGO MACCHIATTO P, A, H
+d2 | ICED STRAWBERRY VELVET 9, A, H
+d3 | MANGO MATCHA FUSION
+d4 | LILA MANGO TRAUM
+d5 | STRAWBERRY MATCHA CHILL
+d6 | Iced Latte G
+d7 | Fritz Cola
+d8 | Fritz Cola Zero
+d9 | Coca-Cola
+d10 | Coca-Cola Zero
+d11 | Fanta 1, 3
+d12 | Sprite
+d13 | Mineralwasser
+d14 | Churchill 0,2l
+d15 | Stilles Wasser
+d16 | Schweppes Ginger Ale
+d17 | Schweppes Wild Berry 1, 3, 9
+d18 | Rixdorfer Fassbrause 1, 3, 9
+d19 | Club-Mate 1, 9
+d20 | Elephant Bay
+d21 | Oreo Shake
+d22 | Nutella Shake
+d23 | Mango Lassi
+d24 | Virgin Mojito
+d25 | Passion Fruit Cooler
+d26 | Türkischer Kaffee
+d27 | Cappuccino
+d_juice_1 | Orangensaft
+d_juice_2 | Apfelsaft
+d_juice_3 | Maracujasaft
+d_juice_4 | Mangosaft
+d_juice_5 | KiBa (Kirsch-Bananen-Saft)
+d_juice_6 | Kirschnektar
+d_juice_7 | Bananennektar
+d_juice_8 | Cranberrysaft
+d_juice_9 | Ananassaft
+d_hs_1 | Chai Latte
+d_hs_2 | Matcha Latte
+d_hs_3 | White Chocolate
+d_hs_4 | Dark Chocolate
+d_hs_5 | Sahlep
+d_hit_1 | Yuzu
+d_hit_2 | Peach
+d_hit_3 | Wildberry
+d_hit_4 | Sweet Melon
+d_hit_5 | Acai Strawberry
+d_hit_6 | Cotton Candy
+d_hit_7 | Kaktus Feige
+d_fh_1 | Hibiscus Orange Limo
+d_fh_2 | 53
+d_fh_3 | Blue Wonder
+d_fh_4 | Softy Gold G
+d_fh_5 | Aloe Vera
+d_fh_6 | Berry Yakult Peach Limo G
+d_fh_7 | Pink Lover
+d_fh_8 | Rosé G
+f1 | Hummus
+f2 | Sigara Böreği
+f3 | Mercimek Çorbası
+f4 | Falafel Teller
+f5 | Adana Kebab
+f6 | Chicken Wings
+f7 | Beyti Sarma
+f8 | Pide Kaşarlı
+f9 | Lahmacun
+f10 | Pommes Frites
+f11 | Nachos Supreme
+f12 | Cheese Burger
+k1 | Kombi 1
+k2 | Kombi 2
+k3 | Kombi 3
+k4 – Friends | Kombi 4 – Friends
+k5 – Royal | Kombi 5 – Royal
+d_sd_moloko | Moloko
+d_sd_redbull | RedBull
+d_sd_28black | 28 Black (Schwarze Dose)
+d_tea_cay | Türkischer Cay groß
+d_tea_kamille | BIO Kamille Tee mit Honig
+d_tea_salbei | BIO Salbei Tee mit Honig
+d_tea_sencha | BIO Japanischer Sencha Tee mit Honig
+d_tea_hotbeauty | BIO Hot Beauty Tee mit Honig
+d_tea_fourseason | BIO Four Season Tee mit Honig
+d_tea_bluedream | Blue Dream Tee mit Honig
+d_tea_mango | Sweet Mango Tee mit Honig
+d_tea_apple | Orient Apple Tee mit Honig
+d_tea_blossom | BIO Blossom Tee mit Honig
+d_coffee_espresso | Espresso
+d_coffee_crema | Cafe Crema
+d_coffee_latte | Latte Macchiato
+d_coffee_mokka | Türkischer Mokka
+d_fh_1 | Hibiscus Orange Limo
+d_fh_2 | 53
+d_fh_3 | Blue Wonder
+d_fh_4 | Softy Gold
+d_fh_5 | Aloe Vera
+d_fh_6 | Berry Yakult Peach Limo
+d_fh_7 | Pink Lover
+d_fh_8 | Rosé
+d_sm_1 | Very Berry
+d_sm_2 | Green Goddess
+d_sm_3 | Pink Punch
+d_sm_4 | Orange Glow
+d_sm_5 | Pina Colada
+d_hit_6 | Cotton Candy
+d_hit_7 | Kaktus Feige
+d_coffee_cappuccino | Cappuccino
+d_coffee_milchkaffee | Milchkaffee
+d_coffee_icedlatte | Iced Latte
+d_coffee_icedcaramel | Iced Caramel Macchiato
+d_hot_chai | Chai Latte
+d_hot_matcha | Matcha Latte
+d_hot_choco | Heiße Schokolade
+d_hot_sahlep | Sahlep
