@@ -1,6 +1,7 @@
 import { createContext, useContext, useState, useMemo, useEffect, type ReactNode } from 'react';
 import { menuData as localMenuData, type MenuCategory, type MenuItem } from '../data/menu';
 import { useLanguage } from '../i18n/LanguageContext';
+import { isFirebaseConfigured } from '../config/firebase';
 
 declare global {
   interface Window {
@@ -82,11 +83,36 @@ const SUBCATEGORY_ORDER: Record<string, number> = {
 export function MenuProvider({ children }: { children: ReactNode }) {
   const { lang } = useLanguage();
   const [allItems, setAllItems] = useState<MenuItem[]>(localMenuData);
-  const [isLoading, setIsLoading] = useState(() => !!(typeof window !== 'undefined' && window.wpApiSettings?.root));
+  const [isLoading, setIsLoading] = useState(() => isFirebaseConfigured || !!(typeof window !== 'undefined' && window.wpApiSettings?.root));
   const [activeCategory, setActiveCategory] = useState<MenuCategory>('shisha');
   const [activeSubcategory, setActiveSubcategory] = useState('All');
   const [searchQuery, setSearchQuery] = useState('');
   const [activeTags, setActiveTags] = useState<string[]>([]);
+
+  useEffect(() => {
+    // Live menu from Firestore (edited via /admin). The bundled menu stays as
+    // fallback while loading, if the collection is empty, or on error.
+    if (!isFirebaseConfigured) return;
+    let unsubscribe = () => {};
+    let cancelled = false;
+    import('../services/menuFeed').then(({ subscribeMenu }) => {
+      if (cancelled) return;
+      unsubscribe = subscribeMenu(
+        items => {
+          if (items.length > 0) setAllItems(items);
+          setIsLoading(false);
+        },
+        err => {
+          console.error('Failed to load menu from Firestore:', err);
+          setIsLoading(false);
+        },
+      );
+    });
+    return () => {
+      cancelled = true;
+      unsubscribe();
+    };
+  }, []);
 
   useEffect(() => {
     // Check if we are running inside WordPress
@@ -137,7 +163,7 @@ export function MenuProvider({ children }: { children: ReactNode }) {
   const subcategories = useMemo(() => {
     const subs = Array.from(new Set(
       allItems
-        .filter(item => item.category === activeCategory)
+        .filter(item => item.category === activeCategory && item.available !== false)
         .map(item => item.subcategory)
         .filter((sub): sub is string => Boolean(sub))
     ));
@@ -158,6 +184,7 @@ export function MenuProvider({ children }: { children: ReactNode }) {
   const filteredItems = useMemo(() => {
     const isSearching = searchQuery.trim().length > 0;
     const items = allItems.filter(item => {
+      if (item.available === false) return false;
       const catMatch = isSearching ? true : item.category === activeCategory;
       const subMatch = isSearching ? true : (activeSubcategory === 'All' || item.subcategory === activeSubcategory);
       // Search in active language first, fall back to DE and EN

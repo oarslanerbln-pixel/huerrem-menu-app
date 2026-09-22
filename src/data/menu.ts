@@ -15,6 +15,7 @@ export interface MenuItem {
   subcategory?: string;
   isSignature?: boolean;
   imageUrl?: string;
+  available?: boolean; // false = hidden on the guest menu (e.g. sold out)
   variations?: MenuItemVariation[];
   tags?: string[];
   allergens?: string[];
