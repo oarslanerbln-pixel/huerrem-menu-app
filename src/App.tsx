@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, lazy, Suspense } from 'react';
 import { Crown } from 'lucide-react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { useLanguage } from './i18n/LanguageContext';
@@ -25,6 +25,7 @@ import DevToolsMenu from './components/UI/DevToolsMenu';
 
 // Pages
 import BarDashboard from './pages/BarDashboard';
+const AdminPage = lazy(() => import('./pages/AdminPage'));
 
 // Removed CrypticBackground
 
@@ -98,6 +99,7 @@ function App() {
             <Routes>
               <Route path="/" element={<AppInner />} />
               <Route path="/bar" element={<BarDashboard />} />
+              <Route path="/admin" element={<Suspense fallback={null}><AdminPage /></Suspense>} />
             </Routes>
           </Router>
         </MenuProvider>

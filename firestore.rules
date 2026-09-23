@@ -1,0 +1,29 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Admins are listed as documents admins/{uid} (created manually in the console).
+    function isAdmin() {
+      return request.auth != null
+        && exists(/databases/$(database)/documents/admins/$(request.auth.uid));
+    }
+
+    // Public menu: everyone reads, only admins write.
+    match /menuItems/{itemId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    // Admin list: a user may only check their own entry; managed via console.
+    match /admins/{uid} {
+      allow read: if request.auth != null && request.auth.uid == uid;
+      allow write: if false;
+    }
+
+    // Alchemist orders: guests may create, only admins read/complete.
+    match /alchemist_orders/{orderId} {
+      allow create: if request.resource.data.status == 'pending';
+      allow read, update: if isAdmin();
+      allow delete: if false;
+    }
+  }
+}

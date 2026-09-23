@@ -15,6 +15,7 @@ export interface MenuItem {
   subcategory?: string;
   isSignature?: boolean;
   imageUrl?: string;
+  available?: boolean; // false = hidden on the guest menu (e.g. sold out)
   variations?: MenuItemVariation[];
   tags?: string[];
   allergens?: string[];
@@ -191,12 +192,12 @@ export const menuData: MenuItem[] = [
     },
     "price": 16.9,
     "description": {
-      "DE": "Ein erfrischender Geschmack von saftiger Wassermelone kombiniert mit einem Spritzer von Limette - klare, fruchtige und unglaublich erfrischend.",
-      "EN": "A refreshing taste of juicy watermelon combined with a splash of lime - clear, fruity and incredibly refreshing.",
-      "TR": "Sulu karpuzun ferahlatıcı tadı, bir miktar misket limonu ile harmanlanıyor - net, meyvemsi ve inanılmaz derecede ferahlatıcı.",
-      "FR": "Un goût rafraîchissant de pastèque juteuse combiné à un filet de citron vert – clair, fruité et incroyablement rafraîchissant.",
-      "ES": "Un sabor refrescante de sandía jugosa combinado con un chorrito de lima: claro, afrutado e increíblemente refrescante.",
-      "RU": "Освежающий вкус сочного арбуза в сочетании с нотами лайма — чистый, фруктовый и невероятно освежающий."
+      "DE": "Ein erfrischender Geschmack von saftiger Wassermelone kombiniert mit der kühlen Frische von Minze – ein leichter, fruchtiger und unglaublich erfrischender Genuss.",
+      "EN": "A refreshing taste of juicy watermelon combined with the cool freshness of mint – light, fruity and incredibly refreshing.",
+      "TR": "Sulu karpuzun ferahlatıcı tadı, nanenin serin tazeliğiyle buluşuyor – hafif, meyvemsi ve inanılmaz derecede ferahlatıcı.",
+      "FR": "Un goût rafraîchissant de pastèque juteuse associé à la fraîcheur de la menthe – léger, fruité et incroyablement rafraîchissant.",
+      "ES": "Un sabor refrescante de sandía jugosa combinado con el frescor de la menta: ligero, afrutado e increíblemente refrescante.",
+      "RU": "Освежающий вкус сочного арбуза в сочетании с прохладной свежестью мяты — лёгкий, фруктовый и невероятно освежающий."
     },
     "imageUrl": "/images/menury_originals/hookahs/hookahs__luftschloss.webp",
     "category": "shisha",
@@ -582,6 +583,7 @@ export const menuData: MenuItem[] = [
   },
   {
     "id": "d1",
+    "allergens": ["A", "G", "H", "P"],
     "name": {
       "DE": "GOLDEN MANGO MACCHIATTO",
       "EN": "GOLDEN MANGO MACCHIATTO",
@@ -607,14 +609,10 @@ export const menuData: MenuItem[] = [
       "creamy",
       "coffee"
     ],
-    "allergens": [
-      "A",
-      "H",
-      "P"
-    ]
   },
   {
     "id": "d2",
+    "allergens": ["A", "G", "H"],
     "name": {
       "DE": "ICED STRAWBERRY VELVET",
       "EN": "ICED STRAWBERRY VELVET",
@@ -639,10 +637,6 @@ export const menuData: MenuItem[] = [
       "sweet",
       "creamy",
       "coffee"
-    ],
-    "allergens": [
-      "A",
-      "H"
     ],
     "additives": [
       "9"
@@ -951,29 +945,6 @@ export const menuData: MenuItem[] = [
     "subcategory": "Softdrinks"
   },
   {
-    "id": "d15",
-    "name": {
-      "DE": "Stilles Wasser",
-      "EN": "Still Water",
-      "TR": "Su",
-      "FR": "eau plate",
-      "ES": "Agua sin gas",
-      "RU": "Стоячая вода"
-    },
-    "price": 3.2,
-    "description": {
-      "DE": "0,2l (3.20 €) | 0,7l (8.20 €)",
-      "EN": "0.2l (3.20 €) | 0.7l (8.20 €)",
-      "TR": "0,2l (3.20 €) | 0,7l (8.20 €)",
-      "FR": "0,2l (3,20 €) | 0,7l (8,20 €)",
-      "ES": "0,2l (3,20€) | 0,7l (8,20€)",
-      "RU": "0,2л (3,20 €) | 0,7л (8,20 €)"
-    },
-    "imageUrl": "/images/menury_originals/softdrinks__stilles_wasser.webp",
-    "category": "drinks",
-    "subcategory": "Softdrinks"
-  },
-  {
     "id": "d16",
     "name": {
       "DE": "Schweppes Ginger Ale",
@@ -998,6 +969,7 @@ export const menuData: MenuItem[] = [
   },
   {
     "id": "d17",
+    "additives": ["1", "2", "3", "9"],
     "name": {
       "DE": "Schweppes Wild Berry",
       "EN": "Schweppes Wild Berry",
@@ -1018,14 +990,10 @@ export const menuData: MenuItem[] = [
     "imageUrl": "/images/menury_originals/softdrinks__schweppes_wild_berry.webp",
     "category": "drinks",
     "subcategory": "Softdrinks",
-    "additives": [
-      "1",
-      "3",
-      "9"
-    ]
   },
   {
     "id": "d18",
+    "additives": ["1", "2", "3", "9"],
     "name": {
       "DE": "Rixdorfer Fassbrause",
       "EN": "Rixdorfer Fassbrause",
@@ -1046,14 +1014,10 @@ export const menuData: MenuItem[] = [
     "imageUrl": "/images/menury_originals/softdrinks__rixdorfer_fassbrause.webp",
     "category": "drinks",
     "subcategory": "Softdrinks",
-    "additives": [
-      "1",
-      "3",
-      "9"
-    ]
   },
   {
     "id": "d19",
+    "additives": ["1", "2", "9"],
     "name": {
       "DE": "Club-Mate",
       "EN": "Club-Mate",
@@ -1074,13 +1038,10 @@ export const menuData: MenuItem[] = [
     "imageUrl": "/images/menury_originals/softdrinks__club_mate.webp",
     "category": "drinks",
     "subcategory": "Softdrinks",
-    "additives": [
-      "1",
-      "9"
-    ]
   },
   {
     "id": "d20",
+    "additives": ["1", "2", "3"],
     "name": {
       "DE": "Elephant Bay",
       "EN": "Elephant Bay",
@@ -1099,6 +1060,23 @@ export const menuData: MenuItem[] = [
       "RU": "0.33l - Available in the following varieties: Pomegranate, Peach, Peach Zero, Mango-Pineapple. Сорта уточняйте у наших сотрудников."
     },
     "imageUrl": "/images/menury_originals/softdrinks__elephant_bay.webp",
+    "category": "drinks",
+    "subcategory": "Softdrinks"
+  },
+  {
+    "id": "d_sd_moloko",
+    "additives": ["1", "2", "3", "13"],
+    "name": { "DE": "Moloko", "EN": "Moloko", "TR": "Moloko", "FR": "Moloko", "ES": "Moloko", "RU": "Moloko" },
+    "price": 4.6,
+    "description": {
+      "DE": "0,25 l – für alle Sorten bitte unser Personal fragen.",
+      "EN": "0.25 l – please ask our staff for all flavours.",
+      "TR": "0,25 l – tüm çeşitler için lütfen personelimize danışın.",
+      "FR": "0,25 l – demandez à notre personnel pour toutes les saveurs.",
+      "ES": "0,25 l – pregunte a nuestro personal por todos los sabores.",
+      "RU": "0,25 л – о всех вкусах спрашивайте у персонала."
+    },
+    "imageUrl": "/images/menury_originals/softdrinks__moloko.webp",
     "category": "drinks",
     "subcategory": "Softdrinks"
   },
@@ -1330,6 +1308,7 @@ export const menuData: MenuItem[] = [
     },
     "imageUrl": "",
     "category": "drinks",
+    "subcategory": "Heiße Specials",
     "tags": [
       "creamy",
       "spicy"
@@ -1356,6 +1335,7 @@ export const menuData: MenuItem[] = [
     },
     "imageUrl": "/images/menury_originals/heisse_specials__matcha_latte.webp",
     "category": "drinks",
+    "subcategory": "Heiße Specials",
     "tags": [
       "creamy",
       "matcha"
@@ -1382,6 +1362,7 @@ export const menuData: MenuItem[] = [
     },
     "imageUrl": "/images/menury_originals/heisse_specials__sahlep.webp",
     "category": "drinks",
+    "subcategory": "Heiße Specials",
     "tags": [
       "creamy",
       "classic"
@@ -1639,6 +1620,7 @@ export const menuData: MenuItem[] = [
   },
   {
     "id": "d_fh_4",
+    "allergens": ["G"],
     "name": {
       "DE": "Softy Gold",
       "EN": "Softy Gold",
@@ -1685,6 +1667,7 @@ export const menuData: MenuItem[] = [
   },
   {
     "id": "d_fh_6",
+    "allergens": ["G"],
     "name": {
       "DE": "Berry Yakult Peach Limo",
       "EN": "Berry Yakult Peach Limo",
@@ -1731,6 +1714,7 @@ export const menuData: MenuItem[] = [
   },
   {
     "id": "d_fh_8",
+    "allergens": ["G"],
     "name": {
       "DE": "Rosé",
       "EN": "Rosé",
@@ -1754,6 +1738,7 @@ export const menuData: MenuItem[] = [
   },
   {
     "id": "f_burger_1",
+    "allergens": ["A", "G"],
     "name": {
       "DE": "Truffle Blue Burger",
       "EN": "Truffle Blue Burger",
@@ -1782,6 +1767,7 @@ export const menuData: MenuItem[] = [
   },
   {
     "id": "f_burger_2",
+    "allergens": ["A", "G"],
     "name": {
       "DE": "Crispy Chicken Delight",
       "EN": "Crispy Chicken Delight",
@@ -1809,6 +1795,7 @@ export const menuData: MenuItem[] = [
   },
   {
     "id": "f_burger_3",
+    "allergens": ["A", "G"],
     "name": {
       "DE": "Classic Cheeseburger",
       "EN": "Classic Cheeseburger",
@@ -1865,6 +1852,7 @@ export const menuData: MenuItem[] = [
   },
   {
     "id": "f_haupt_1",
+    "allergens": ["A", "G", "H"],
     "name": {
       "DE": "Mexican Style Fajitas",
       "EN": "Mexican Style Fajitas",
@@ -1889,11 +1877,6 @@ export const menuData: MenuItem[] = [
       "meat",
       "spicy"
     ],
-    "allergens": [
-      "G",
-      "A",
-      "H"
-    ]
   },
   {
     "id": "f_haupt_2",
@@ -1924,6 +1907,7 @@ export const menuData: MenuItem[] = [
   },
   {
     "id": "f_haupt_3",
+    "allergens": ["G", "H"],
     "name": {
       "DE": "Türkische Grillköfte",
       "EN": "Turkish Grillköfte",
@@ -1951,6 +1935,7 @@ export const menuData: MenuItem[] = [
   },
   {
     "id": "f_haupt_4",
+    "allergens": ["A", "G"],
     "name": {
       "DE": "Goldenes Hähnchenschnitzel",
       "EN": "Golden Chicken Schnitzel",
@@ -1961,12 +1946,12 @@ export const menuData: MenuItem[] = [
     },
     "price": 16.9,
     "description": {
-      "DE": "Knusprig paniertes Hähnchenschnitzel, serviert mit Champignon-Sahnesauce, knusprigen Pommes und frischem Beilagensalat.",
-      "EN": "Crispy breaded chicken schnitzel, served with mushroom cream sauce, crispy fries and fresh side salad.",
-      "TR": "Çıtır panelenmiş tavuk şinitzel; mantarlı krema sosu, çıtır patates kızartması ve taze yan salata ile servis edilir.",
-      "FR": "Escalope de poulet panée croustillante, servie avec une sauce à la crème aux champignons, des frites croustillantes et une salade fraîche.",
-      "ES": "Schnitzel de pollo empanizado crujiente, servido con salsa de crema de champiñones, papas fritas crujientes y ensalada fresca.",
-      "RU": "Хрустящий куриный шницель в панировке, подается со сливочно-грибным соусом, хрустящим картофелем фри и свежим гарниром."
+      "DE": "Knusprig paniertes Hähnchenschnitzel, serviert mit Champignon-Sahnesauce, knusprigen Pommes und frischem Beilagensalat.\nMit Rosmarin-Kartoffeln statt Pommes: 18,90 €",
+      "EN": "Crispy breaded chicken schnitzel, served with mushroom cream sauce, crispy fries and fresh side salad.\nWith rosemary potatoes instead of fries: €18.90",
+      "TR": "Çıtır panelenmiş tavuk şinitzel; mantarlı krema sosu, çıtır patates kızartması ve taze yan salata ile servis edilir.\nPatates kızartması yerine biberiyeli patates ile: 18,90 €",
+      "FR": "Escalope de poulet panée croustillante, servie avec une sauce à la crème aux champignons, des frites croustillantes et une salade fraîche.\nAvec pommes de terre au romarin au lieu des frites : 18,90 €",
+      "ES": "Schnitzel de pollo empanizado crujiente, servido con salsa de crema de champiñones, papas fritas crujientes y ensalada fresca.\nCon patatas al romero en lugar de papas fritas: 18,90 €",
+      "RU": "Хрустящий куриный шницель в панировке, подается со сливочно-грибным соусом, хрустящим картофелем фри и свежим гарниром.\nС картофелем с розмарином вместо картофеля фри: 18,90 €"
     },
     "imageUrl": "/images/menury_originals/hauptgerichte__goldenes_haehnchenschnitzel.webp",
     "category": "food",
@@ -1978,6 +1963,7 @@ export const menuData: MenuItem[] = [
   },
   {
     "id": "f_haupt_5",
+    "allergens": ["G"],
     "name": {
       "DE": "Pfefferhähnchen-Traum",
       "EN": "Pepper Chicken Dream",
@@ -2258,6 +2244,7 @@ export const menuData: MenuItem[] = [
   },
   {
     "id": "f_pasta_4",
+    "allergens": ["A", "G"],
     "name": {
       "DE": "Creamy Chicken Penne (Penne-Pollo)",
       "EN": "Creamy Chicken Penne",
@@ -2282,9 +2269,6 @@ export const menuData: MenuItem[] = [
       "meat",
       "creamy"
     ],
-    "allergens": [
-      "A"
-    ]
   },
   {
     "id": "f_pasta_5",
@@ -2321,7 +2305,7 @@ export const menuData: MenuItem[] = [
   {
     "id": "f_pasta_6",
     "name": {
-      "DE": "Rigatoni Cremy Chicken",
+      "DE": "Rigatoni Creamy Chicken",
       "EN": "Rigatoni Creamy Chicken",
       "TR": "Rigatoni Creamy Chicken",
       "FR": "Rigatoni Poulet Crémeux",
@@ -2618,6 +2602,7 @@ export const menuData: MenuItem[] = [
   },
   {
     "id": "food_snack_1",
+    "allergens": ["F", "H", "N"],
     "name": {
       "DE": "Hürrem Nuss Deluxe",
       "EN": "Hürrem Nut Deluxe",
@@ -2641,10 +2626,6 @@ export const menuData: MenuItem[] = [
     "tags": [
       "vegetarian"
     ],
-    "allergens": [
-      "H",
-      "N"
-    ]
   },
   {
     "id": "food_snack_2",
@@ -2680,6 +2661,7 @@ export const menuData: MenuItem[] = [
   },
   {
     "id": "food_snack_3",
+    "allergens": ["F", "G", "N"],
     "name": {
       "DE": "Hürrem Knabbermix",
       "EN": "Hürrem Snack Mix",
@@ -2703,11 +2685,6 @@ export const menuData: MenuItem[] = [
     "tags": [
       "sharing"
     ],
-    "allergens": [
-      "F",
-      "N",
-      "G"
-    ]
   },
   {
     "id": "food_snack_4",
@@ -2880,6 +2857,7 @@ export const menuData: MenuItem[] = [
   },
   {
     "id": "food_dessert_4",
+    "allergens": ["A", "C", "F", "G"],
     "name": {
       "DE": "Mini Pancakes",
       "EN": "Mini Pancakes",
@@ -2900,11 +2878,6 @@ export const menuData: MenuItem[] = [
     "category": "food",
     "subcategory": "Desserts",
     "imageUrl": "/images/menury_originals/dessert__mini_pancakes.webp",
-    "allergens": [
-      "A",
-      "C",
-      "G"
-    ]
   },
   {
     "id": "food_dessert_5",
@@ -2985,6 +2958,7 @@ export const menuData: MenuItem[] = [
   },
   {
     "id": "food_dessert_8",
+    "allergens": ["A", "C", "G"],
     "name": {
       "DE": "Original San Sebastián Cheesecake",
       "EN": "Original San Sebastian Cheesecake",
@@ -3382,6 +3356,23 @@ export const menuData: MenuItem[] = [
     ]
   },
   {
+    "id": "d_coffee_cappuccino",
+    "name": { "DE": "Cappuccino", "EN": "Cappuccino", "TR": "Cappuccino", "FR": "Cappuccino", "ES": "Capuchino", "RU": "Капучино" },
+    "price": 3.9,
+    "description": {
+      "DE": "Eine köstliche Kombination aus Espresso, Milch und Milchschaum.",
+      "EN": "A delicious combination of espresso, milk and milk foam.",
+      "TR": "Espresso, süt ve süt köpüğünün lezzetli birleşimi.",
+      "FR": "Une délicieuse combinaison d'espresso, de lait et de mousse de lait.",
+      "ES": "Una deliciosa combinación de espresso, leche y espuma de leche.",
+      "RU": "Восхитительное сочетание эспрессо, молока и молочной пены."
+    },
+    "imageUrl": "/images/menury_originals/kaffeespezialitaeten__cappuccino.webp",
+    "category": "drinks",
+    "subcategory": "Kaffeespezialitäten",
+    "tags": ["creamy", "classic"]
+  },
+  {
     "id": "d_coffee_latte",
     "name": {
       "DE": "Latte Macchiato",
@@ -3437,6 +3428,7 @@ export const menuData: MenuItem[] = [
   },
   {
     "id": "d_sm_1",
+    "allergens": ["H"],
     "name": {
       "DE": "Very Berry",
       "EN": "Very Berry",
@@ -3460,6 +3452,7 @@ export const menuData: MenuItem[] = [
   },
   {
     "id": "d_sm_2",
+    "allergens": ["H"],
     "name": {
       "DE": "Green Goddess",
       "EN": "Green Goddess",
@@ -3483,6 +3476,7 @@ export const menuData: MenuItem[] = [
   },
   {
     "id": "d_sm_3",
+    "allergens": ["H"],
     "name": {
       "DE": "Pink Punch",
       "EN": "Pink Punch",
@@ -3529,6 +3523,7 @@ export const menuData: MenuItem[] = [
   },
   {
     "id": "d_sm_5",
+    "allergens": ["H"],
     "name": {
       "DE": "Pina Colada",
       "EN": "Pina Colada",
@@ -3652,6 +3647,7 @@ export const menuData: MenuItem[] = [
   },
   {
     "id": "d_hc_1",
+    "allergens": ["C", "G"],
     "name": {
       "DE": "Another One Wood Smoke",
       "EN": "Another One Wood Smoke",
@@ -3662,12 +3658,12 @@ export const menuData: MenuItem[] = [
     },
     "price": 10.9,
     "description": {
-      "DE": "Exklusiver Cocktail mit Rauch-Aroma.",
-      "EN": "Exclusive cocktail with wood smoke flavor.",
-      "TR": "Özel tütsülenmiş kokteyl.",
-      "FR": "Cocktail exclusif à l'arôme de fumée.",
-      "ES": "Cóctel exclusivo con aroma a humo.",
-      "RU": "Эксклюзивный коктейль с ароматом дыма."
+      "DE": "Apfelsaft, Orangensaft, Mandelsirup, Vanillesirup, Eiweiß, Zimt\nGarniert mit Zimtstange und sanftem Holzrauch.",
+      "EN": "Apple juice, orange juice, almond syrup, vanilla syrup, egg white, cinnamon\nGarnished with a cinnamon stick and gentle wood smoke.",
+      "TR": "Elma suyu, portakal suyu, badem şurubu, vanilya şurubu, yumurta akı, tarçın\nTarçın çubuğu ve hafif odun dumanı ile servis edilir.",
+      "FR": "Jus de pomme, jus d'orange, sirop d'amande, sirop de vanille, blanc d'œuf, cannelle\nGarni d'un bâton de cannelle et d'une douce fumée de bois.",
+      "ES": "Zumo de manzana, zumo de naranja, sirope de almendra, sirope de vainilla, clara de huevo, canela\nDecorado con rama de canela y un suave humo de madera.",
+      "RU": "Яблочный сок, апельсиновый сок, миндальный сироп, ванильный сироп, яичный белок, корица\nПодаётся с палочкой корицы и лёгким древесным дымом."
     },
     "imageUrl": "/images/menury_originals/high_class_cocktails__another_one_wood_smoke.webp",
     "category": "drinks",
@@ -3675,6 +3671,7 @@ export const menuData: MenuItem[] = [
   },
   {
     "id": "d_hc_2",
+    "allergens": ["G"],
     "name": {
       "DE": "Cloud Seven Balloon Glass",
       "EN": "Cloud Seven Balloon Glass",
@@ -3685,12 +3682,12 @@ export const menuData: MenuItem[] = [
     },
     "price": 10.9,
     "description": {
-      "DE": "Ein himmlischer Genuss im Ballonglas.",
-      "EN": "A heavenly delight in a balloon glass.",
-      "TR": "Balon bardakta eşsiz bir lezzet.",
-      "FR": "Un délice paradisiaque dans un verre ballon.",
-      "ES": "Una delicia celestial en una copa globo.",
-      "RU": "Райское наслаждение в бокале из воздушного шара."
+      "DE": "Cotton Candy-Sirup, Bananensaft, Kokoscreme, Sahne\nServiert in einem eleganten Ballonglas.",
+      "EN": "Cotton candy syrup, banana juice, coconut cream, cream\nServed in an elegant balloon glass.",
+      "TR": "Pamuk şeker şurubu, muz suyu, hindistan cevizi kreması, krema\nŞık bir balon bardakta servis edilir.",
+      "FR": "Sirop barbe à papa, jus de banane, crème de coco, crème\nServi dans un élégant verre ballon.",
+      "ES": "Sirope de algodón de azúcar, zumo de plátano, crema de coco, nata\nServido en una elegante copa globo.",
+      "RU": "Сироп сахарной ваты, банановый сок, кокосовые сливки, сливки\nПодаётся в элегантном бокале-шаре."
     },
     "imageUrl": "/images/menury_originals/high_class_cocktails__cloud_seven_balloon_glass.webp",
     "category": "drinks",
@@ -3708,12 +3705,12 @@ export const menuData: MenuItem[] = [
     },
     "price": 10.9,
     "description": {
-      "DE": "Fruchtiger Cocktail mit Tapioka-Perlen.",
-      "EN": "Fruity cocktail with tapioca pearls.",
-      "TR": "Tapyoka incili meyveli kokteyl.",
-      "FR": "Cocktail fruité aux perles de tapioca.",
-      "ES": "Cóctel de frutas con perlas de tapioca.",
-      "RU": "Фруктовый коктейль с жемчугом тапиоки."
+      "DE": "Weißer Tee, frisches Maracujapüree, Mangosaft, Maracujaperlen\nEine fruchtige Fusion mit Boba-Twist.",
+      "EN": "White tea, fresh passion fruit purée, mango juice, passion fruit pearls\nA fruity fusion with a boba twist.",
+      "TR": "Beyaz çay, taze çarkıfelek püresi, mango suyu, çarkıfelek incileri\nBoba dokunuşlu meyveli bir füzyon.",
+      "FR": "Thé blanc, purée de fruit de la passion fraîche, jus de mangue, perles de fruit de la passion\nUne fusion fruitée avec une touche boba.",
+      "ES": "Té blanco, puré fresco de maracuyá, zumo de mango, perlas de maracuyá\nUna fusión afrutada con un toque boba.",
+      "RU": "Белый чай, свежее пюре маракуйи, манговый сок, жемчужины маракуйи\nФруктовый микс с бабл-ти твистом."
     },
     "imageUrl": "/images/menury_originals/high_class_cocktails__funky_passion_bubble_tea.webp",
     "category": "drinks",
@@ -3721,6 +3718,7 @@ export const menuData: MenuItem[] = [
   },
   {
     "id": "d_hc_4",
+    "allergens": ["C", "G"],
     "name": {
       "DE": "Violet Wood Smoke",
       "EN": "Violet Wood Smoke",
@@ -3731,12 +3729,12 @@ export const menuData: MenuItem[] = [
     },
     "price": 10.9,
     "description": {
-      "DE": "Mystischer lila Cocktail mit Rauch-Effekt.",
-      "EN": "Mystical purple cocktail with smoke effect.",
-      "TR": "Duman efektli mistik mor kokteyl.",
-      "FR": "Cocktail violet mystique avec effet fumée.",
-      "ES": "Cóctel morado místico con efecto humo.",
-      "RU": "Мистический фиолетовый коктейль с эффектом дыма."
+      "DE": "Lavendelsirup, Lavendeltee, Zitronensaft, Blaubeersaft, Eiweiß, Soda\nMit sanfter Holzrauch-Infusion.",
+      "EN": "Lavender syrup, lavender tea, lemon juice, blueberry juice, egg white, soda\nWith a gentle wood smoke infusion.",
+      "TR": "Lavanta şurubu, lavanta çayı, limon suyu, yaban mersini suyu, yumurta akı, soda\nHafif odun dumanı ile.",
+      "FR": "Sirop de lavande, thé à la lavande, jus de citron, jus de myrtille, blanc d'œuf, soda\nAvec une douce infusion de fumée de bois.",
+      "ES": "Sirope de lavanda, té de lavanda, zumo de limón, zumo de arándanos, clara de huevo, soda\nCon una suave infusión de humo de madera.",
+      "RU": "Лавандовый сироп, лавандовый чай, лимонный сок, черничный сок, яичный белок, содовая\nС лёгким древесным дымом."
     },
     "imageUrl": "/images/menury_originals/high_class_cocktails__violet_wood_smoke.webp",
     "category": "drinks",
@@ -3767,6 +3765,7 @@ export const menuData: MenuItem[] = [
   },
   {
     "id": "d_sig_2",
+    "allergens": ["G"],
     "name": {
       "DE": "Coconut Kiss",
       "EN": "Coconut Kiss",
@@ -3859,6 +3858,7 @@ export const menuData: MenuItem[] = [
   },
   {
     "id": "d_sig_6",
+    "allergens": ["G"],
     "name": {
       "DE": "Solero",
       "EN": "Solero",
@@ -3882,6 +3882,7 @@ export const menuData: MenuItem[] = [
   },
   {
     "id": "d_shake_1",
+    "allergens": ["A", "G", "H"],
     "name": {
       "DE": "Royal Delight",
       "EN": "Royal Delight",
@@ -3905,6 +3906,7 @@ export const menuData: MenuItem[] = [
   },
   {
     "id": "d_shake_2",
+    "allergens": ["A", "G", "H"],
     "name": {
       "DE": "Midnight Cravings",
       "EN": "Midnight Cravings",
@@ -3928,6 +3930,7 @@ export const menuData: MenuItem[] = [
   },
   {
     "id": "d_shake_3",
+    "allergens": ["A", "G", "H"],
     "name": {
       "DE": "Hazelnut Bliss",
       "EN": "Hazelnut Bliss",
@@ -3951,6 +3954,7 @@ export const menuData: MenuItem[] = [
   },
   {
     "id": "d_shake_4",
+    "allergens": ["G", "H"],
     "name": {
       "DE": "Tropical Escape",
       "EN": "Tropical Escape",
@@ -3974,6 +3978,7 @@ export const menuData: MenuItem[] = [
   },
   {
     "id": "d_shake_5",
+    "allergens": ["G", "H"],
     "name": {
       "DE": "Banana Boost",
       "EN": "Banana Boost",
@@ -4037,11 +4042,11 @@ export const menuData: MenuItem[] = [
     },
     "price": 9.9,
     "description": {
-      "DE": "Montag-Freitag | 16:00-19:00 Uhr\nGenieße unsere Happy Hour und wähle dein Lieblingsgericht aus den Kategorien Pasta, Burger, Salat oder Bowl.\nAusgenommen: Beef & Broccoli Penne sowie Beef Balance Bowl.",
+      "DE": "Montag-Freitag | 16:00-19:00 Uhr\nGenieße unsere Happy Hour und wähle dein Lieblingsgericht aus den Kategorien Pasta, Burger, Salat oder Bowl.\nAusgenommen: Beef & Broccoli Penne sowie Rinderfilet Bowl.",
       "EN": "Monday-Friday | 16:00-19:00\nEnjoy our Happy Hour and choose your favorite dish from the categories Pasta, Burger, Salad or Bowl.\nExcluded: Beef & Broccoli Penne and Beef Balance Bowl.",
       "TR": "Pazartesi-Cuma | 16:00-19:00\nHappy Hour'ımızın tadını çıkarın ve Makarna, Burger, Salata veya Kase kategorilerinden favori yemeğinizi seçin.\nHariç tutulanlar: Dana Etli & Brokolili Penne ve Beef Balance Bowl.",
-      "FR": "Lundi-vendredi | 16h00 - 19h00\nProfitez de notre happy hour et choisissez votre plat préféré parmi les catégories pâtes, burger, salade ou bowl.\nExclus : Penne au bœuf et brocoli et bol d'équilibre au bœuf.",
-      "ES": "Lunes-Viernes | 16:00 - 19:00\nDisfruta de nuestro happy hour y elige tu plato favorito entre las categorías de pasta, hamburguesa, ensalada o bowl.\nExcluidos: Penne de res y brócoli y Beef Balance Bowl.",
+      "FR": "Lundi-vendredi | 16h00 - 19h00\nProfitez de notre happy hour et choisissez votre plat préféré parmi les catégories pâtes, burger, salade ou bowl.\nExclus : Penne au bœuf et brocoli et Bol de filet de boeuf.",
+      "ES": "Lunes-Viernes | 16:00 - 19:00\nDisfruta de nuestro happy hour y elige tu plato favorito entre las categorías de pasta, hamburguesa, ensalada o bowl.\nExcluidos: Penne de res y brócoli y Tazón de filete de ternera.",
       "RU": "понедельник-пятница | 16:00. - 19:00\nНаслаждайтесь нашим счастливым часом и выберите свое любимое блюдо из категорий пасты, гамбургеров, салатов или боулов.\nВ комплект не входят: пенне с говядиной и брокколи и миска для баланса говядины."
     },
     "imageUrl": "",
@@ -4051,12 +4056,12 @@ export const menuData: MenuItem[] = [
   {
     "id": "d_heisse_schokolade",
     "name": {
-      "DE": "Heiße Schokolade",
-      "EN": "Hot Chocolate",
-      "TR": "Sıcak Çikolata",
-      "FR": "Chocolat chaud",
-      "ES": "Chocolate caliente",
-      "RU": "Горячий шоколад"
+      "DE": "Dunkle Schokolade",
+      "EN": "Dark Chocolate",
+      "TR": "Bitter Çikolata",
+      "FR": "Chocolat noir",
+      "ES": "Chocolate negro",
+      "RU": "Тёмный шоколад"
     },
     "price": 4.90,
     "description": {
@@ -4291,6 +4296,7 @@ export const menuData: MenuItem[] = [
       "EN": "Our exclusive Hürrem house blend",
       "TR": "Özel Hürrem ev yapımı harmanımız"
     },
+    "imageUrl": "/images/menury_originals/kraeuter_und_bluetentees__huerrem_tee.webp",
     "category": "drinks",
     "subcategory": "Teespezialitäten"
   },
@@ -4871,8 +4877,11 @@ export const allergenLegend: Record<string, string> = {
 };
 
 export const additiveLegend: Record<string, string> = {
-  '1': 'mit Farbstoff', '2': 'mit Konservierungsstoff', '3': 'mit Antioxidationsmittel',
-  '4': 'mit Geschmacksverstärker', '5': 'geschwefelt', '6': 'geschwärzt', '7': 'gewachst',
-  '8': 'mit Phosphat', '9': 'mit Süßungsmittel', '10': 'enthält eine Phenylalaninquelle',
-  '13': 'koffeinhaltig', '19': 'mit Laktose'
+  '1': 'mit Farbstoff', '2': 'mit Konservierungsstoffen', '3': 'mit Antioxidationsmitteln',
+  '4': 'mit Geschmacksverstärker', '5': 'geschwefelt', '6': 'geschwärzt', '7': 'mit Phosphat',
+  '8': 'mit Süßungsmittel', '9': 'enthält eine Phenylalaninquelle', '10': 'gewachst',
+  '11': 'mit Nitritpökelsalz', '12': 'Tartrazin', '13': 'koffeinhaltig', '14': 'chininhaltig',
+  '15': 'genetisch verändert', '16': 'mit Milcheiweiß', '17': 'mit Taurin', '18': 'alkoholhaltig',
+  '19': 'mit Laktose', '20': 'Säuerungsmittel', '21': 'unter Schutzatmosphäre verpackt',
+  '22': 'mit Zucker und Süßungsmitteln'
 };

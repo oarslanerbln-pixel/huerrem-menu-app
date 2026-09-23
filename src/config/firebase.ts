@@ -1,24 +1,30 @@
-import { initializeApp } from 'firebase/app';
-import { getFirestore, collection, addDoc, onSnapshot, query, orderBy, where, updateDoc, doc, serverTimestamp } from 'firebase/firestore';
+import { initializeApp, type FirebaseApp } from 'firebase/app';
+import { getFirestore, connectFirestoreEmulator, collection, addDoc, onSnapshot, query, orderBy, where, updateDoc, doc, serverTimestamp, type Firestore } from 'firebase/firestore';
 
-// LÜTFEN DİKKAT: firebase.google.com üzerinden bir proje oluşturup
-// oradaki "firebaseConfig" bilgilerinizi aşağıya kopyalayın.
+// Web-Konfiguration aus Firebase Console → Projekteinstellungen → Meine Apps.
+// Werte kommen aus .env.local (siehe .env.example); sie sind nicht geheim,
+// der Schutz der Daten erfolgt über firestore.rules / storage.rules.
 const firebaseConfig = {
-  apiKey: "YOUR_API_KEY_HERE",
-  authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-  projectId: "YOUR_PROJECT_ID",
-  storageBucket: "YOUR_PROJECT_ID.appspot.com",
-  messagingSenderId: "YOUR_SENDER_ID",
-  appId: "YOUR_APP_ID"
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID,
 };
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-export const db = getFirestore(app);
+export const isFirebaseConfigured = Boolean(firebaseConfig.apiKey && firebaseConfig.projectId);
+
+export const app: FirebaseApp | null = isFirebaseConfigured ? initializeApp(firebaseConfig) : null;
+export const db: Firestore | null = app ? getFirestore(app) : null;
+
+// Local development against `firebase emulators:start` (see ADMIN_SETUP.md).
+export const useEmulators = import.meta.env.VITE_USE_FIREBASE_EMULATORS === 'true';
+if (db && useEmulators) connectFirestoreEmulator(db, '127.0.0.1', 8080);
 
 // Helper Functions
 export const sendOrderToBar = async (orderData: Record<string, unknown>) => {
-  if (firebaseConfig.apiKey === "YOUR_API_KEY_HERE") {
+  if (!db) {
     console.warn("Firebase yapılandırılmamış. Sipariş mock olarak konsola yazdırıldı:", orderData);
     return Promise.resolve({ id: "mock-id-123" });
   }
@@ -31,7 +37,7 @@ export const sendOrderToBar = async (orderData: Record<string, unknown>) => {
 };
 
 export const completeOrder = async (orderId: string) => {
-  if (firebaseConfig.apiKey === "YOUR_API_KEY_HERE") return;
+  if (!db) return;
   const orderRef = doc(db, "alchemist_orders", orderId);
   await updateDoc(orderRef, {
     status: 'completed'
@@ -39,13 +45,13 @@ export const completeOrder = async (orderId: string) => {
 };
 
 export const subscribeToOrders = (callback: (orders: Record<string, unknown>[]) => void) => {
-  if (firebaseConfig.apiKey === "YOUR_API_KEY_HERE") {
+  if (!db) {
     console.warn("Firebase yapılandırılmamış. Canlı dinleme çalışmıyor.");
     return () => {};
   }
 
   const q = query(
-    collection(db, "alchemist_orders"), 
+    collection(db, "alchemist_orders"),
     where("status", "==", "pending"),
     orderBy("createdAt", "asc")
   );
