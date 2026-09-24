@@ -1,26 +1,67 @@
-import { useEffect, useMemo, useState, type FormEvent, type ReactNode } from 'react';
+import { useEffect, useMemo, useRef, useState, type FormEvent, type ReactNode } from 'react';
 import { onAuthStateChanged, sendPasswordResetEmail, signInWithEmailAndPassword, signOut, type User } from 'firebase/auth';
 import { doc, getDoc } from 'firebase/firestore';
-import { Crown, Eye, EyeOff, Loader2, LogOut, Plus, Search, Upload } from 'lucide-react';
+import { Crown, ExternalLink, ImageOff, Loader2, LogOut, Plus, Search, ShieldAlert, Star, Upload } from 'lucide-react';
 import { db, isFirebaseConfigured } from '../config/firebase';
 import { adminAuth } from '../config/firebaseAdmin';
 import { menuData as bundledMenu, type MenuCategory, type MenuItem } from '../data/menu';
 import { deleteMenuItem, importMenu, saveMenuItem } from '../services/menuStore';
 import { subscribeMenu } from '../services/menuFeed';
 import ItemEditor from '../components/Admin/ItemEditor';
+import Switch from '../components/Admin/Switch';
 import { CATEGORY_LABELS } from '../components/Admin/constants';
+import '../components/Admin/admin.css';
 
 const nameOf = (item: MenuItem) => (typeof item.name === 'string' ? item.name : item.name?.DE || item.name?.EN || item.id);
 
 const newItemId = (name: string) =>
   `${name.toLowerCase().normalize('NFKD').replace(/[^a-z0-9]+/g, '_').replace(/^_|_$/g, '').slice(0, 30) || 'item'}_${Date.now().toString(36)}`;
 
+const formatPrice = (p: number) => `${p.toFixed(2).replace('.', ',')} €`;
+
+// Firebase Auth error codes → message the restaurant staff can act on.
+const LOGIN_ERRORS: Record<string, string> = {
+  'auth/invalid-credential': 'E-Mail oder Passwort ist falsch.',
+  'auth/wrong-password': 'E-Mail oder Passwort ist falsch.',
+  'auth/user-not-found': 'E-Mail oder Passwort ist falsch.',
+  'auth/invalid-email': 'Bitte eine gültige E-Mail-Adresse eingeben.',
+  'auth/user-disabled': 'Dieses Konto wurde deaktiviert.',
+  'auth/too-many-requests': 'Zu viele Versuche. Bitte in ein paar Minuten erneut versuchen.',
+  'auth/network-request-failed': 'Keine Internetverbindung.',
+  'auth/api-key-not-valid': 'Konfigurationsfehler (API-Key). Bitte den Administrator informieren.',
+  'auth/operation-not-allowed': 'E-Mail-Anmeldung ist in Firebase nicht aktiviert.',
+};
+const loginError = (e: unknown) => {
+  const code = (e as { code?: string })?.code || '';
+  return LOGIN_ERRORS[code] || `Anmeldung fehlgeschlagen${code ? ` (${code})` : ''}.`;
+};
+
+type QuickFilter = 'hidden' | 'noPhoto' | 'noAllergens' | null;
+
 function Shell({ children }: { children: ReactNode }) {
   return (
-    <div className="min-h-screen bg-neutral-950 text-white font-body">
-      <div className="max-w-5xl mx-auto px-4 py-6">{children}</div>
+    <div className="adm">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 py-6 sm:py-8">{children}</div>
     </div>
   );
+}
+
+function Brand({ subtitle = 'Menü-Verwaltung' }: { subtitle?: string }) {
+  return (
+    <div className="flex items-center gap-3">
+      <div className="w-10 h-10 rounded-xl grid place-items-center border adm-divider bg-[var(--adm-surface-2)]">
+        <Crown size={20} className="adm-gold" />
+      </div>
+      <div className="leading-tight">
+        <p className="adm-brand text-base sm:text-lg adm-gold whitespace-nowrap">Hürrem Sultan</p>
+        <p className="text-xs adm-muted tracking-wide">{subtitle}</p>
+      </div>
+    </div>
+  );
+}
+
+function Spinner() {
+  return <div className="py-24 grid place-items-center"><Loader2 className="animate-spin adm-gold" /></div>;
 }
 
 function LoginForm() {
@@ -35,38 +76,90 @@ function LoginForm() {
     e.preventDefault();
     setBusy(true);
     setError('');
+    setInfo('');
     try {
       await signInWithEmailAndPassword(auth, email.trim(), password);
-    } catch {
-      setError('Anmeldung fehlgeschlagen. E-Mail oder Passwort prüfen.');
+    } catch (err) {
+      setError(loginError(err));
     } finally {
       setBusy(false);
     }
   };
 
   const reset = async () => {
+    setError('');
     if (!email.trim()) return setError('Bitte zuerst die E-Mail-Adresse eingeben.');
     try {
       await sendPasswordResetEmail(auth, email.trim());
-      setInfo('E-Mail zum Zurücksetzen des Passworts wurde gesendet.');
-    } catch {
-      setError('E-Mail konnte nicht gesendet werden.');
+      setInfo('Falls ein Konto existiert, wurde eine E-Mail zum Zurücksetzen gesendet.');
+    } catch (err) {
+      setError(loginError(err));
     }
   };
 
-  const input = 'w-full rounded-lg bg-black/40 border border-white/15 px-3 py-2 outline-none focus:border-gold-400';
   return (
-    <form onSubmit={submit} className="max-w-sm mx-auto mt-16 space-y-4 bg-neutral-900 border border-white/10 rounded-2xl p-6">
-      <div className="flex items-center gap-2 text-gold-300"><Crown size={20} /><h1 className="font-brand text-xl">Menü-Verwaltung</h1></div>
-      <input className={input} type="email" placeholder="E-Mail" autoComplete="username" value={email} onChange={e => setEmail(e.target.value)} />
-      <input className={input} type="password" placeholder="Passwort" autoComplete="current-password" value={password} onChange={e => setPassword(e.target.value)} />
-      {error && <p className="text-sm text-red-400">{error}</p>}
-      {info && <p className="text-sm text-green-400">{info}</p>}
-      <button disabled={busy} className="w-full py-2 rounded-lg bg-gold-500 text-black font-semibold disabled:opacity-50 inline-flex justify-center items-center gap-2">
-        {busy && <Loader2 size={16} className="animate-spin" />} Anmelden
+    <div className="min-h-[80vh] grid place-items-center">
+      <form onSubmit={submit} className="adm-card adm-rise w-full max-w-sm p-7 space-y-5">
+        <Brand />
+        <div>
+          <h1 className="adm-serif text-3xl">Willkommen</h1>
+          <p className="text-sm adm-muted mt-1">Melden Sie sich an, um die Speisekarte zu bearbeiten.</p>
+        </div>
+        <div className="space-y-3">
+          <div>
+            <label className="adm-label">E-Mail</label>
+            <input className="adm-input" type="email" autoComplete="username" value={email} onChange={e => setEmail(e.target.value)} />
+          </div>
+          <div>
+            <label className="adm-label">Passwort</label>
+            <input className="adm-input" type="password" autoComplete="current-password" value={password} onChange={e => setPassword(e.target.value)} />
+          </div>
+        </div>
+        {error && <p className="text-sm text-[var(--adm-danger)]">{error}</p>}
+        {info && <p className="text-sm text-[var(--adm-success)]">{info}</p>}
+        <button disabled={busy} className="adm-btn adm-btn-primary w-full">
+          {busy && <Loader2 size={16} className="animate-spin" />} Anmelden
+        </button>
+        <button type="button" onClick={reset} className="w-full text-xs adm-muted hover:text-[var(--adm-text)]">Passwort vergessen?</button>
+      </form>
+    </div>
+  );
+}
+
+function StatTile({ label, value, icon, active, onClick }: { label: string; value: number; icon: ReactNode; active: boolean; onClick: () => void }) {
+  return (
+    <button onClick={onClick} className="adm-card adm-stat" data-active={active}>
+      <div className="flex items-center justify-between adm-muted text-xs uppercase tracking-wider">{label}{icon}</div>
+      <p className="adm-serif text-3xl mt-1 tabular-nums">{value}</p>
+    </button>
+  );
+}
+
+function ItemRow({ item, onOpen, onToggle }: { item: MenuItem; onOpen: () => void; onToggle: (v: boolean) => void }) {
+  const hidden = item.available === false;
+  const codes = [...(item.allergens || []), ...(item.additives || [])];
+  return (
+    <li className={`adm-row flex items-center gap-4 px-4 py-3 ${hidden ? 'opacity-55' : ''}`}>
+      <button onClick={onOpen} className="flex items-center gap-4 flex-1 min-w-0 text-left">
+        {item.imageUrl
+          ? <img src={item.imageUrl} alt="" className="adm-thumb" loading="lazy" />
+          : <div className="adm-thumb grid place-items-center adm-faint"><ImageOff size={18} /></div>}
+        <div className="min-w-0 flex-1">
+          <div className="flex items-center gap-2 flex-wrap">
+            <p className="font-medium truncate">{nameOf(item)}</p>
+            {item.isSignature && <span className="adm-badge adm-badge-gold inline-flex items-center gap-1"><Star size={10} /> Signature</span>}
+            {hidden && <span className="adm-badge adm-badge-off">Ausgeblendet</span>}
+            {!item.imageUrl && <span className="adm-badge">Ohne Foto</span>}
+            {item.category === 'food' && !item.allergens?.length && <span className="adm-badge adm-badge-warn">Allergene fehlen</span>}
+          </div>
+          {codes.length > 0 && (
+            <div className="flex gap-1 mt-1.5 flex-wrap">{codes.map(c => <span key={c} className="adm-code">{c}</span>)}</div>
+          )}
+        </div>
       </button>
-      <button type="button" onClick={reset} className="w-full text-xs text-white/50 hover:text-white">Passwort vergessen?</button>
-    </form>
+      <span className="adm-gold tabular-nums font-medium whitespace-nowrap">{formatPrice(item.price)}</span>
+      <Switch checked={!hidden} onChange={onToggle} label={hidden ? 'Wieder anzeigen' : 'Ausblenden (z. B. ausverkauft)'} />
+    </li>
   );
 }
 
@@ -74,33 +167,67 @@ function MenuManager({ user }: { user: User }) {
   const [items, setItems] = useState<MenuItem[] | null>(null);
   const [loadError, setLoadError] = useState('');
   const [category, setCategory] = useState<MenuCategory | 'all'>('all');
+  const [quick, setQuick] = useState<QuickFilter>(null);
   const [search, setSearch] = useState('');
   const [editing, setEditing] = useState<{ item: MenuItem; isNew: boolean } | null>(null);
   const [importing, setImporting] = useState(false);
+  const [toast, setToast] = useState('');
+  const toastTimer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
 
   useEffect(() => subscribeMenu(setItems, err => setLoadError(err.message)), []);
 
+  const notify = (msg: string) => {
+    setToast(msg);
+    clearTimeout(toastTimer.current);
+    toastTimer.current = setTimeout(() => setToast(''), 2500);
+  };
+
+  const all = useMemo(() => items || [], [items]);
   const subcategories = useMemo(
-    () => Array.from(new Set((items || []).map(i => i.subcategory).filter((s): s is string => Boolean(s)))).sort(),
-    [items],
+    () => Array.from(new Set(all.map(i => i.subcategory).filter((s): s is string => Boolean(s)))).sort(),
+    [all],
   );
 
-  const visible = useMemo(() => {
+  const stats = useMemo(() => ({
+    hidden: all.filter(i => i.available === false).length,
+    noPhoto: all.filter(i => !i.imageUrl).length,
+    noAllergens: all.filter(i => i.category === 'food' && !i.allergens?.length).length,
+  }), [all]);
+
+  const categoryCounts = useMemo(() => {
+    const counts: Partial<Record<MenuCategory, number>> = {};
+    all.forEach(i => { counts[i.category] = (counts[i.category] || 0) + 1; });
+    return counts;
+  }, [all]);
+
+  // Visible items grouped by "Kategorie · Unterkategorie", in a stable order.
+  const groups = useMemo(() => {
     const q = search.trim().toLowerCase();
-    return (items || [])
+    const filtered = all
       .filter(i => category === 'all' || i.category === category)
-      .filter(i => !q || nameOf(i).toLowerCase().includes(q) || (i.subcategory || '').toLowerCase().includes(q))
+      .filter(i => quick !== 'hidden' || i.available === false)
+      .filter(i => quick !== 'noPhoto' || !i.imageUrl)
+      .filter(i => quick !== 'noAllergens' || (i.category === 'food' && !i.allergens?.length))
+      .filter(i => !q || nameOf(i).toLowerCase().includes(q) || (i.subcategory || '').toLowerCase().includes(q));
+    const map = new Map<string, MenuItem[]>();
+    filtered
       .sort((a, b) =>
         a.category.localeCompare(b.category) ||
         (a.subcategory || '').localeCompare(b.subcategory || '') ||
-        nameOf(a).localeCompare(nameOf(b)));
-  }, [items, category, search]);
+        nameOf(a).localeCompare(nameOf(b)))
+      .forEach(i => {
+        const key = `${CATEGORY_LABELS[i.category]}${i.subcategory ? ` · ${i.subcategory}` : ''}`;
+        map.set(key, [...(map.get(key) || []), i]);
+      });
+    return { list: Array.from(map.entries()), count: filtered.length };
+  }, [all, category, quick, search]);
 
   const handleImport = async () => {
     if (!window.confirm(`Aktuelle Karte (${bundledMenu.length} Artikel) in die Datenbank übernehmen?`)) return;
     setImporting(true);
     try {
       await importMenu(bundledMenu);
+      notify(`${bundledMenu.length} Artikel importiert`);
     } catch (e) {
       alert(`Import fehlgeschlagen: ${e instanceof Error ? e.message : e}`);
     } finally {
@@ -110,100 +237,108 @@ function MenuManager({ user }: { user: User }) {
 
   const startNew = () => setEditing({
     isNew: true,
-    item: {
-      id: '',
-      name: { DE: '' },
-      description: { DE: '' },
-      price: 0,
-      category: category === 'all' ? 'drinks' : category,
-      available: true,
-    },
+    item: { id: '', name: { DE: '' }, description: { DE: '' }, price: 0, category: category === 'all' ? 'drinks' : category, available: true },
   });
 
   const save = async (item: MenuItem) => {
     const id = item.id || newItemId(nameOf(item));
     await saveMenuItem({ ...item, id });
     setEditing(null);
+    notify('Gespeichert');
   };
 
   const remove = async (id: string) => {
     await deleteMenuItem(id);
     setEditing(null);
+    notify('Artikel gelöscht');
   };
+
+  const toggle = async (item: MenuItem, visible: boolean) => {
+    try {
+      await saveMenuItem({ ...item, available: visible });
+      notify(visible ? `„${nameOf(item)}“ wieder sichtbar` : `„${nameOf(item)}“ ausgeblendet`);
+    } catch (e) {
+      notify(`Fehler: ${e instanceof Error ? e.message : e}`);
+    }
+  };
+
+  const toggleQuick = (f: QuickFilter) => setQuick(q => (q === f ? null : f));
 
   return (
     <>
-      <header className="flex items-center justify-between gap-3 mb-5">
-        <div className="flex items-center gap-2 text-gold-300"><Crown size={20} /><h1 className="font-brand text-xl">Menü-Verwaltung</h1></div>
-        <div className="flex items-center gap-3 text-sm">
-          <span className="hidden sm:inline text-white/50">{user.email}</span>
-          <button onClick={() => signOut(adminAuth())} className="inline-flex items-center gap-1 text-white/70 hover:text-white"><LogOut size={16} /> Abmelden</button>
+      <header className="flex items-center justify-between gap-3 mb-8">
+        <Brand />
+        <div className="flex items-center gap-2 text-sm">
+          <span className="hidden sm:block"><a href="/" target="_blank" rel="noopener" className="adm-btn adm-btn-ghost !py-2"><ExternalLink size={15} /> Speisekarte</a></span>
+          <span className="hidden md:inline adm-faint px-2">{user.email}</span>
+          <button onClick={() => signOut(adminAuth())} className="adm-btn adm-btn-ghost !py-2" title="Abmelden"><LogOut size={15} /><span className="hidden sm:inline">Abmelden</span></button>
         </div>
       </header>
 
-      {loadError && <p className="mb-4 text-sm text-red-400">Menü konnte nicht geladen werden: {loadError}</p>}
-
-      {items === null && !loadError && <div className="py-20 grid place-items-center"><Loader2 className="animate-spin text-gold-400" /></div>}
+      {loadError && <p className="mb-4 text-sm text-[var(--adm-danger)]">Menü konnte nicht geladen werden: {loadError}</p>}
+      {items === null && !loadError && <Spinner />}
 
       {items !== null && items.length === 0 && (
-        <div className="mb-6 p-5 rounded-2xl border border-gold-500/40 bg-gold-500/5">
-          <p className="mb-3 text-white/80">Die Datenbank ist noch leer. Übernehmen Sie einmalig die aktuelle Karte, danach können Sie alles hier bearbeiten.</p>
-          <button onClick={handleImport} disabled={importing} className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-gold-500 text-black font-semibold disabled:opacity-50">
+        <div className="adm-card adm-rise p-6 mb-6 flex flex-col sm:flex-row sm:items-center gap-4 justify-between">
+          <div>
+            <h2 className="adm-serif text-2xl">Die Datenbank ist noch leer</h2>
+            <p className="text-sm adm-muted mt-1">Übernehmen Sie einmalig die aktuelle Karte – danach bearbeiten Sie alles hier.</p>
+          </div>
+          <button onClick={handleImport} disabled={importing} className="adm-btn adm-btn-primary">
             {importing ? <Loader2 size={16} className="animate-spin" /> : <Upload size={16} />} Aktuelle Karte importieren
           </button>
         </div>
       )}
 
-      {items !== null && (
+      {items !== null && items.length > 0 && (
         <>
-          <div className="flex flex-col sm:flex-row gap-3 mb-4">
-            <div className="relative flex-1">
-              <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-white/40" />
-              <input
-                className="w-full rounded-lg bg-black/40 border border-white/15 pl-9 pr-3 py-2 outline-none focus:border-gold-400"
-                placeholder="Artikel suchen…"
-                value={search}
-                onChange={e => setSearch(e.target.value)}
-              />
-            </div>
-            <select
-              className="rounded-lg bg-black/40 border border-white/15 px-3 py-2"
-              value={category}
-              onChange={e => setCategory(e.target.value as MenuCategory | 'all')}
-            >
-              <option value="all">Alle Kategorien</option>
-              {Object.entries(CATEGORY_LABELS).map(([k, v]) => <option key={k} value={k}>{v}</option>)}
-            </select>
-            <button onClick={startNew} className="inline-flex items-center justify-center gap-2 px-4 py-2 rounded-lg bg-gold-500 text-black font-semibold">
-              <Plus size={16} /> Neuer Artikel
-            </button>
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-6">
+            <StatTile label="Artikel" value={all.length} icon={<Crown size={14} />} active={quick === null} onClick={() => setQuick(null)} />
+            <StatTile label="Ausgeblendet" value={stats.hidden} icon={<span className="w-2 h-2 rounded-full bg-[var(--adm-faint)]" />} active={quick === 'hidden'} onClick={() => toggleQuick('hidden')} />
+            <StatTile label="Ohne Foto" value={stats.noPhoto} icon={<ImageOff size={14} />} active={quick === 'noPhoto'} onClick={() => toggleQuick('noPhoto')} />
+            <StatTile label="Allergene fehlen" value={stats.noAllergens} icon={<ShieldAlert size={14} />} active={quick === 'noAllergens'} onClick={() => toggleQuick('noAllergens')} />
           </div>
 
-          <p className="text-xs text-white/40 mb-2">{visible.length} Artikel</p>
-          <ul className="divide-y divide-white/5 rounded-2xl border border-white/10 bg-neutral-900/60">
-            {visible.map(item => (
-              <li key={item.id} className={`flex items-center gap-3 p-3 ${item.available === false ? 'opacity-50' : ''}`}>
-                {item.imageUrl
-                  ? <img src={item.imageUrl} alt="" className="w-12 h-12 rounded-lg object-cover flex-shrink-0" loading="lazy" />
-                  : <div className="w-12 h-12 rounded-lg bg-white/5 flex-shrink-0" />}
-                <button onClick={() => setEditing({ item, isNew: false })} className="flex-1 min-w-0 text-left">
-                  <p className="truncate font-medium">{nameOf(item)}</p>
-                  <p className="text-xs text-white/50 truncate">
-                    {CATEGORY_LABELS[item.category]}{item.subcategory ? ` · ${item.subcategory}` : ''}
-                    {!item.allergens?.length && item.category === 'food' ? ' · ⚠ keine Allergene' : ''}
-                  </p>
-                </button>
-                <span className="text-gold-300 tabular-nums">{item.price.toFixed(2).replace('.', ',')} €</span>
-                <button
-                  onClick={() => saveMenuItem({ ...item, available: item.available === false })}
-                  className="p-2 text-white/60 hover:text-white"
-                  title={item.available === false ? 'Wieder anzeigen' : 'Ausblenden (z. B. ausverkauft)'}
-                >
-                  {item.available === false ? <EyeOff size={18} /> : <Eye size={18} />}
-                </button>
-              </li>
+          <div className="flex flex-col md:flex-row gap-3 mb-4">
+            <div className="relative flex-1">
+              <Search size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 adm-faint" />
+              <input className="adm-input !pl-10" placeholder="Artikel suchen…" value={search} onChange={e => setSearch(e.target.value)} />
+            </div>
+            <button onClick={startNew} className="adm-btn adm-btn-primary"><Plus size={16} /> Neuer Artikel</button>
+          </div>
+
+          <div className="flex gap-2 overflow-x-auto pb-2 mb-4 -mx-1 px-1">
+            <button className="adm-chip" data-active={category === 'all'} onClick={() => setCategory('all')}>
+              Alle <span className="adm-chip-count">{all.length}</span>
+            </button>
+            {(Object.keys(CATEGORY_LABELS) as MenuCategory[]).filter(c => categoryCounts[c]).map(c => (
+              <button key={c} className="adm-chip" data-active={category === c} onClick={() => setCategory(c)}>
+                {CATEGORY_LABELS[c]} <span className="adm-chip-count">{categoryCounts[c]}</span>
+              </button>
             ))}
-          </ul>
+          </div>
+
+          <p className="text-xs adm-faint mb-3">{groups.count} Artikel</p>
+
+          {groups.list.length === 0 && (
+            <div className="adm-card p-10 text-center adm-muted">Keine Artikel gefunden.</div>
+          )}
+
+          <div className="space-y-6">
+            {groups.list.map(([title, list]) => (
+              <section key={title}>
+                <h2 className="adm-section-title uppercase mb-2 px-1 flex items-center gap-3">
+                  {title}<span className="adm-faint font-sans text-xs tracking-normal">{list.length}</span>
+                  <span className="flex-1 h-px bg-[var(--adm-border)]" />
+                </h2>
+                <ul className="adm-card overflow-hidden divide-y divide-[var(--adm-border)]">
+                  {list.map(item => (
+                    <ItemRow key={item.id} item={item} onOpen={() => setEditing({ item, isNew: false })} onToggle={v => toggle(item, v)} />
+                  ))}
+                </ul>
+              </section>
+            ))}
+          </div>
         </>
       )}
 
@@ -216,6 +351,12 @@ function MenuManager({ user }: { user: User }) {
           onDelete={remove}
           onClose={() => setEditing(null)}
         />
+      )}
+
+      {toast && (
+        <div className="fixed bottom-6 inset-x-0 flex justify-center z-[60] pointer-events-none">
+          <div className="adm-toast adm-rise text-sm" role="status">{toast}</div>
+        </div>
       )}
     </>
   );
@@ -240,21 +381,20 @@ export default function AdminPage() {
   }, [user]);
 
   if (!isFirebaseConfigured) {
-    return <Shell><p className="mt-16 text-center text-white/70">Firebase ist nicht konfiguriert (siehe <code>.env.example</code>).</p></Shell>;
+    return <Shell><p className="mt-16 text-center adm-muted">Firebase ist nicht konfiguriert (siehe <code>.env.example</code>).</p></Shell>;
   }
-  if (user === undefined) {
-    return <Shell><div className="py-20 grid place-items-center"><Loader2 className="animate-spin text-gold-400" /></div></Shell>;
-  }
+  if (user === undefined) return <Shell><Spinner /></Shell>;
   if (!user) return <Shell><LoginForm /></Shell>;
-  if (isAdmin === undefined) {
-    return <Shell><div className="py-20 grid place-items-center"><Loader2 className="animate-spin text-gold-400" /></div></Shell>;
-  }
+  if (isAdmin === undefined) return <Shell><Spinner /></Shell>;
   if (!isAdmin) {
     return (
       <Shell>
-        <div className="max-w-sm mx-auto mt-16 text-center space-y-4">
-          <p className="text-white/80">Dieses Konto ({user.email}) hat keine Berechtigung, die Karte zu bearbeiten.</p>
-          <button onClick={() => signOut(adminAuth())} className="text-gold-300 underline">Abmelden</button>
+        <div className="min-h-[70vh] grid place-items-center">
+          <div className="adm-card max-w-sm p-7 text-center space-y-4">
+            <Brand />
+            <p className="adm-muted">Dieses Konto ({user.email}) hat keine Berechtigung, die Karte zu bearbeiten.</p>
+            <button onClick={() => signOut(adminAuth())} className="adm-btn adm-btn-ghost">Abmelden</button>
+          </div>
         </div>
       </Shell>
     );

@@ -30,10 +30,22 @@ Weitere Admins: Schritt 5 + 6 wiederholen. Zugang entziehen: Dokument in `admins
 ## Kurzanleitung für das Team
 
 - **Preis/Text ändern:** Artikel antippen → ändern → *Speichern*. Texte je Sprache über DE/EN/TR/… umschalten.
-- **Ausverkauft:** Augen-Symbol in der Liste antippen – der Artikel verschwindet von der Karte, bleibt aber gespeichert.
-- **Foto:** *Foto hochladen* – wird automatisch verkleinert (max. 1200 px, WebP).
-- **Allergene/Zusatzstoffe:** pro Artikel ankreuzen (Pflichtangabe nach LMIV). Speisen ohne Allergene sind in der Liste mit ⚠ markiert.
+- **Ausverkauft:** Schalter rechts in der Liste ausschalten – der Artikel verschwindet von der Karte, bleibt aber gespeichert.
+- **Foto:** Im Bearbeiten-Fenster antippen oder Bild hineinziehen – wird automatisch verkleinert (max. 1200 px, WebP).
+- **Allergene/Zusatzstoffe:** pro Artikel antippen (Pflichtangabe nach LMIV).
+- **Offene Aufgaben finden:** Die Kacheln oben (*Ohne Foto*, *Allergene fehlen*, *Ausgeblendet*) filtern die Liste mit einem Klick.
 - **Neuer Artikel / Löschen:** *Neuer Artikel* oben, *Löschen* unten im Bearbeiten-Fenster.
+
+## WordPress-Plugin (Speisekarte auf der eigenen Domain)
+
+Das Plugin in `wordpress-plugin/huerrem-menu/` bindet die Karte in die Restaurant-Website ein:
+
+- **Vollbild-Karte** unter `https://<domain>/speisekarte/` – diese Adresse für die QR-Codes verwenden.
+- **Dashboard → Speisekarte → Bearbeiten**: die Menü-Verwaltung direkt in WordPress.
+- **Shortcode** `[huerrem_menu]` zum Einbinden in beliebige Seiten.
+
+Installation: Ordner `huerrem-menu` als ZIP packen → WordPress → *Plugins → Installieren → Plugin hochladen* →
+aktivieren → *Speisekarte → Einstellungen* prüfen (Adresse, App-URL). Bei Permalinks „Einfach“ lautet die Adresse `/?huerrem_menu=1`.
 
 ## Lokale Entwicklung mit Emulatoren
 
