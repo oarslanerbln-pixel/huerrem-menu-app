@@ -135,6 +135,7 @@ export const translations = {
     'Signature Cocktails': 'İmza Kokteylleri',
     'High-Class Cocktails': 'Birinci Sınıf Kokteyller',
     'Heiße Specials': 'Sıcak Spesiyaller',
+    'Neu im Sortiment': 'Yeni Ürünler',
     'Heiße Specials_desc': 'Heiße Getränke mit besonderen Aromen – perfekt zum Wärmen und Genießen.',
     'Teespezialitäten_desc': 'Aromatische Tees aus aller Welt – ob klassisch, fruchtig oder exotisch, ein Genuss für die Sinne.',
 
@@ -294,6 +295,7 @@ export const translations = {
     'Signature Cocktails': 'Signature Cocktails',
     'High-Class Cocktails': 'High-Class Cocktails',
     'Heiße Specials': 'Hot Specials',
+    'Neu im Sortiment': 'New Arrivals',
 
     alchemist_title: 'Alchemist',
     alchemist_subtitle: 'Create Your Blend',
@@ -451,6 +453,7 @@ export const translations = {
     'Signature Cocktails': 'Signature Cocktails',
     'High-Class Cocktails': 'High-Class Cocktails',
     'Heiße Specials': 'Heiße Specials',
+    'Neu im Sortiment': 'Neu im Sortiment',
 
     alchemist_title: 'Alchemist',
     alchemist_subtitle: 'Kreiere deine Mischung',
@@ -608,6 +611,7 @@ export const translations = {
     'Signature Cocktails': 'Cócteles de Autor',
     'High-Class Cocktails': 'Cócteles de Alta Clase',
     'Heiße Specials': 'Especiales Calientes',
+    'Neu im Sortiment': 'Novedades',
 
     alchemist_title: 'Alquimista',
     alchemist_subtitle: 'Crea tu Mezcla',
@@ -765,6 +769,7 @@ export const translations = {
     'Signature Cocktails': 'Cocktails Signature',
     'High-Class Cocktails': 'Cocktails Haute Société',
     'Heiße Specials': 'Spécialités Chaudes',
+    'Neu im Sortiment': 'Nouveautés',
 
     alchemist_title: 'Alchimiste',
     alchemist_subtitle: 'Créez votre Mélange',
@@ -922,6 +927,7 @@ export const translations = {
     'Signature Cocktails': 'Фирменные Коктейли',
     'High-Class Cocktails': 'Коктейли Высшего Класса',
     'Heiße Specials': 'Горячие Спецпредложения',
+    'Neu im Sortiment': 'Новинки',
 
     alchemist_title: 'Алхимик',
     alchemist_subtitle: 'Создай свой микс',
