@@ -1,11 +1,13 @@
 import { useEffect, useMemo, useRef, useState, type FormEvent, type ReactNode } from 'react';
 import { onAuthStateChanged, sendPasswordResetEmail, signInWithEmailAndPassword, signOut, type User } from 'firebase/auth';
 import { doc, getDoc } from 'firebase/firestore';
-import { Crown, ExternalLink, ImageOff, Loader2, LogOut, Plus, Search, ShieldAlert, Star, Upload } from 'lucide-react';
+import { ChevronDown, Crown, ExternalLink, ImageOff, Loader2, LogOut, Plus, Search, ShieldAlert, Sparkles, Star, Upload } from 'lucide-react';
 import { db, isFirebaseConfigured } from '../config/firebase';
 import { adminAuth } from '../config/firebaseAdmin';
-import { menuData as bundledMenu, type MenuCategory, type MenuItem } from '../data/menu';
-import { deleteMenuItem, importMenu, saveMenuItem } from '../services/menuStore';
+import { type MenuCategory, type MenuItem } from '../data/menu';
+import { bundledMenu } from '../data/bundledMenu';
+import { MENU_UPDATES, pendingChanges } from '../data/menuUpdates';
+import { deleteMenuItem, importMenu, saveMenuItem, saveMenuItems } from '../services/menuStore';
 import { subscribeMenu } from '../services/menuFeed';
 import ItemEditor from '../components/Admin/ItemEditor';
 import Switch from '../components/Admin/Switch';
@@ -132,6 +134,65 @@ function StatTile({ label, value, icon, active, onClick }: { label: string; valu
       <div className="flex items-center justify-between adm-muted text-xs uppercase tracking-wider">{label}{icon}</div>
       <p className="adm-serif text-3xl mt-1 tabular-nums">{value}</p>
     </button>
+  );
+}
+
+function UpdateBanner({ items, notify }: { items: MenuItem[]; notify: (m: string) => void }) {
+  const [open, setOpen] = useState(false);
+  const [busy, setBusy] = useState(false);
+  const updates = useMemo(
+    () => MENU_UPDATES.map(u => ({ update: u, changes: pendingChanges(items, u) })).filter(u => u.changes.length > 0),
+    [items],
+  );
+  if (updates.length === 0) return null;
+  const { update, changes } = updates[0];
+
+  const apply = async () => {
+    if (!window.confirm(`${changes.length} Artikel aktualisieren bzw. anlegen?`)) return;
+    setBusy(true);
+    try {
+      await saveMenuItems(changes.map(c => c.item));
+      notify(`Aktualisierung übernommen (${changes.length} Artikel)`);
+    } catch (e) {
+      notify(`Fehler: ${e instanceof Error ? e.message : e}`);
+    } finally {
+      setBusy(false);
+    }
+  };
+
+  return (
+    <div className="adm-card adm-rise p-5 mb-6 border-[var(--adm-border-strong)]">
+      <div className="flex flex-col sm:flex-row sm:items-center gap-4 justify-between">
+        <div className="flex gap-3">
+          <Sparkles size={20} className="adm-gold shrink-0 mt-0.5" />
+          <div>
+            <p className="font-medium">Aktualisierung verfügbar: {update.title}</p>
+            <p className="text-sm adm-muted mt-0.5">{changes.length} Artikel betroffen. Eigene Änderungen bleiben erhalten – es wird nur ergänzt bzw. korrigiert.</p>
+          </div>
+        </div>
+        <div className="flex gap-2 shrink-0">
+          <button onClick={() => setOpen(o => !o)} className="adm-btn adm-btn-ghost">
+            Details <ChevronDown size={15} className={open ? 'rotate-180 transition-transform' : 'transition-transform'} />
+          </button>
+          <button onClick={apply} disabled={busy} className="adm-btn adm-btn-primary">
+            {busy && <Loader2 size={16} className="animate-spin" />} Übernehmen
+          </button>
+        </div>
+      </div>
+      {open && (
+        <ul className="mt-4 max-h-80 overflow-y-auto adm-scroll divide-y divide-[var(--adm-border)] text-sm">
+          {changes.map(c => (
+            <li key={c.item.id} className="py-2 flex gap-3">
+              <span className={`adm-badge shrink-0 self-start ${c.isNew ? 'adm-badge-gold' : ''}`}>{c.isNew ? 'Neu' : 'Update'}</span>
+              <div>
+                <p className="font-medium">{nameOf(c.item)}</p>
+                <p className="adm-muted">{c.notes.join(' · ')}</p>
+              </div>
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
   );
 }
 
@@ -292,6 +353,7 @@ function MenuManager({ user }: { user: User }) {
 
       {items !== null && items.length > 0 && (
         <>
+          <UpdateBanner items={all} notify={notify} />
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-6">
             <StatTile label="Artikel" value={all.length} icon={<Crown size={14} />} active={quick === null} onClick={() => setQuick(null)} />
             <StatTile label="Ausgeblendet" value={stats.hidden} icon={<span className="w-2 h-2 rounded-full bg-[var(--adm-faint)]" />} active={quick === 'hidden'} onClick={() => toggleQuick('hidden')} />

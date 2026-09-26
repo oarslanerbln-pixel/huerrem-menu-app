@@ -18,6 +18,14 @@ export async function deleteMenuItem(id: string) {
   await deleteDoc(doc(db, MENU_COLLECTION, id));
 }
 
+/** Writes several items in one batch (used for curated menu updates). */
+export async function saveMenuItems(items: MenuItem[]) {
+  if (!db) throw new Error('Firebase not configured');
+  const batch = writeBatch(db);
+  items.forEach(item => batch.set(doc(db!, MENU_COLLECTION, item.id), clean(item)));
+  await batch.commit();
+}
+
 /** One-time import of the bundled menu (src/data/menu.ts) into Firestore. */
 export async function importMenu(items: MenuItem[]) {
   if (!db) throw new Error('Firebase not configured');

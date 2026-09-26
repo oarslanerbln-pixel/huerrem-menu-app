@@ -1,5 +1,6 @@
 import { createContext, useContext, useState, useMemo, useEffect, type ReactNode } from 'react';
-import { menuData as localMenuData, type MenuCategory, type MenuItem } from '../data/menu';
+import { type MenuCategory, type MenuItem } from '../data/menu';
+import { bundledMenu as localMenuData } from '../data/bundledMenu';
 import { useLanguage } from '../i18n/LanguageContext';
 import { isFirebaseConfigured } from '../config/firebase';
 
@@ -31,6 +32,7 @@ const MenuContext = createContext<MenuContextType | null>(null);
 
 const SUBCATEGORY_ORDER: Record<string, number> = {
   // Deals & Seasonal
+  'Neu im Sortiment': 0,
   'Happy Hour': 1,
   'Sommer-Specials': 2,
 

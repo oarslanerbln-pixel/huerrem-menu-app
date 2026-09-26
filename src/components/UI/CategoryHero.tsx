@@ -45,7 +45,7 @@ const HERO_DATA: Record<MenuCategory, {
     gradientClass: 'hero-gradient-happy-hour',
     icon: Crown,
     categoryKey: 'catHappyHour',
-    mottoFallback: 'Mo-Fr 14:00 - 19:00 Uhr',
+    mottoFallback: 'Mo-Fr 14:00 - 18:00 Uhr',
     accentColor: 'text-amber-300',
     emoji: '🕒',
   },
