@@ -33,8 +33,8 @@ export default function AllergenLegend({ isOpen, onClose }: AllergenLegendProps)
           >
             <button 
               onClick={onClose}
-              aria-label="Kapat"
-              title="Kapat"
+              aria-label={t('close')}
+              title={t('close')}
               className="absolute top-4 right-4 w-8 h-8 rounded-full bg-black/40 flex items-center justify-center text-white/70 hover:text-white transition-colors"
             >
               <X className="w-4 h-4" />
