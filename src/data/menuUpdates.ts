@@ -80,6 +80,23 @@ export const MENU_UPDATES: MenuUpdate[] = [
       milk('d5', 'Strawberry Matcha Chill (Matcha-Milch)'),
       // Lupin (P) is not listed on the Menury source card for this drink
       { itemId: 'd1', note: 'Lupine (P) entfernt (laut Menury-Karte nicht enthalten); Schreibweise „Macchiato“', removeAllergens: ['P'], replace: [{ field: 'name', from: 'MACCHIATTO', to: 'MACCHIATO' }] },
+      // Confirmed by the restaurant (2026-09-26)
+      milk('d3', 'Mango Matcha Fusion'),
+      milk('d4', 'Lila Mango Traum'),
+      milk('ss_iced_matcha', 'Iced Matcha'),
+      { itemId: 'food_dessert_1', note: 'Cheesecake: Eier (C) ergänzt (vom Restaurant bestätigt)', addAllergens: ['C'] },
+      { itemId: 'food_dessert_6', note: 'Apfelstrudel: Eier (C) ergänzt (vom Restaurant bestätigt)', addAllergens: ['C'] },
+      { itemId: 'd_sm_1', note: 'Keine Schalenfrüchte (H) – vom Restaurant bestätigt (Kokos ist kein LMIV-Allergen)', removeAllergens: ['H'] },
+      { itemId: 'd_sm_3', note: 'Keine Schalenfrüchte (H) – vom Restaurant bestätigt (Kokos ist kein LMIV-Allergen)', removeAllergens: ['H'] },
+      // Burger sauce may contain egg (unconfirmed) – declared as a precaution
+      { itemId: 'f_burger_2', note: 'Burger-Sauce: Eier (C) vorsorglich ergänzt', addAllergens: ['C'] },
+      { itemId: 'f_burger_3', note: 'Burger-Sauce: Eier (C) vorsorglich ergänzt', addAllergens: ['C'] },
+      // Happy Hour ends at 18:00
+      ...['hh_angebot_1', 'hh_angebot_2'].map(itemId => ({
+        itemId,
+        note: 'Happy Hour bis 18:00 Uhr',
+        replace: [{ field: 'description' as const, from: '19:00', to: '18:00' }, { field: 'description' as const, from: '19h00', to: '18h00' }, { field: 'description' as const, from: '16:00. -', to: '16:00 -' }],
+      })),
       // Additives: caffeine (13), colour (1), sweeteners (8), phenylalanine (9), taurine (17), quinine (14)
       { itemId: 'd9', note: 'Cola: Farbstoff (1), koffeinhaltig (13)', addAdditives: ['1', '13'] },
       { itemId: 'd10', note: 'Cola Zero: Farbstoff (1), Süßungsmittel (8), Phenylalaninquelle (9), koffeinhaltig (13)', addAdditives: ['1', '8', '9', '13'] },
@@ -91,7 +108,7 @@ export const MENU_UPDATES: MenuUpdate[] = [
       { itemId: 'd_sig_1', note: 'Tonic Water: chininhaltig (14)', addAdditives: ['14'] },
       // Text polish
       { itemId: 'd_coffee_crema', note: 'Schreibweise „Caffè Crema“', replace: [{ field: 'name', from: 'Cafe Crema', to: 'Caffè Crema' }] },
-      { itemId: 'hh_angebot_2', note: 'Schreibweise „BOWLS“', replace: [{ field: 'name', from: "BOWL'S", to: 'BOWLS' }] },
+      { itemId: 'hh_angebot_2', note: 'Schreibweise „BOWLS“', replace: [{ field: 'name', from: "BOWL'S", to: 'BOWLS' }, { field: 'name', from: "БОУЛ'С", to: 'БОУЛЫ' }] },
       priceComma('d13', ['3.20', '8.20']),
       ...['d_juice_1', 'd_juice_2', 'd_juice_3', 'd_juice_4', 'd_juice_5', 'd_juice_6', 'd_juice_7', 'd_juice_8', 'd_juice_9'].map(id => priceComma(id, ['3.20', '4.90'])),
       priceComma('food_dessert_8', ['6.90', '8.90']),

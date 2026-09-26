@@ -34,7 +34,7 @@ export default function HappyHourBanner() {
             <div className="w-full h-px bg-gradient-to-r from-transparent via-gold-500/20 to-transparent my-1" />
             
             <div className="flex flex-col items-center">
-              <span className="font-body text-[11px] tracking-widest theme-text-muted mb-1 font-medium">{t('hhTime1') || '14 - 19 UHR'}</span>
+              <span className="font-body text-[11px] tracking-widest theme-text-muted mb-1 font-medium">{t('hhTime1') || '14 - 18 UHR'}</span>
               <span className="font-display font-bold text-lg tracking-wider text-gold-600 dark:text-gold-400 whitespace-nowrap">
                 13,90 €
               </span>
@@ -57,7 +57,7 @@ export default function HappyHourBanner() {
             <div className="w-full h-px bg-gradient-to-r from-transparent via-gold-500/20 to-transparent my-1" />
             
             <div className="flex flex-col items-center">
-              <span className="font-body text-[11px] tracking-widest theme-text-muted mb-1 font-medium">{t('hhTime2') || '16 - 19 UHR'}</span>
+              <span className="font-body text-[11px] tracking-widest theme-text-muted mb-1 font-medium">{t('hhTime2') || '16 - 18 UHR'}</span>
               <span className="font-display font-bold text-lg tracking-wider text-gold-600 dark:text-gold-400 whitespace-nowrap">
                 9,90 €
               </span>
