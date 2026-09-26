@@ -33,9 +33,17 @@ const INTENSITY_HEIGHTS = [
 
 const MenuItemCard: React.FC<MenuItemCardProps> = ({ item }) => {
   const isSignature = item.isSignature;
-  const { lang } = useLanguage();
+  const { lang, t } = useLanguage();
   const { concept, cardConcept } = useConcept();
   const [isExpanded, setIsExpanded] = useState(false);
+
+  // Close the detail view with the Escape key (desktop / keyboard users).
+  React.useEffect(() => {
+    if (!isExpanded) return;
+    const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') setIsExpanded(false); };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [isExpanded]);
   const [imgError, setImgError] = useState(false);
   const [isCenter, setIsCenter] = useState(false);
 
@@ -369,7 +377,7 @@ const MenuItemCard: React.FC<MenuItemCardProps> = ({ item }) => {
             >
               <button
                 onClick={() => setIsExpanded(false)}
-                aria-label="Kapat"
+                aria-label={t('close')}
                 className="fixed sm:absolute top-5 right-5 sm:top-8 sm:right-8 z-[120] w-12 h-12 rounded-full bg-black/20 backdrop-blur-xl flex items-center justify-center text-white/50 hover:text-gold-400 hover:bg-black/60 transition-all border border-white/5 hover:border-gold-500/30 group"
               >
                 <X className="w-5 h-5 transition-transform group-hover:rotate-90 duration-500" />
@@ -450,7 +458,7 @@ const MenuItemCard: React.FC<MenuItemCardProps> = ({ item }) => {
                   </div>
                   {item.price > 0 && (
                     <span className="text-white/90 drop-shadow-lg font-display text-2xl sm:text-3xl tracking-[0.15em] font-light">
-                      {item.price.toFixed(2)} EUR
+                      {item.price.toFixed(2).replace('.', ',')} €
                     </span>
                   )}
                 </div>

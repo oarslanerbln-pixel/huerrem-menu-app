@@ -84,8 +84,8 @@ const SpecialEventButton: React.FC = () => {
                   onClick={() => setIsOpen(false)}
                   className="absolute top-4 right-4 p-2 theme-text-muted hover:theme-accent-text rounded-full transition-colors"
                   style={{ background: 'color-mix(in srgb, var(--theme-accent) 6%, transparent)' }}
-                  aria-label="Kapat"
-                  title="Kapat"
+                  aria-label={t('close')}
+                  title={t('close')}
                 >
                   <X className="w-5 h-5" />
                 </button>
