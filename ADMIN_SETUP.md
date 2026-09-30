@@ -33,23 +33,32 @@ Weitere Admins: Schritt 5 + 6 wiederholen. Zugang entziehen: Dokument in `admins
 wird gebaut und auf Firebase Hosting veröffentlicht. Firestore-/Storage-Regeln werden weiterhin
 manuell deployt (`firebase deploy --only firestore:rules,storage`).
 
-Einmalig einrichten:
+Einmalig einrichten – es wird nur **ein** Secret gebraucht (das Dienstkonto). Die Web-Konfiguration
+(`VITE_FIREBASE_*`) ist nicht geheim; der Workflow liest sie automatisch von
+`https://huerrem-menu-app-1.web.app/__/firebase/init.json`, sofern sie nicht als Secrets gesetzt ist.
 
-1. **Dienstkonto:** Google Cloud Console → Projekt `huerrem-menu-app-1` → *IAM & Verwaltung → Dienstkonten*
+**Variante A (empfohlen, ein Befehl)** – im Projektordner, mit angemeldeter Firebase CLI:
+
+```
+firebase init hosting:github
+```
+
+Repository `oarslanerbln-pixel/huerrem-menu-app` angeben. Die CLI legt das Dienstkonto an und speichert
+es selbst als Secret `FIREBASE_SERVICE_ACCOUNT_HUERREM_MENU_APP_1` im Repository. Die Fragen nach
+Build-Skript und automatischem Deployment mit **Nein** beantworten und von der CLI erzeugte Dateien
+`.github/workflows/firebase-hosting-*.yml` löschen (nicht committen) – `deploy.yml` übernimmt das.
+
+**Variante B (manuell):**
+
+1. Google Cloud Console → Projekt `huerrem-menu-app-1` → *IAM & Verwaltung → Dienstkonten*
    → *Dienstkonto erstellen* (z. B. `github-deploy`) mit den Rollen **Firebase Hosting Admin**,
    **API Keys Viewer** und **Cloud Run Viewer** → *Schlüssel → Schlüssel hinzufügen → JSON*.
-2. **GitHub → Repository → Settings → Secrets and variables → Actions → New repository secret:**
+2. GitHub → Repository → *Settings → Secrets and variables → Actions → New repository secret*:
+   Name `FIREBASE_SERVICE_ACCOUNT`, Wert = kompletter Inhalt der JSON-Datei (Datei danach löschen).
 
-   | Secret | Wert |
-   |---|---|
-   | `FIREBASE_SERVICE_ACCOUNT` | kompletter Inhalt der JSON-Datei aus Schritt 1 (Datei danach löschen) |
-   | `VITE_FIREBASE_API_KEY` | aus `.env.local` |
-   | `VITE_FIREBASE_MESSAGING_SENDER_ID` | aus `.env.local` |
-   | `VITE_FIREBASE_APP_ID` | aus `.env.local` |
+Danach **Actions → „Build & Deploy“ → Run workflow** (Branch `main`) für das erste Deployment ohne neuen Commit.
 
-3. **Actions → „Build & Deploy“ → Run workflow** startet das erste Deployment ohne neuen Commit.
-
-Fehlt ein Secret, bricht der Deploy-Job vor dem Veröffentlichen ab; die Live-Seite bleibt unverändert.
+Fehlt das Dienstkonto oder die Web-Konfiguration, bricht der Deploy-Job vor dem Veröffentlichen ab; die Live-Seite bleibt unverändert.
 
 ## Kurzanleitung für das Team
 
