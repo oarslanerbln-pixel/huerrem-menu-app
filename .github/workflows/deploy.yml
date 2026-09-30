@@ -1,6 +1,6 @@
 # Pull requests: lint + build as a merge gate.
 # Push to main (or manual run): build with the Firebase web config and publish to Firebase Hosting.
-# One-time setup of the required secrets: see ADMIN_SETUP.md → "Automatisches Deployment".
+# One-time setup (a single secret, the service account): see ADMIN_SETUP.md → "Automatisches Deployment".
 name: Build & Deploy
 
 on:
@@ -44,26 +44,41 @@ jobs:
       name: production
       url: https://huerrem-menu-app-1.web.app/admin
     env:
-      VITE_FIREBASE_API_KEY: ${{ secrets.VITE_FIREBASE_API_KEY }}
       VITE_FIREBASE_AUTH_DOMAIN: huerrem-menu-app-1.firebaseapp.com
       VITE_FIREBASE_PROJECT_ID: huerrem-menu-app-1
       VITE_FIREBASE_STORAGE_BUCKET: huerrem-menu-app-1.firebasestorage.app
-      VITE_FIREBASE_MESSAGING_SENDER_ID: ${{ secrets.VITE_FIREBASE_MESSAGING_SENDER_ID }}
-      VITE_FIREBASE_APP_ID: ${{ secrets.VITE_FIREBASE_APP_ID }}
     steps:
-      # Without the web config the app builds but runs unconfigured; never publish that.
-      - name: Check required secrets
+      # The only real secret is the service account. `firebase init hosting:github` stores it as
+      # FIREBASE_SERVICE_ACCOUNT_HUERREM_MENU_APP_1; a manually created one may use FIREBASE_SERVICE_ACCOUNT.
+      # The web config is public (it ships in every browser bundle): taken from the VITE_* secrets when
+      # set, otherwise from the project's own Hosting endpoint /__/firebase/init.json.
+      # Without a complete web config the app builds but runs unconfigured; never publish that.
+      - name: Resolve Firebase config
         env:
-          FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+          SA_MANUAL: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+          SA_CLI: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_HUERREM_MENU_APP_1 }}
+          API_KEY: ${{ secrets.VITE_FIREBASE_API_KEY }}
+          SENDER_ID: ${{ secrets.VITE_FIREBASE_MESSAGING_SENDER_ID }}
+          APP_ID: ${{ secrets.VITE_FIREBASE_APP_ID }}
         run: |
-          missing=0
-          for name in FIREBASE_SERVICE_ACCOUNT VITE_FIREBASE_API_KEY VITE_FIREBASE_MESSAGING_SENDER_ID VITE_FIREBASE_APP_ID; do
-            if [ -z "${!name}" ]; then
-              echo "::error::Secret $name fehlt (Settings → Secrets and variables → Actions)."
-              missing=1
+          if [ -z "$SA_MANUAL$SA_CLI" ]; then
+            echo "::error::Secret FIREBASE_SERVICE_ACCOUNT fehlt – einmalig 'firebase init hosting:github' ausführen (siehe ADMIN_SETUP.md)."
+            exit 1
+          fi
+          if [ -z "$API_KEY" ] || [ -z "$SENDER_ID" ] || [ -z "$APP_ID" ]; then
+            echo "VITE_* secrets not set, reading public web config from Firebase Hosting"
+            init=$(curl -fsSL --retry 3 "https://${VITE_FIREBASE_PROJECT_ID}.web.app/__/firebase/init.json")
+            API_KEY=${API_KEY:-$(jq -r '.apiKey // empty' <<<"$init")}
+            SENDER_ID=${SENDER_ID:-$(jq -r '.messagingSenderId // empty' <<<"$init")}
+            APP_ID=${APP_ID:-$(jq -r '.appId // empty' <<<"$init")}
+          fi
+          for pair in "VITE_FIREBASE_API_KEY=$API_KEY" "VITE_FIREBASE_MESSAGING_SENDER_ID=$SENDER_ID" "VITE_FIREBASE_APP_ID=$APP_ID"; do
+            if ! [[ "${pair#*=}" =~ ^[A-Za-z0-9:_.-]+$ ]]; then
+              echo "::error::${pair%%=*} fehlt oder ist ungültig."
+              exit 1
             fi
+            echo "$pair" >> "$GITHUB_ENV"
           done
-          exit $missing
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
@@ -73,6 +88,6 @@ jobs:
       - run: npm run build
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
-          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT || secrets.FIREBASE_SERVICE_ACCOUNT_HUERREM_MENU_APP_1 }}
           projectId: huerrem-menu-app-1
           channelId: live
