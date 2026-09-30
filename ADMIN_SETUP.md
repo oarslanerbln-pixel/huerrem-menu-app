@@ -27,6 +27,30 @@ Schreibrechte haben nur Konten, die in der Collection `admins` eingetragen sind
 
 Weitere Admins: Schritt 5 + 6 wiederholen. Zugang entziehen: Dokument in `admins` löschen.
 
+## Automatisches Deployment (GitHub Actions)
+
+`.github/workflows/deploy.yml`: Pull Requests werden geprüft (Lint + Build), jeder Merge nach `main`
+wird gebaut und auf Firebase Hosting veröffentlicht. Firestore-/Storage-Regeln werden weiterhin
+manuell deployt (`firebase deploy --only firestore:rules,storage`).
+
+Einmalig einrichten:
+
+1. **Dienstkonto:** Google Cloud Console → Projekt `huerrem-menu-app-1` → *IAM & Verwaltung → Dienstkonten*
+   → *Dienstkonto erstellen* (z. B. `github-deploy`) mit den Rollen **Firebase Hosting Admin**,
+   **API Keys Viewer** und **Cloud Run Viewer** → *Schlüssel → Schlüssel hinzufügen → JSON*.
+2. **GitHub → Repository → Settings → Secrets and variables → Actions → New repository secret:**
+
+   | Secret | Wert |
+   |---|---|
+   | `FIREBASE_SERVICE_ACCOUNT` | kompletter Inhalt der JSON-Datei aus Schritt 1 (Datei danach löschen) |
+   | `VITE_FIREBASE_API_KEY` | aus `.env.local` |
+   | `VITE_FIREBASE_MESSAGING_SENDER_ID` | aus `.env.local` |
+   | `VITE_FIREBASE_APP_ID` | aus `.env.local` |
+
+3. **Actions → „Build & Deploy“ → Run workflow** startet das erste Deployment ohne neuen Commit.
+
+Fehlt ein Secret, bricht der Deploy-Job vor dem Veröffentlichen ab; die Live-Seite bleibt unverändert.
+
 ## Kurzanleitung für das Team
 
 - **Preis/Text ändern:** Artikel antippen → ändern → *Speichern*. Texte je Sprache über DE/EN/TR/… umschalten.

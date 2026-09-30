@@ -1,0 +1,78 @@
+# Pull requests: lint + build as a merge gate.
+# Push to main (or manual run): build with the Firebase web config and publish to Firebase Hosting.
+# One-time setup of the required secrets: see ADMIN_SETUP.md → "Automatisches Deployment".
+name: Build & Deploy
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+env:
+  # puppeteer is only used by local scraping scripts; skip its ~150 MB Chrome download.
+  PUPPETEER_SKIP_DOWNLOAD: 'true'
+
+jobs:
+  build:
+    name: Lint & Build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run build
+
+  deploy:
+    name: Deploy to Firebase Hosting
+    needs: build
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    environment:
+      name: production
+      url: https://huerrem-menu-app-1.web.app/admin
+    env:
+      VITE_FIREBASE_API_KEY: ${{ secrets.VITE_FIREBASE_API_KEY }}
+      VITE_FIREBASE_AUTH_DOMAIN: huerrem-menu-app-1.firebaseapp.com
+      VITE_FIREBASE_PROJECT_ID: huerrem-menu-app-1
+      VITE_FIREBASE_STORAGE_BUCKET: huerrem-menu-app-1.firebasestorage.app
+      VITE_FIREBASE_MESSAGING_SENDER_ID: ${{ secrets.VITE_FIREBASE_MESSAGING_SENDER_ID }}
+      VITE_FIREBASE_APP_ID: ${{ secrets.VITE_FIREBASE_APP_ID }}
+    steps:
+      # Without the web config the app builds but runs unconfigured; never publish that.
+      - name: Check required secrets
+        env:
+          FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+        run: |
+          missing=0
+          for name in FIREBASE_SERVICE_ACCOUNT VITE_FIREBASE_API_KEY VITE_FIREBASE_MESSAGING_SENDER_ID VITE_FIREBASE_APP_ID; do
+            if [ -z "${!name}" ]; then
+              echo "::error::Secret $name fehlt (Settings → Secrets and variables → Actions)."
+              missing=1
+            fi
+          done
+          exit $missing
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+          projectId: huerrem-menu-app-1
+          channelId: live
