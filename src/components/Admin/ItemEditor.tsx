@@ -21,8 +21,8 @@ interface Props {
 
 function Section({ title, children }: { title: string; children: ReactNode }) {
   return (
-    <section className="space-y-3">
-      <h3 className="adm-section-title uppercase">{title}</h3>
+    <section className="space-y-4">
+      <h3 className="adm-section-title">{title}</h3>
       {children}
     </section>
   );
@@ -88,28 +88,30 @@ export default function ItemEditor({ item, isNew, subcategories, onSave, onDelet
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex justify-end items-end sm:items-stretch bg-black/70 backdrop-blur-sm" onClick={close}>
+    <div className="fixed inset-0 z-50 flex justify-end adm-overlay" onClick={close}>
       <aside
-        className="adm adm-drawer adm-scroll w-full sm:max-w-xl max-h-[94vh] sm:max-h-none sm:h-full overflow-y-auto rounded-t-3xl sm:rounded-none sm:border-l adm-divider flex flex-col"
-        style={{ minHeight: 0 }}
+        className="adm-sheet adm-scroll w-full sm:max-w-[560px] h-full overflow-y-auto flex flex-col"
+        role="dialog"
+        aria-modal="true"
+        aria-label={isNew ? 'Neuer Artikel' : 'Artikel bearbeiten'}
         onClick={e => e.stopPropagation()}
       >
-        <header className="sticky top-0 z-10 flex items-center justify-between px-6 py-4 border-b adm-divider bg-[rgba(21,19,15,0.95)] backdrop-blur">
-          <div>
-            <p className="adm-label !mb-0">{isNew ? 'Neuer Artikel' : 'Artikel bearbeiten'}</p>
-            <h2 className="adm-serif text-2xl leading-tight truncate max-w-[22rem]">{names.DE || 'Ohne Namen'}</h2>
+        <header className="adm-sheet-bar sticky top-0 z-10 flex items-center justify-between gap-4 px-6 sm:px-8 py-4 border-b">
+          <div className="min-w-0">
+            <p className="adm-eyebrow">{isNew ? 'Neuer Artikel' : 'Artikel bearbeiten'}</p>
+            <h2 className="text-[22px] font-semibold tracking-[-0.02em] leading-tight truncate mt-1">{names.DE || 'Ohne Namen'}</h2>
           </div>
-          <button onClick={close} className="adm-btn adm-btn-ghost !p-2 !rounded-full" aria-label="Schließen"><X size={18} /></button>
+          <button onClick={close} className="adm-btn adm-btn-ghost adm-btn-icon shrink-0" aria-label="Schließen"><X size={18} strokeWidth={1.75} /></button>
         </header>
 
-        <div className="flex-1 px-6 py-6 space-y-8">
+        <div className="flex-1 px-6 sm:px-8 py-8 space-y-10">
           <Section title="Texte">
-            <div className="flex gap-1.5 flex-wrap">
+            <div className="adm-seg">
               {LANGS.map(l => (
-                <button key={l} onClick={() => setLang(l)} className="adm-chip !py-1.5 !px-3" data-active={lang === l}>
+                <button key={l} onClick={() => setLang(l)} className="adm-seg-btn" data-active={lang === l}>
                   {l}
                   <span
-                    className="inline-block w-1.5 h-1.5 rounded-full"
+                    className="adm-dot"
                     style={{ background: names[l]?.trim() ? 'var(--adm-success)' : 'var(--adm-faint)' }}
                     title={names[l]?.trim() ? 'Übersetzt' : 'Fehlt'}
                   />
@@ -144,7 +146,7 @@ export default function ItemEditor({ item, isNew, subcategories, onSave, onDelet
                     value={Number.isFinite(draft.price) ? draft.price : ''}
                     onChange={e => set({ price: parseFloat(e.target.value) })}
                   />
-                  <span className="absolute right-3.5 top-1/2 -translate-y-1/2 adm-muted">€</span>
+                  <span className="absolute right-4 top-1/2 -translate-y-1/2 adm-muted pointer-events-none">€</span>
                 </div>
               </div>
               <div>
@@ -165,21 +167,21 @@ export default function ItemEditor({ item, isNew, subcategories, onSave, onDelet
 
           <Section title="Foto">
             <label
-              className="adm-drop flex items-center gap-4 p-3 cursor-pointer"
+              className="adm-drop flex items-center gap-5 p-4 cursor-pointer"
               data-over={dragOver}
               onDragOver={e => { e.preventDefault(); setDragOver(true); }}
               onDragLeave={() => setDragOver(false)}
               onDrop={onDrop}
             >
               {draft.imageUrl
-                ? <img src={draft.imageUrl} alt="" className="w-28 h-28 rounded-xl object-cover border adm-divider" />
-                : <div className="w-28 h-28 rounded-xl grid place-items-center bg-[var(--adm-surface-3)] adm-faint"><ImagePlus size={28} /></div>}
+                ? <img src={draft.imageUrl} alt="" className="w-24 h-24 object-cover shrink-0" />
+                : <div className="w-24 h-24 shrink-0 grid place-items-center bg-[var(--adm-surface-3)] adm-faint"><ImagePlus size={24} strokeWidth={1.5} /></div>}
               <div className="flex-1">
                 <p className="font-medium inline-flex items-center gap-2">
                   {busy === 'upload' && <Loader2 size={16} className="animate-spin" />}
                   {draft.imageUrl ? 'Foto ersetzen' : 'Foto hochladen'}
                 </p>
-                <p className="text-xs adm-muted mt-1">Hierher ziehen oder tippen. Wird automatisch verkleinert.</p>
+                <p className="text-[13px] adm-muted mt-1">Hierher ziehen oder tippen. Wird automatisch verkleinert.</p>
                 {draft.imageUrl && (
                   <button type="button" onClick={e => { e.preventDefault(); set({ imageUrl: '' }); }} className="text-xs adm-faint hover:text-[var(--adm-danger)] mt-2">
                     Foto entfernen
@@ -211,18 +213,18 @@ export default function ItemEditor({ item, isNew, subcategories, onSave, onDelet
           </Section>
 
           <Section title="Anzeige">
-            <div className="adm-card divide-y divide-[var(--adm-border)]">
-              <div className="flex items-center justify-between gap-4 px-4 py-3">
+            <div className="adm-panel divide-y divide-[var(--adm-hair)]">
+              <div className="flex items-center justify-between gap-4 px-4 py-4">
                 <div>
                   <p className="text-sm font-medium">Auf der Karte sichtbar</p>
-                  <p className="text-xs adm-muted">Ausschalten, wenn der Artikel ausverkauft ist.</p>
+                  <p className="text-[13px] adm-muted mt-0.5">Ausschalten, wenn der Artikel ausverkauft ist.</p>
                 </div>
                 <Switch checked={draft.available !== false} onChange={v => set({ available: v })} label="Auf der Karte sichtbar" />
               </div>
-              <div className="flex items-center justify-between gap-4 px-4 py-3">
+              <div className="flex items-center justify-between gap-4 px-4 py-4">
                 <div>
                   <p className="text-sm font-medium">Signature / Empfehlung</p>
-                  <p className="text-xs adm-muted">Wird auf der Karte hervorgehoben.</p>
+                  <p className="text-[13px] adm-muted mt-0.5">Wird auf der Karte hervorgehoben.</p>
                 </div>
                 <Switch checked={draft.isSignature || false} onChange={v => set({ isSignature: v })} label="Signature" />
               </div>
@@ -230,19 +232,20 @@ export default function ItemEditor({ item, isNew, subcategories, onSave, onDelet
           </Section>
         </div>
 
-        <footer className="sticky bottom-0 px-6 py-4 border-t adm-divider bg-[rgba(21,19,15,0.95)] backdrop-blur space-y-2">
-          {error && <p className="text-sm text-[var(--adm-danger)]">{error}</p>}
+        <footer className="adm-sheet-bar sticky bottom-0 px-6 sm:px-8 py-4 border-t space-y-3">
+          {error && <p className="text-sm text-[var(--adm-danger)]" role="alert">{error}</p>}
           <div className="flex items-center justify-between gap-2">
             {!isNew
               ? (
-                <button onClick={handleDelete} disabled={!!busy} className="adm-btn adm-btn-danger !px-3">
-                  {busy === 'delete' ? <Loader2 size={16} className="animate-spin" /> : <Trash2 size={16} />} Löschen
+                <button onClick={handleDelete} disabled={!!busy} className="adm-btn adm-btn-danger shrink-0" aria-label="Löschen">
+                  {busy === 'delete' ? <Loader2 size={16} className="animate-spin" /> : <Trash2 size={16} strokeWidth={1.75} />}
+                  <span className="hidden sm:inline">Löschen</span>
                 </button>
               )
               : <span />}
-            <div className="flex gap-2">
-              <button onClick={close} className="adm-btn adm-btn-ghost">Abbrechen</button>
-              <button onClick={handleSave} disabled={!!busy} className="adm-btn adm-btn-primary min-w-[120px]">
+            <div className="flex gap-2 flex-1 sm:flex-none">
+              <button onClick={close} className="adm-btn adm-btn-ghost flex-1 sm:flex-none">Abbrechen</button>
+              <button onClick={handleSave} disabled={!!busy} className="adm-btn adm-btn-primary flex-1 sm:flex-none sm:min-w-[128px]">
                 {busy === 'save' && <Loader2 size={16} className="animate-spin" />} Speichern
               </button>
             </div>

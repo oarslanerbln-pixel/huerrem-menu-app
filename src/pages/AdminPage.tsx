@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef, useState, type FormEvent, type ReactNode } from 'react';
 import { onAuthStateChanged, sendPasswordResetEmail, signInWithEmailAndPassword, signOut, type User } from 'firebase/auth';
 import { doc, getDoc } from 'firebase/firestore';
-import { ChevronDown, Crown, ExternalLink, ImageOff, Loader2, LogOut, Plus, Search, ShieldAlert, Sparkles, Star, Upload } from 'lucide-react';
+import { ChevronDown, ExternalLink, ImageOff, Loader2, LogOut, Plus, Search, Sparkles, Star, Upload } from 'lucide-react';
 import { db, isFirebaseConfigured } from '../config/firebase';
 import { adminAuth } from '../config/firebaseAdmin';
 import { type MenuCategory, type MenuItem } from '../data/menu';
@@ -40,30 +40,32 @@ const loginError = (e: unknown) => {
 
 type QuickFilter = 'hidden' | 'noPhoto' | 'noAllergens' | null;
 
-function Shell({ children }: { children: ReactNode }) {
+function Wordmark() {
   return (
-    <div className="adm">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 py-6 sm:py-8">{children}</div>
+    <div className="adm-wordmark">
+      <span className="adm-wordmark-name">Hürrem Sultan</span>
+      <span className="adm-wordmark-rule hidden sm:block" />
+      <span className="adm-wordmark-sub hidden sm:block">Menü-Verwaltung</span>
     </div>
   );
 }
 
-function Brand({ subtitle = 'Menü-Verwaltung' }: { subtitle?: string }) {
+function Shell({ children, actions }: { children: ReactNode; actions?: ReactNode }) {
   return (
-    <div className="flex items-center gap-3">
-      <div className="w-10 h-10 rounded-xl grid place-items-center border adm-divider bg-[var(--adm-surface-2)]">
-        <Crown size={20} className="adm-gold" />
-      </div>
-      <div className="leading-tight">
-        <p className="adm-brand text-base sm:text-lg adm-gold whitespace-nowrap">Hürrem Sultan</p>
-        <p className="text-xs adm-muted tracking-wide">{subtitle}</p>
-      </div>
+    <div className="adm">
+      <header className="adm-bar">
+        <div className="adm-container adm-bar-inner">
+          <Wordmark />
+          {actions && <div className="flex items-center gap-2">{actions}</div>}
+        </div>
+      </header>
+      <main className="adm-container">{children}</main>
     </div>
   );
 }
 
 function Spinner() {
-  return <div className="py-24 grid place-items-center"><Loader2 className="animate-spin adm-gold" /></div>;
+  return <div className="min-h-[60vh] grid place-items-center"><Loader2 size={20} className="animate-spin adm-muted" /></div>;
 }
 
 function LoginForm() {
@@ -100,39 +102,42 @@ function LoginForm() {
   };
 
   return (
-    <div className="min-h-[80vh] grid place-items-center">
-      <form onSubmit={submit} className="adm-card adm-rise w-full max-w-sm p-7 space-y-5">
-        <Brand />
-        <div>
-          <h1 className="adm-serif text-3xl">Willkommen</h1>
-          <p className="text-sm adm-muted mt-1">Melden Sie sich an, um die Speisekarte zu bearbeiten.</p>
-        </div>
-        <div className="space-y-3">
+    <div className="min-h-[calc(100vh-57px)] flex items-center justify-center py-16">
+      <form onSubmit={submit} className="adm-rise w-full max-w-[380px]">
+        <p className="adm-eyebrow mb-4">Menü-Verwaltung</p>
+        <h1 className="adm-title">Anmelden</h1>
+        <p className="adm-subtitle">Melden Sie sich an, um die Speisekarte zu bearbeiten.</p>
+        <div className="mt-10 space-y-5">
           <div>
-            <label className="adm-label">E-Mail</label>
-            <input className="adm-input" type="email" autoComplete="username" value={email} onChange={e => setEmail(e.target.value)} />
+            <label className="adm-label" htmlFor="adm-email">E-Mail</label>
+            <input id="adm-email" className="adm-input" type="email" autoComplete="username" value={email} onChange={e => setEmail(e.target.value)} />
           </div>
           <div>
-            <label className="adm-label">Passwort</label>
-            <input className="adm-input" type="password" autoComplete="current-password" value={password} onChange={e => setPassword(e.target.value)} />
+            <label className="adm-label" htmlFor="adm-password">Passwort</label>
+            <input id="adm-password" className="adm-input" type="password" autoComplete="current-password" value={password} onChange={e => setPassword(e.target.value)} />
           </div>
         </div>
-        {error && <p className="text-sm text-[var(--adm-danger)]">{error}</p>}
-        {info && <p className="text-sm text-[var(--adm-success)]">{info}</p>}
-        <button disabled={busy} className="adm-btn adm-btn-primary w-full">
+        {error && <p className="mt-5 text-sm text-[var(--adm-danger)]" role="alert">{error}</p>}
+        {info && <p className="mt-5 text-sm text-[var(--adm-success)]" role="status">{info}</p>}
+        <button disabled={busy} className="adm-btn adm-btn-primary adm-btn-block mt-8">
           {busy && <Loader2 size={16} className="animate-spin" />} Anmelden
         </button>
-        <button type="button" onClick={reset} className="w-full text-xs adm-muted hover:text-[var(--adm-text)]">Passwort vergessen?</button>
+        <div className="mt-6 text-center">
+          <button type="button" onClick={reset} className="adm-link">Passwort vergessen?</button>
+        </div>
       </form>
     </div>
   );
 }
 
-function StatTile({ label, value, icon, active, onClick }: { label: string; value: number; icon: ReactNode; active: boolean; onClick: () => void }) {
+function StatTile({ label, value, active, warn, onClick }: { label: string; value: number; active: boolean; warn?: boolean; onClick: () => void }) {
   return (
-    <button onClick={onClick} className="adm-card adm-stat" data-active={active}>
-      <div className="flex items-center justify-between adm-muted text-xs uppercase tracking-wider">{label}{icon}</div>
-      <p className="adm-serif text-3xl mt-1 tabular-nums">{value}</p>
+    <button onClick={onClick} className="adm-stat" data-active={active} aria-pressed={active}>
+      <p className="adm-stat-value">{value}</p>
+      <p className="adm-stat-label flex items-center gap-2">
+        {warn && value > 0 && <span className="adm-dot bg-[var(--adm-warn)]" />}
+        {label}
+      </p>
     </button>
   );
 }
@@ -161,28 +166,28 @@ function UpdateBanner({ items, notify }: { items: MenuItem[]; notify: (m: string
   };
 
   return (
-    <div className="adm-card adm-rise p-5 mb-6 border-[var(--adm-border-strong)]">
-      <div className="flex flex-col sm:flex-row sm:items-center gap-4 justify-between">
-        <div className="flex gap-3">
-          <Sparkles size={20} className="adm-gold shrink-0 mt-0.5" />
+    <div className="adm-notice adm-rise p-5 sm:p-6 mb-10">
+      <div className="flex flex-col sm:flex-row sm:items-center gap-5 justify-between">
+        <div className="flex gap-4">
+          <Sparkles size={18} strokeWidth={1.75} className="text-[var(--adm-gold)] shrink-0 mt-0.5" />
           <div>
             <p className="font-medium">Aktualisierung verfügbar: {update.title}</p>
-            <p className="text-sm adm-muted mt-0.5">{changes.length} Artikel betroffen. Eigene Änderungen bleiben erhalten – es wird nur ergänzt bzw. korrigiert.</p>
+            <p className="text-sm adm-muted mt-1">{changes.length} Artikel betroffen. Eigene Änderungen bleiben erhalten – es wird nur ergänzt bzw. korrigiert.</p>
           </div>
         </div>
         <div className="flex gap-2 shrink-0">
-          <button onClick={() => setOpen(o => !o)} className="adm-btn adm-btn-ghost">
-            Details <ChevronDown size={15} className={open ? 'rotate-180 transition-transform' : 'transition-transform'} />
+          <button onClick={() => setOpen(o => !o)} className="adm-btn adm-btn-ghost adm-btn-sm">
+            Details <ChevronDown size={15} strokeWidth={1.75} className={open ? 'rotate-180 transition-transform' : 'transition-transform'} />
           </button>
-          <button onClick={apply} disabled={busy} className="adm-btn adm-btn-primary">
-            {busy && <Loader2 size={16} className="animate-spin" />} Übernehmen
+          <button onClick={apply} disabled={busy} className="adm-btn adm-btn-primary adm-btn-sm">
+            {busy && <Loader2 size={15} className="animate-spin" />} Übernehmen
           </button>
         </div>
       </div>
       {open && (
-        <ul className="mt-4 max-h-80 overflow-y-auto adm-scroll divide-y divide-[var(--adm-border)] text-sm">
+        <ul className="mt-5 max-h-80 overflow-y-auto adm-scroll border-t border-[var(--adm-hair)] divide-y divide-[var(--adm-hair)] text-sm">
           {changes.map(c => (
-            <li key={c.item.id} className="py-2 flex gap-3">
+            <li key={c.item.id} className="py-3 flex gap-3">
               <span className={`adm-badge shrink-0 self-start ${c.isNew ? 'adm-badge-gold' : ''}`}>{c.isNew ? 'Neu' : 'Update'}</span>
               <div>
                 <p className="font-medium">{nameOf(c.item)}</p>
@@ -200,25 +205,25 @@ function ItemRow({ item, onOpen, onToggle }: { item: MenuItem; onOpen: () => voi
   const hidden = item.available === false;
   const codes = [...(item.allergens || []), ...(item.additives || [])];
   return (
-    <li className={`adm-row flex items-center gap-4 px-4 py-3 ${hidden ? 'opacity-55' : ''}`}>
+    <li className={`adm-row ${hidden ? 'opacity-50' : ''}`}>
       <button onClick={onOpen} className="flex items-center gap-4 flex-1 min-w-0 text-left">
         {item.imageUrl
           ? <img src={item.imageUrl} alt="" className="adm-thumb" loading="lazy" />
-          : <div className="adm-thumb grid place-items-center adm-faint"><ImageOff size={18} /></div>}
+          : <div className="adm-thumb grid place-items-center adm-faint"><ImageOff size={16} strokeWidth={1.5} /></div>}
         <div className="min-w-0 flex-1">
           <div className="flex items-center gap-2 flex-wrap">
-            <p className="font-medium truncate">{nameOf(item)}</p>
-            {item.isSignature && <span className="adm-badge adm-badge-gold inline-flex items-center gap-1"><Star size={10} /> Signature</span>}
+            <p className="adm-row-name truncate">{nameOf(item)}</p>
+            {item.isSignature && <span className="adm-badge adm-badge-gold"><Star size={9} strokeWidth={2.5} /> Signature</span>}
             {hidden && <span className="adm-badge adm-badge-off">Ausgeblendet</span>}
             {!item.imageUrl && <span className="adm-badge">Ohne Foto</span>}
             {item.category === 'food' && !item.allergens?.length && <span className="adm-badge adm-badge-warn">Allergene fehlen</span>}
           </div>
           {codes.length > 0 && (
-            <div className="flex gap-1 mt-1.5 flex-wrap">{codes.map(c => <span key={c} className="adm-code">{c}</span>)}</div>
+            <div className="flex gap-1 mt-2 flex-wrap">{codes.map(c => <span key={c} className="adm-code">{c}</span>)}</div>
           )}
         </div>
       </button>
-      <span className="adm-gold tabular-nums font-medium whitespace-nowrap">{formatPrice(item.price)}</span>
+      <span className="adm-price whitespace-nowrap">{formatPrice(item.price)}</span>
       <Switch checked={!hidden} onChange={onToggle} label={hidden ? 'Wieder anzeigen' : 'Ausblenden (z. B. ausverkauft)'} />
     </li>
   );
@@ -326,83 +331,96 @@ function MenuManager({ user }: { user: User }) {
   const toggleQuick = (f: QuickFilter) => setQuick(q => (q === f ? null : f));
 
   return (
-    <>
-      <header className="flex items-center justify-between gap-3 mb-8">
-        <Brand />
-        <div className="flex items-center gap-2 text-sm">
-          <span className="hidden sm:block"><a href="/" target="_blank" rel="noopener" className="adm-btn adm-btn-ghost !py-2"><ExternalLink size={15} /> Speisekarte</a></span>
-          <span className="hidden md:inline adm-faint px-2">{user.email}</span>
-          <button onClick={() => signOut(adminAuth())} className="adm-btn adm-btn-ghost !py-2" title="Abmelden"><LogOut size={15} /><span className="hidden sm:inline">Abmelden</span></button>
-        </div>
-      </header>
-
-      {loadError && <p className="mb-4 text-sm text-[var(--adm-danger)]">Menü konnte nicht geladen werden: {loadError}</p>}
-      {items === null && !loadError && <Spinner />}
-
-      {items !== null && items.length === 0 && (
-        <div className="adm-card adm-rise p-6 mb-6 flex flex-col sm:flex-row sm:items-center gap-4 justify-between">
-          <div>
-            <h2 className="adm-serif text-2xl">Die Datenbank ist noch leer</h2>
-            <p className="text-sm adm-muted mt-1">Übernehmen Sie einmalig die aktuelle Karte – danach bearbeiten Sie alles hier.</p>
-          </div>
-          <button onClick={handleImport} disabled={importing} className="adm-btn adm-btn-primary">
-            {importing ? <Loader2 size={16} className="animate-spin" /> : <Upload size={16} />} Aktuelle Karte importieren
-          </button>
-        </div>
-      )}
-
-      {items !== null && items.length > 0 && (
+    <Shell
+      actions={
         <>
-          <UpdateBanner items={all} notify={notify} />
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-6">
-            <StatTile label="Artikel" value={all.length} icon={<Crown size={14} />} active={quick === null} onClick={() => setQuick(null)} />
-            <StatTile label="Ausgeblendet" value={stats.hidden} icon={<span className="w-2 h-2 rounded-full bg-[var(--adm-faint)]" />} active={quick === 'hidden'} onClick={() => toggleQuick('hidden')} />
-            <StatTile label="Ohne Foto" value={stats.noPhoto} icon={<ImageOff size={14} />} active={quick === 'noPhoto'} onClick={() => toggleQuick('noPhoto')} />
-            <StatTile label="Allergene fehlen" value={stats.noAllergens} icon={<ShieldAlert size={14} />} active={quick === 'noAllergens'} onClick={() => toggleQuick('noAllergens')} />
+          <a href="/" target="_blank" rel="noopener" className="adm-btn adm-btn-ghost adm-btn-sm" title="Speisekarte öffnen">
+            <ExternalLink size={15} strokeWidth={1.75} /><span className="hidden sm:inline">Speisekarte</span>
+          </a>
+          <span className="hidden lg:inline text-[13px] adm-faint px-2">{user.email}</span>
+          <button onClick={() => signOut(adminAuth())} className="adm-btn adm-btn-ghost adm-btn-sm" title="Abmelden">
+            <LogOut size={15} strokeWidth={1.75} /><span className="hidden sm:inline">Abmelden</span>
+          </button>
+        </>
+      }
+    >
+      <div className="pb-24">
+        <div className="adm-rise pt-12 sm:pt-16 pb-10 flex flex-col sm:flex-row sm:items-end justify-between gap-6">
+          <div>
+            <h1 className="adm-title">Speisekarte</h1>
+            <p className="adm-subtitle">Artikel, Preise und Verfügbarkeit – Änderungen sind sofort live.</p>
           </div>
-
-          <div className="flex flex-col md:flex-row gap-3 mb-4">
-            <div className="relative flex-1">
-              <Search size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 adm-faint" />
-              <input className="adm-input !pl-10" placeholder="Artikel suchen…" value={search} onChange={e => setSearch(e.target.value)} />
-            </div>
-            <button onClick={startNew} className="adm-btn adm-btn-primary"><Plus size={16} /> Neuer Artikel</button>
-          </div>
-
-          <div className="flex gap-2 overflow-x-auto pb-2 mb-4 -mx-1 px-1">
-            <button className="adm-chip" data-active={category === 'all'} onClick={() => setCategory('all')}>
-              Alle <span className="adm-chip-count">{all.length}</span>
-            </button>
-            {(Object.keys(CATEGORY_LABELS) as MenuCategory[]).filter(c => categoryCounts[c]).map(c => (
-              <button key={c} className="adm-chip" data-active={category === c} onClick={() => setCategory(c)}>
-                {CATEGORY_LABELS[c]} <span className="adm-chip-count">{categoryCounts[c]}</span>
-              </button>
-            ))}
-          </div>
-
-          <p className="text-xs adm-faint mb-3">{groups.count} Artikel</p>
-
-          {groups.list.length === 0 && (
-            <div className="adm-card p-10 text-center adm-muted">Keine Artikel gefunden.</div>
+          {items !== null && items.length > 0 && (
+            <button onClick={startNew} className="adm-btn adm-btn-primary shrink-0"><Plus size={16} strokeWidth={2} /> Neuer Artikel</button>
           )}
+        </div>
 
-          <div className="space-y-6">
+        {loadError && <p className="mb-6 text-sm text-[var(--adm-danger)]" role="alert">Menü konnte nicht geladen werden: {loadError}</p>}
+        {items === null && !loadError && <Spinner />}
+
+        {items !== null && items.length === 0 && (
+          <div className="adm-panel adm-rise p-6 sm:p-8 flex flex-col sm:flex-row sm:items-center gap-6 justify-between">
+            <div>
+              <h2 className="text-xl font-semibold tracking-[-0.02em]">Die Datenbank ist noch leer</h2>
+              <p className="text-sm adm-muted mt-2">Übernehmen Sie einmalig die aktuelle Karte – danach bearbeiten Sie alles hier.</p>
+            </div>
+            <button onClick={handleImport} disabled={importing} className="adm-btn adm-btn-primary">
+              {importing ? <Loader2 size={16} className="animate-spin" /> : <Upload size={16} strokeWidth={1.75} />} Aktuelle Karte importieren
+            </button>
+          </div>
+        )}
+
+        {items !== null && items.length > 0 && (
+          <>
+            <UpdateBanner items={all} notify={notify} />
+            <div className="adm-stats adm-rise mb-12">
+              <StatTile label="Artikel gesamt" value={all.length} active={quick === null} onClick={() => setQuick(null)} />
+              <StatTile label="Ausgeblendet" value={stats.hidden} active={quick === 'hidden'} onClick={() => toggleQuick('hidden')} />
+              <StatTile label="Ohne Foto" value={stats.noPhoto} active={quick === 'noPhoto'} onClick={() => toggleQuick('noPhoto')} />
+              <StatTile label="Allergene fehlen" value={stats.noAllergens} warn active={quick === 'noAllergens'} onClick={() => toggleQuick('noAllergens')} />
+            </div>
+
+            <div className="flex flex-col md:flex-row md:items-center gap-3 md:gap-8 border-b border-[var(--adm-hair)]">
+              <nav className="adm-tabs flex-1 order-2 md:order-1" aria-label="Kategorien">
+                <button className="adm-tab" data-active={category === 'all'} onClick={() => setCategory('all')}>
+                  Alle<span className="adm-tab-count">{all.length}</span>
+                </button>
+                {(Object.keys(CATEGORY_LABELS) as MenuCategory[]).filter(c => categoryCounts[c]).map(c => (
+                  <button key={c} className="adm-tab" data-active={category === c} onClick={() => setCategory(c)}>
+                    {CATEGORY_LABELS[c]}<span className="adm-tab-count">{categoryCounts[c]}</span>
+                  </button>
+                ))}
+              </nav>
+              <div className="relative md:w-72 order-1 md:order-2">
+                <Search size={16} strokeWidth={1.75} className="absolute left-4 top-1/2 -translate-y-1/2 adm-faint pointer-events-none" />
+                <input className="adm-input md:!h-10 !pl-11" placeholder="Artikel suchen" value={search} onChange={e => setSearch(e.target.value)} />
+              </div>
+            </div>
+
+            {(quick !== null || search.trim() !== '') && (
+              <p className="text-[13px] adm-faint mt-4">{groups.count} Artikel gefunden</p>
+            )}
+
+            {groups.list.length === 0 && (
+              <div className="py-24 text-center adm-muted">Keine Artikel gefunden.</div>
+            )}
+
             {groups.list.map(([title, list]) => (
               <section key={title}>
-                <h2 className="adm-section-title uppercase mb-2 px-1 flex items-center gap-3">
-                  {title}<span className="adm-faint font-sans text-xs tracking-normal">{list.length}</span>
-                  <span className="flex-1 h-px bg-[var(--adm-border)]" />
-                </h2>
-                <ul className="adm-card overflow-hidden divide-y divide-[var(--adm-border)]">
+                <div className="adm-group-head">
+                  <h2 className="adm-section-title">{title}</h2>
+                  <span className="text-xs adm-faint tabular-nums">{list.length}</span>
+                </div>
+                <ul>
                   {list.map(item => (
                     <ItemRow key={item.id} item={item} onOpen={() => setEditing({ item, isNew: false })} onToggle={v => toggle(item, v)} />
                   ))}
                 </ul>
               </section>
             ))}
-          </div>
-        </>
-      )}
+          </>
+        )}
+      </div>
 
       {editing && (
         <ItemEditor
@@ -416,11 +434,11 @@ function MenuManager({ user }: { user: User }) {
       )}
 
       {toast && (
-        <div className="fixed bottom-6 inset-x-0 flex justify-center z-[60] pointer-events-none">
-          <div className="adm-toast adm-rise text-sm" role="status">{toast}</div>
+        <div className="fixed bottom-8 inset-x-0 flex justify-center z-[60] pointer-events-none px-4">
+          <div className="adm-toast adm-rise" role="status">{toast}</div>
         </div>
       )}
-    </>
+    </Shell>
   );
 }
 
@@ -443,7 +461,7 @@ export default function AdminPage() {
   }, [user]);
 
   if (!isFirebaseConfigured) {
-    return <Shell><p className="mt-16 text-center adm-muted">Firebase ist nicht konfiguriert (siehe <code>.env.example</code>).</p></Shell>;
+    return <Shell><p className="pt-24 text-center adm-muted">Firebase ist nicht konfiguriert (siehe <code>.env.example</code>).</p></Shell>;
   }
   if (user === undefined) return <Shell><Spinner /></Shell>;
   if (!user) return <Shell><LoginForm /></Shell>;
@@ -451,15 +469,15 @@ export default function AdminPage() {
   if (!isAdmin) {
     return (
       <Shell>
-        <div className="min-h-[70vh] grid place-items-center">
-          <div className="adm-card max-w-sm p-7 text-center space-y-4">
-            <Brand />
-            <p className="adm-muted">Dieses Konto ({user.email}) hat keine Berechtigung, die Karte zu bearbeiten.</p>
-            <button onClick={() => signOut(adminAuth())} className="adm-btn adm-btn-ghost">Abmelden</button>
+        <div className="min-h-[calc(100vh-57px)] flex items-center justify-center py-16">
+          <div className="adm-rise max-w-[420px] text-center">
+            <h1 className="adm-title">Kein Zugriff</h1>
+            <p className="adm-subtitle">Dieses Konto ({user.email}) hat keine Berechtigung, die Karte zu bearbeiten.</p>
+            <button onClick={() => signOut(adminAuth())} className="adm-btn adm-btn-ghost mt-10">Abmelden</button>
           </div>
         </div>
       </Shell>
     );
   }
-  return <Shell><MenuManager user={user} /></Shell>;
+  return <MenuManager user={user} />;
 }
