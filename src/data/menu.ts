@@ -577,6 +577,7 @@ export const menuData: MenuItem[] = [
     },
     "imageUrl": "",
     "category": "shisha",
+    "subcategory": "Shisha Extras",
     "tags": [
       "extra"
     ]
