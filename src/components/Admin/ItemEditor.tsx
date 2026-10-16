@@ -102,7 +102,7 @@ export default function ItemEditor({
       newAvailable.includes(draft.subcategory);
     set({
       category: newCat,
-      subcategory: matchesCurrent ? draft.subcategory : '',
+      subcategory: matchesCurrent ? draft.subcategory : (newAvailable[0] || ''),
     });
     setIsCustomSubcat(false);
   };
@@ -207,38 +207,52 @@ export default function ItemEditor({
           </Section>
 
           <Section title="Preis & Kategorie">
-            <div className="grid grid-cols-2 gap-3">
+            <div className="space-y-5">
+              {/* Category Pills Selector */}
+              <div>
+                <label className="adm-label">Hauptkategorie *</label>
+                <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+                  {ADMIN_CATEGORY_OPTIONS.map(opt => {
+                    const isSelected = currentCategorySelectValue === opt.key;
+                    return (
+                      <button
+                        key={opt.key}
+                        type="button"
+                        onClick={() => handleCategorySelectChange(opt.key)}
+                        className={`h-11 px-3 text-[13px] font-medium border text-center transition-all flex items-center justify-center gap-2 ${
+                          isSelected
+                            ? 'bg-white text-black font-semibold border-white shadow-md'
+                            : 'bg-[var(--adm-surface-2)] text-[var(--adm-muted)] border-[var(--adm-hair)] hover:text-white hover:border-[var(--adm-hair-strong)]'
+                        }`}
+                      >
+                        {isSelected && <Check size={14} strokeWidth={2.5} />}
+                        <span>{opt.label}</span>
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+
+              {/* Price input */}
               <div>
                 <label className="adm-label">Preis *</label>
-                <div className="relative">
+                <div className="relative max-w-[220px]">
                   <input
                     className="adm-input pr-9 tabular-nums"
                     type="number"
                     step="0.01"
                     min="0"
+                    placeholder="0.00"
                     value={Number.isFinite(draft.price) ? draft.price : ''}
                     onChange={e => set({ price: parseFloat(e.target.value) })}
                   />
                   <span className="absolute right-4 top-1/2 -translate-y-1/2 adm-muted pointer-events-none">€</span>
                 </div>
               </div>
-              <div>
-                <label className="adm-label">Kategorie *</label>
-                <select
-                  className="adm-input"
-                  value={currentCategorySelectValue}
-                  onChange={e => handleCategorySelectChange(e.target.value as AdminCategory)}
-                >
-                  {ADMIN_CATEGORY_OPTIONS.map(opt => (
-                    <option key={opt.key} value={opt.key}>
-                      {opt.label}
-                    </option>
-                  ))}
-                </select>
-              </div>
 
-              <div className="col-span-2">
-                <div className="flex items-center justify-between mb-1.5">
+              {/* Subcategory selector */}
+              <div>
+                <div className="flex items-center justify-between mb-2">
                   <label className="adm-label mb-0">Unterkategorie *</label>
                   {!isCustomSubcat && (
                     <button
@@ -255,7 +269,7 @@ export default function ItemEditor({
                       onClick={() => {
                         setIsCustomSubcat(false);
                         if (!availableSubcategories.includes(draft.subcategory || '')) {
-                          set({ subcategory: '' });
+                          set({ subcategory: availableSubcategories[0] || '' });
                         }
                       }}
                       className="text-xs text-[var(--adm-faint)] hover:text-white"
@@ -266,7 +280,7 @@ export default function ItemEditor({
                 </div>
 
                 {!isCustomSubcat ? (
-                  <>
+                  <div className="space-y-3">
                     <select
                       className="adm-input"
                       value={draft.subcategory || ''}
@@ -288,28 +302,31 @@ export default function ItemEditor({
                       <option value="__custom__">+ Andere / Neu erstellen...</option>
                     </select>
 
-                    {/* Quick Selection Chips for touch convenience */}
-                    <div className="flex gap-1.5 flex-wrap mt-2">
-                      {availableSubcategories.slice(0, 6).map(s => {
-                        const isSelected = draft.subcategory === s;
-                        return (
-                          <button
-                            key={s}
-                            type="button"
-                            onClick={() => set({ subcategory: s })}
-                            className={`text-xs px-2.5 py-1 rounded-full border transition-all flex items-center gap-1 ${
-                              isSelected
-                                ? 'bg-[var(--adm-gold)] text-black font-semibold border-[var(--adm-gold)]'
-                                : 'bg-[var(--adm-surface-2)] text-[var(--adm-muted)] border-[var(--adm-hair)] hover:text-white hover:border-[var(--adm-gold)]'
-                            }`}
-                          >
-                            {isSelected && <Check size={12} strokeWidth={2.5} />}
-                            {s}
-                          </button>
-                        );
-                      })}
+                    {/* Quick Selection Chips */}
+                    <div>
+                      <p className="text-[11px] adm-faint mb-2">Schnell per Klick zuweisen:</p>
+                      <div className="flex gap-1.5 flex-wrap">
+                        {availableSubcategories.map(s => {
+                          const isSelected = draft.subcategory === s;
+                          return (
+                            <button
+                              key={s}
+                              type="button"
+                              onClick={() => set({ subcategory: s })}
+                              className={`text-xs px-3 py-1.5 border transition-all flex items-center gap-1.5 ${
+                                isSelected
+                                  ? 'bg-[var(--adm-gold)] text-black font-semibold border-[var(--adm-gold)] shadow-sm'
+                                  : 'bg-[var(--adm-surface-2)] text-[var(--adm-muted)] border-[var(--adm-hair)] hover:text-white hover:border-[var(--adm-gold)]'
+                              }`}
+                            >
+                              {isSelected && <Check size={12} strokeWidth={2.5} />}
+                              <span>{s}</span>
+                            </button>
+                          );
+                        })}
+                      </div>
                     </div>
-                  </>
+                  </div>
                 ) : (
                   <div className="space-y-1.5">
                     <input

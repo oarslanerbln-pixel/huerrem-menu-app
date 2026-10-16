@@ -233,6 +233,7 @@ function MenuManager({ user }: { user: User }) {
   const [items, setItems] = useState<MenuItem[] | null>(null);
   const [loadError, setLoadError] = useState('');
   const [category, setCategory] = useState<AdminCategory | 'all'>('all');
+  const [subcategory, setSubcategory] = useState<string>('all');
   const [quick, setQuick] = useState<QuickFilter>(null);
   const [search, setSearch] = useState('');
   const [editing, setEditing] = useState<{ item: MenuItem; isNew: boolean } | null>(null);
@@ -282,6 +283,44 @@ function MenuManager({ user }: { user: User }) {
     };
   }, [all]);
 
+  const activeCategorySubcategories = useMemo(() => {
+    if (category === 'all') return [];
+    if (category === 'desserts') {
+      const s = new Set<string>();
+      all.forEach(i => {
+        if ((i.category === 'food' && i.subcategory === 'Desserts') || (i.category as string) === 'desserts') {
+          s.add(i.subcategory || 'Desserts');
+        }
+      });
+      return Array.from(s).sort();
+    }
+    const s = new Set<string>();
+    all.forEach(i => {
+      if (category === 'food') {
+        if (i.category === 'food' && i.subcategory !== 'Desserts' && i.subcategory) {
+          s.add(i.subcategory);
+        }
+      } else if (i.category === category && i.subcategory) {
+        s.add(i.subcategory);
+      }
+    });
+    return Array.from(s).sort();
+  }, [all, category]);
+
+  const subcategoryCounts = useMemo(() => {
+    const counts: Record<string, number> = {};
+    all.forEach(i => {
+      const sub = i.subcategory || '';
+      counts[sub] = (counts[sub] || 0) + 1;
+    });
+    return counts;
+  }, [all]);
+
+  const handleCategoryTabChange = (cat: AdminCategory | 'all') => {
+    setCategory(cat);
+    setSubcategory('all');
+  };
+
   const stats = useMemo(() => ({
     hidden: all.filter(i => i.available === false).length,
     noPhoto: all.filter(i => !i.imageUrl).length,
@@ -321,22 +360,36 @@ function MenuManager({ user }: { user: User }) {
         }
         return i.category === category;
       })
+      .filter(i => {
+        if (subcategory === 'all') return true;
+        return (i.subcategory || '') === subcategory;
+      })
       .filter(i => quick !== 'hidden' || i.available === false)
       .filter(i => quick !== 'noPhoto' || !i.imageUrl)
       .filter(i => quick !== 'noAllergens' || (i.category === 'food' && !i.allergens?.length))
       .filter(i => !q || nameOf(i).toLowerCase().includes(q) || (i.subcategory || '').toLowerCase().includes(q));
-    const map = new Map<string, MenuItem[]>();
+
+    const map = new Map<string, { key: string; title: string; category: MenuCategory; subcategory: string; items: MenuItem[] }>();
     filtered
       .sort((a, b) =>
         a.category.localeCompare(b.category) ||
         (a.subcategory || '').localeCompare(b.subcategory || '') ||
         nameOf(a).localeCompare(nameOf(b)))
       .forEach(i => {
-        const key = `${CATEGORY_LABELS[i.category]}${i.subcategory ? ` · ${i.subcategory}` : ''}`;
-        map.set(key, [...(map.get(key) || []), i]);
+        const key = `${CATEGORY_LABELS[i.category]}${i.subcategory ? ' · ' + i.subcategory : ''}`;
+        if (!map.has(key)) {
+          map.set(key, {
+            key,
+            title: key,
+            category: i.category,
+            subcategory: i.subcategory || '',
+            items: [],
+          });
+        }
+        map.get(key)!.items.push(i);
       });
-    return { list: Array.from(map.entries()), count: filtered.length };
-  }, [all, category, quick, search]);
+    return { list: Array.from(map.values()), count: filtered.length };
+  }, [all, category, subcategory, quick, search]);
 
   const handleImport = async () => {
     if (!window.confirm(`Aktuelle Karte (${bundledMenu.length} Artikel) in die Datenbank übernehmen?`)) return;
@@ -351,23 +404,7 @@ function MenuManager({ user }: { user: User }) {
     }
   };
 
-  const startNew = () => {
-    if (category === 'desserts') {
-      setEditing({
-        isNew: true,
-        item: {
-          id: '',
-          name: { DE: '' },
-          description: { DE: '' },
-          price: 0,
-          category: 'food',
-          subcategory: 'Desserts',
-          available: true,
-        },
-      });
-      return;
-    }
-    const initialCat: MenuCategory = category === 'all' ? 'food' : (category as MenuCategory);
+  const startNewFor = (targetCat: MenuCategory, targetSub: string) => {
     setEditing({
       isNew: true,
       item: {
@@ -375,11 +412,21 @@ function MenuManager({ user }: { user: User }) {
         name: { DE: '' },
         description: { DE: '' },
         price: 0,
-        category: initialCat,
-        subcategory: initialCat === 'food' ? (subcategoriesByCategory.food.find(s => s !== 'Desserts') || '') : (subcategoriesByCategory[initialCat]?.[0] || ''),
+        category: targetCat,
+        subcategory: targetSub,
         available: true,
       },
     });
+  };
+
+  const startNew = () => {
+    if (category === 'desserts') {
+      startNewFor('food', subcategory !== 'all' ? subcategory : 'Desserts');
+      return;
+    }
+    const targetCat: MenuCategory = category === 'all' ? 'food' : (category as MenuCategory);
+    const targetSub = subcategory !== 'all' ? subcategory : (subcategoriesByCategory[targetCat]?.[0] || '');
+    startNewFor(targetCat, targetSub);
   };
 
   const save = async (item: MenuItem) => {
@@ -458,36 +505,36 @@ function MenuManager({ user }: { user: User }) {
 
             <div className="flex flex-col md:flex-row md:items-center gap-3 md:gap-8 border-b border-[var(--adm-hair)]">
               <nav className="adm-tabs flex-1 order-2 md:order-1" aria-label="Kategorien">
-                <button className="adm-tab" data-active={category === 'all'} onClick={() => setCategory('all')}>
+                <button className="adm-tab" data-active={category === 'all'} onClick={() => handleCategoryTabChange('all')}>
                   Alle<span className="adm-tab-count">{all.length}</span>
                 </button>
                 {categoryCounts.shisha > 0 && (
-                  <button className="adm-tab" data-active={category === 'shisha'} onClick={() => setCategory('shisha')}>
+                  <button className="adm-tab" data-active={category === 'shisha'} onClick={() => handleCategoryTabChange('shisha')}>
                     Shisha<span className="adm-tab-count">{categoryCounts.shisha}</span>
                   </button>
                 )}
                 {categoryCounts.drinks > 0 && (
-                  <button className="adm-tab" data-active={category === 'drinks'} onClick={() => setCategory('drinks')}>
+                  <button className="adm-tab" data-active={category === 'drinks'} onClick={() => handleCategoryTabChange('drinks')}>
                     Getränke<span className="adm-tab-count">{categoryCounts.drinks}</span>
                   </button>
                 )}
                 {categoryCounts.food > 0 && (
-                  <button className="adm-tab" data-active={category === 'food'} onClick={() => setCategory('food')}>
+                  <button className="adm-tab" data-active={category === 'food'} onClick={() => handleCategoryTabChange('food')}>
                     Speisen<span className="adm-tab-count">{categoryCounts.food}</span>
                   </button>
                 )}
                 {categoryCounts.desserts > 0 && (
-                  <button className="adm-tab" data-active={category === 'desserts'} onClick={() => setCategory('desserts')}>
+                  <button className="adm-tab" data-active={category === 'desserts'} onClick={() => handleCategoryTabChange('desserts')}>
                     Desserts<span className="adm-tab-count">{categoryCounts.desserts}</span>
                   </button>
                 )}
                 {categoryCounts.happy_hour > 0 && (
-                  <button className="adm-tab" data-active={category === 'happy_hour'} onClick={() => setCategory('happy_hour')}>
+                  <button className="adm-tab" data-active={category === 'happy_hour'} onClick={() => handleCategoryTabChange('happy_hour')}>
                     Happy Hour<span className="adm-tab-count">{categoryCounts.happy_hour}</span>
                   </button>
                 )}
                 {categoryCounts.spiele > 0 && (
-                  <button className="adm-tab" data-active={category === 'spiele'} onClick={() => setCategory('spiele')}>
+                  <button className="adm-tab" data-active={category === 'spiele'} onClick={() => handleCategoryTabChange('spiele')}>
                     Spiele<span className="adm-tab-count">{categoryCounts.spiele}</span>
                   </button>
                 )}
@@ -497,6 +544,41 @@ function MenuManager({ user }: { user: User }) {
                 <input className="adm-input md:!h-10 !pl-11" placeholder="Artikel suchen" value={search} onChange={e => setSearch(e.target.value)} />
               </div>
             </div>
+            {/* Subcategory Filter Strip */}
+            {category !== 'all' && activeCategorySubcategories.length > 0 && (
+              <div className="flex gap-1.5 overflow-x-auto no-scrollbar py-3 border-b border-[var(--adm-hair)] items-center">
+                <span className="text-xs adm-faint mr-1 whitespace-nowrap">Unterkategorie:</span>
+                <button
+                  type="button"
+                  onClick={() => setSubcategory('all')}
+                  className={`text-xs px-3 py-1 border transition-all whitespace-nowrap ${
+                    subcategory === 'all'
+                      ? 'bg-white text-black font-semibold border-white'
+                      : 'bg-transparent text-[var(--adm-muted)] border-[var(--adm-hair-strong)] hover:text-white'
+                  }`}
+                >
+                  Alle ({categoryCounts[category] || all.length})
+                </button>
+                {activeCategorySubcategories.map(sub => {
+                  const count = subcategoryCounts[sub] || 0;
+                  const isSelected = subcategory === sub;
+                  return (
+                    <button
+                      key={sub}
+                      type="button"
+                      onClick={() => setSubcategory(sub)}
+                      className={`text-xs px-3 py-1 border transition-all whitespace-nowrap ${
+                        isSelected
+                          ? 'bg-[var(--adm-gold)] text-black font-semibold border-[var(--adm-gold)]'
+                          : 'bg-[var(--adm-surface-2)] text-[var(--adm-muted)] border-[var(--adm-hair)] hover:text-white hover:border-[var(--adm-hair-strong)]'
+                      }`}
+                    >
+                      {sub} ({count})
+                    </button>
+                  );
+                })}
+              </div>
+            )}
 
             {(quick !== null || search.trim() !== '') && (
               <p className="text-[13px] adm-faint mt-4">{groups.count} Artikel gefunden</p>
@@ -506,14 +588,25 @@ function MenuManager({ user }: { user: User }) {
               <div className="py-24 text-center adm-muted">Keine Artikel gefunden.</div>
             )}
 
-            {groups.list.map(([title, list]) => (
-              <section key={title}>
-                <div className="adm-group-head">
-                  <h2 className="adm-section-title">{title}</h2>
-                  <span className="text-xs adm-faint tabular-nums">{list.length}</span>
+            {groups.list.map(group => (
+              <section key={group.key}>
+                <div className="adm-group-head flex items-center justify-between">
+                  <div className="flex items-center gap-3">
+                    <h2 className="adm-section-title">{group.title}</h2>
+                    <span className="text-xs adm-faint tabular-nums">{group.items.length}</span>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => startNewFor(group.category, group.subcategory)}
+                    className="adm-btn adm-btn-ghost adm-btn-sm text-xs !h-7 !px-2.5 flex items-center gap-1.5 hover:!border-[var(--adm-gold)] hover:!text-[var(--adm-gold)] transition-colors"
+                    title={`Neuen Artikel in "${group.title}" anlegen`}
+                  >
+                    <Plus size={13} strokeWidth={2} />
+                    <span>Artikel hinzufügen</span>
+                  </button>
                 </div>
                 <ul>
-                  {list.map(item => (
+                  {group.items.map(item => (
                     <ItemRow key={item.id} item={item} onOpen={() => setEditing({ item, isNew: false })} onToggle={v => toggle(item, v)} />
                   ))}
                 </ul>
