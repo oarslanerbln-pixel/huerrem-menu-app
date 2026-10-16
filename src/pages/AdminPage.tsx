@@ -11,7 +11,7 @@ import { deleteMenuItem, importMenu, saveMenuItem, saveMenuItems } from '../serv
 import { subscribeMenu } from '../services/menuFeed';
 import ItemEditor from '../components/Admin/ItemEditor';
 import Switch from '../components/Admin/Switch';
-import { CATEGORY_LABELS, DEFAULT_SUBCATEGORIES_BY_CATEGORY } from '../components/Admin/constants';
+import { CATEGORY_LABELS, DEFAULT_SUBCATEGORIES_BY_CATEGORY, type AdminCategory } from '../components/Admin/constants';
 import '../components/Admin/admin.css';
 
 const nameOf = (item: MenuItem) => (typeof item.name === 'string' ? item.name : item.name?.DE || item.name?.EN || item.id);
@@ -232,7 +232,7 @@ function ItemRow({ item, onOpen, onToggle }: { item: MenuItem; onOpen: () => voi
 function MenuManager({ user }: { user: User }) {
   const [items, setItems] = useState<MenuItem[] | null>(null);
   const [loadError, setLoadError] = useState('');
-  const [category, setCategory] = useState<MenuCategory | 'all'>('all');
+  const [category, setCategory] = useState<AdminCategory | 'all'>('all');
   const [quick, setQuick] = useState<QuickFilter>(null);
   const [search, setSearch] = useState('');
   const [editing, setEditing] = useState<{ item: MenuItem; isNew: boolean } | null>(null);
@@ -255,8 +255,9 @@ function MenuManager({ user }: { user: User }) {
   );
 
   const subcategoriesByCategory = useMemo(() => {
-    const map: Record<MenuCategory, Set<string>> = {
+    const map: Record<AdminCategory, Set<string>> = {
       food: new Set(DEFAULT_SUBCATEGORIES_BY_CATEGORY.food),
+      desserts: new Set(DEFAULT_SUBCATEGORIES_BY_CATEGORY.desserts),
       drinks: new Set(DEFAULT_SUBCATEGORIES_BY_CATEGORY.drinks),
       shisha: new Set(DEFAULT_SUBCATEGORIES_BY_CATEGORY.shisha),
       happy_hour: new Set(DEFAULT_SUBCATEGORIES_BY_CATEGORY.happy_hour),
@@ -264,11 +265,16 @@ function MenuManager({ user }: { user: User }) {
     };
     all.forEach(i => {
       if (i.category && i.subcategory) {
-        map[i.category]?.add(i.subcategory);
+        if (i.subcategory === 'Desserts') {
+          map.desserts.add(i.subcategory);
+        } else if (map[i.category]) {
+          map[i.category].add(i.subcategory);
+        }
       }
     });
     return {
       food: Array.from(map.food),
+      desserts: Array.from(map.desserts),
       drinks: Array.from(map.drinks),
       shisha: Array.from(map.shisha),
       happy_hour: Array.from(map.happy_hour),
@@ -283,8 +289,21 @@ function MenuManager({ user }: { user: User }) {
   }), [all]);
 
   const categoryCounts = useMemo(() => {
-    const counts: Partial<Record<MenuCategory, number>> = {};
-    all.forEach(i => { counts[i.category] = (counts[i.category] || 0) + 1; });
+    const counts: Record<AdminCategory, number> = {
+      shisha: 0,
+      drinks: 0,
+      food: 0,
+      desserts: 0,
+      happy_hour: 0,
+      spiele: 0,
+    };
+    all.forEach(i => {
+      if ((i.category === 'food' && i.subcategory === 'Desserts') || (i.category as string) === 'desserts') {
+        counts.desserts++;
+      } else if (counts[i.category] !== undefined) {
+        counts[i.category]++;
+      }
+    });
     return counts;
   }, [all]);
 
@@ -292,7 +311,16 @@ function MenuManager({ user }: { user: User }) {
   const groups = useMemo(() => {
     const q = search.trim().toLowerCase();
     const filtered = all
-      .filter(i => category === 'all' || i.category === category)
+      .filter(i => {
+        if (category === 'all') return true;
+        if (category === 'desserts') {
+          return (i.category === 'food' && i.subcategory === 'Desserts') || (i.category as string) === 'desserts';
+        }
+        if (category === 'food') {
+          return i.category === 'food' && i.subcategory !== 'Desserts';
+        }
+        return i.category === category;
+      })
       .filter(i => quick !== 'hidden' || i.available === false)
       .filter(i => quick !== 'noPhoto' || !i.imageUrl)
       .filter(i => quick !== 'noAllergens' || (i.category === 'food' && !i.allergens?.length))
@@ -324,7 +352,22 @@ function MenuManager({ user }: { user: User }) {
   };
 
   const startNew = () => {
-    const initialCat: MenuCategory = category === 'all' ? 'food' : category;
+    if (category === 'desserts') {
+      setEditing({
+        isNew: true,
+        item: {
+          id: '',
+          name: { DE: '' },
+          description: { DE: '' },
+          price: 0,
+          category: 'food',
+          subcategory: 'Desserts',
+          available: true,
+        },
+      });
+      return;
+    }
+    const initialCat: MenuCategory = category === 'all' ? 'food' : (category as MenuCategory);
     setEditing({
       isNew: true,
       item: {
@@ -333,7 +376,7 @@ function MenuManager({ user }: { user: User }) {
         description: { DE: '' },
         price: 0,
         category: initialCat,
-        subcategory: initialCat === 'food' ? 'Desserts' : (subcategoriesByCategory[initialCat]?.[0] || ''),
+        subcategory: initialCat === 'food' ? (subcategoriesByCategory.food.find(s => s !== 'Desserts') || '') : (subcategoriesByCategory[initialCat]?.[0] || ''),
         available: true,
       },
     });
@@ -418,11 +461,36 @@ function MenuManager({ user }: { user: User }) {
                 <button className="adm-tab" data-active={category === 'all'} onClick={() => setCategory('all')}>
                   Alle<span className="adm-tab-count">{all.length}</span>
                 </button>
-                {(Object.keys(CATEGORY_LABELS) as MenuCategory[]).filter(c => categoryCounts[c]).map(c => (
-                  <button key={c} className="adm-tab" data-active={category === c} onClick={() => setCategory(c)}>
-                    {CATEGORY_LABELS[c]}<span className="adm-tab-count">{categoryCounts[c]}</span>
+                {categoryCounts.shisha > 0 && (
+                  <button className="adm-tab" data-active={category === 'shisha'} onClick={() => setCategory('shisha')}>
+                    Shisha<span className="adm-tab-count">{categoryCounts.shisha}</span>
                   </button>
-                ))}
+                )}
+                {categoryCounts.drinks > 0 && (
+                  <button className="adm-tab" data-active={category === 'drinks'} onClick={() => setCategory('drinks')}>
+                    Getränke<span className="adm-tab-count">{categoryCounts.drinks}</span>
+                  </button>
+                )}
+                {categoryCounts.food > 0 && (
+                  <button className="adm-tab" data-active={category === 'food'} onClick={() => setCategory('food')}>
+                    Speisen<span className="adm-tab-count">{categoryCounts.food}</span>
+                  </button>
+                )}
+                {categoryCounts.desserts > 0 && (
+                  <button className="adm-tab" data-active={category === 'desserts'} onClick={() => setCategory('desserts')}>
+                    Desserts<span className="adm-tab-count">{categoryCounts.desserts}</span>
+                  </button>
+                )}
+                {categoryCounts.happy_hour > 0 && (
+                  <button className="adm-tab" data-active={category === 'happy_hour'} onClick={() => setCategory('happy_hour')}>
+                    Happy Hour<span className="adm-tab-count">{categoryCounts.happy_hour}</span>
+                  </button>
+                )}
+                {categoryCounts.spiele > 0 && (
+                  <button className="adm-tab" data-active={category === 'spiele'} onClick={() => setCategory('spiele')}>
+                    Spiele<span className="adm-tab-count">{categoryCounts.spiele}</span>
+                  </button>
+                )}
               </nav>
               <div className="relative md:w-72 order-1 md:order-2">
                 <Search size={16} strokeWidth={1.75} className="absolute left-4 top-1/2 -translate-y-1/2 adm-faint pointer-events-none" />

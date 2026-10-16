@@ -2,6 +2,8 @@
 
 export const LANGS = ['DE', 'EN', 'TR', 'FR', 'ES', 'RU'] as const;
 
+export type AdminCategory = MenuCategory | 'desserts';
+
 export const CATEGORY_LABELS: Record<MenuCategory, string> = {
   shisha: 'Shisha',
   drinks: 'Getränke',
@@ -10,9 +12,17 @@ export const CATEGORY_LABELS: Record<MenuCategory, string> = {
   spiele: 'Spiele',
 };
 
-export const DEFAULT_SUBCATEGORIES_BY_CATEGORY: Record<MenuCategory, string[]> = {
+export const ADMIN_CATEGORY_OPTIONS: { key: AdminCategory; label: string }[] = [
+  { key: 'shisha', label: 'Shisha' },
+  { key: 'drinks', label: 'Getränke' },
+  { key: 'food', label: 'Speisen' },
+  { key: 'desserts', label: 'Desserts (Tatlılar)' },
+  { key: 'happy_hour', label: 'Happy Hour' },
+  { key: 'spiele', label: 'Spiele' },
+];
+
+export const DEFAULT_SUBCATEGORIES_BY_CATEGORY: Record<AdminCategory, string[]> = {
   food: [
-    'Desserts',
     'Bowls & Salate',
     'Burger Gerichte',
     'Pasta Gerichte',
@@ -22,6 +32,13 @@ export const DEFAULT_SUBCATEGORIES_BY_CATEGORY: Record<MenuCategory, string[]> =
     'Suppen',
     'Vorspeisen',
     'Shakes',
+    'Desserts',
+  ],
+  desserts: [
+    'Desserts',
+    'Kuchen & Torten',
+    'Eisspezialitäten',
+    'Waffeln & Pancakes',
   ],
   drinks: [
     'Signature Cocktails',

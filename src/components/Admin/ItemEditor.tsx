@@ -2,7 +2,12 @@
 import { ImagePlus, Loader2, Trash2, X, PlusCircle, Check } from 'lucide-react';
 import { additiveLegend, allergenLegend, type MenuCategory, type MenuItem } from '../../data/menu';
 import { uploadMenuImage } from '../../services/menuStore';
-import { CATEGORY_LABELS, DEFAULT_SUBCATEGORIES_BY_CATEGORY, LANGS } from './constants';
+import {
+  type AdminCategory,
+  ADMIN_CATEGORY_OPTIONS,
+  DEFAULT_SUBCATEGORIES_BY_CATEGORY,
+  LANGS,
+} from './constants';
 import Switch from './Switch';
 
 type Texts = Record<string, string>;
@@ -14,7 +19,7 @@ interface Props {
   item: MenuItem;
   isNew: boolean;
   subcategories: string[];
-  subcategoriesByCategory?: Record<MenuCategory, string[]>;
+  subcategoriesByCategory?: Record<MenuCategory | 'desserts', string[]>;
   onSave: (item: MenuItem) => Promise<void>;
   onDelete: (id: string) => Promise<void>;
   onClose: () => void;
@@ -29,20 +34,40 @@ function Section({ title, children }: { title: string; children: ReactNode }) {
   );
 }
 
-export default function ItemEditor({ item, isNew, subcategories, subcategoriesByCategory, onSave, onDelete, onClose }: Props) {
+export default function ItemEditor({
+  item,
+  isNew,
+  subcategories,
+  subcategoriesByCategory,
+  onSave,
+  onDelete,
+  onClose,
+}: Props) {
   const [initial] = useState(() => JSON.stringify(item));
-  const [draft, setDraft] = useState<MenuItem>({ ...item, name: toTexts(item.name), description: toTexts(item.description) });
+  const [draft, setDraft] = useState<MenuItem>({
+    ...item,
+    name: toTexts(item.name),
+    description: toTexts(item.description),
+  });
   const [lang, setLang] = useState<(typeof LANGS)[number]>('DE');
   const [busy, setBusy] = useState<'save' | 'delete' | 'upload' | null>(null);
   const [error, setError] = useState('');
   const [dragOver, setDragOver] = useState(false);
   const [dirty, setDirty] = useState(false);
 
+  const isDessert = draft.category === 'food' && draft.subcategory === 'Desserts';
+  const currentCategorySelectValue: AdminCategory = isDessert ? 'desserts' : draft.category;
+
   const availableSubcategories = useMemo(() => {
-    const fromCat = subcategoriesByCategory?.[draft.category] || DEFAULT_SUBCATEGORIES_BY_CATEGORY[draft.category] || subcategories || [];
+    const activeKey: AdminCategory = currentCategorySelectValue;
+    const fromCat =
+      subcategoriesByCategory?.[activeKey] ||
+      DEFAULT_SUBCATEGORIES_BY_CATEGORY[activeKey] ||
+      subcategories ||
+      [];
     const list = Array.from(new Set(fromCat));
     return list;
-  }, [draft.category, subcategoriesByCategory, subcategories]);
+  }, [currentCategorySelectValue, subcategoriesByCategory, subcategories]);
 
   const [isCustomSubcat, setIsCustomSubcat] = useState(() => {
     return Boolean(draft.subcategory && !availableSubcategories.includes(draft.subcategory));
@@ -59,12 +84,25 @@ export default function ItemEditor({ item, isNew, subcategories, subcategoriesBy
     set({ [field]: current.includes(code) ? current.filter(c => c !== code) : [...current, code] });
   };
 
-  const handleCategoryChange = (newCat: MenuCategory) => {
-    const newAvailable = subcategoriesByCategory?.[newCat] || DEFAULT_SUBCATEGORIES_BY_CATEGORY[newCat] || [];
-    const matchesCurrent = draft.subcategory && newAvailable.includes(draft.subcategory);
+  const handleCategorySelectChange = (val: AdminCategory) => {
+    if (val === 'desserts') {
+      set({
+        category: 'food',
+        subcategory: 'Desserts',
+      });
+      setIsCustomSubcat(false);
+      return;
+    }
+    const newCat = val as MenuCategory;
+    const newAvailable =
+      subcategoriesByCategory?.[newCat] || DEFAULT_SUBCATEGORIES_BY_CATEGORY[newCat] || [];
+    const matchesCurrent =
+      draft.subcategory &&
+      draft.subcategory !== 'Desserts' &&
+      newAvailable.includes(draft.subcategory);
     set({
       category: newCat,
-      subcategory: matchesCurrent ? draft.subcategory : ''
+      subcategory: matchesCurrent ? draft.subcategory : '',
     });
     setIsCustomSubcat(false);
   };
@@ -122,9 +160,13 @@ export default function ItemEditor({ item, isNew, subcategories, subcategoriesBy
         <header className="adm-sheet-bar sticky top-0 z-10 flex items-center justify-between gap-4 px-6 sm:px-8 py-4 border-b">
           <div className="min-w-0">
             <p className="adm-eyebrow">{isNew ? 'Neuer Artikel' : 'Artikel bearbeiten'}</p>
-            <h2 className="text-[22px] font-semibold tracking-[-0.02em] leading-tight truncate mt-1">{names.DE || 'Ohne Namen'}</h2>
+            <h2 className="text-[22px] font-semibold tracking-[-0.02em] leading-tight truncate mt-1">
+              {names.DE || 'Ohne Namen'}
+            </h2>
           </div>
-          <button onClick={close} className="adm-btn adm-btn-ghost adm-btn-icon shrink-0" aria-label="Schließen"><X size={18} strokeWidth={1.75} /></button>
+          <button onClick={close} className="adm-btn adm-btn-ghost adm-btn-icon shrink-0" aria-label="Schließen">
+            <X size={18} strokeWidth={1.75} />
+          </button>
         </header>
 
         <div className="flex-1 px-6 sm:px-8 py-8 space-y-10">
@@ -143,7 +185,11 @@ export default function ItemEditor({ item, isNew, subcategories, subcategoriesBy
             </div>
             <div>
               <label className="adm-label">Name ({lang}){lang === 'DE' && ' *'}</label>
-              <input className="adm-input" value={names[lang] || ''} onChange={e => set({ name: { ...names, [lang]: e.target.value } })} />
+              <input
+                className="adm-input"
+                value={names[lang] || ''}
+                onChange={e => set({ name: { ...names, [lang]: e.target.value } })}
+              />
             </div>
             <div>
               <label className="adm-label">Beschreibung ({lang})</label>
@@ -152,7 +198,11 @@ export default function ItemEditor({ item, isNew, subcategories, subcategoriesBy
                 value={descriptions[lang] || ''}
                 onChange={e => set({ description: { ...descriptions, [lang]: e.target.value } })}
               />
-              {lang !== 'DE' && <p className="text-xs adm-faint mt-1.5">Leer lassen = deutscher bzw. englischer Text wird angezeigt.</p>}
+              {lang !== 'DE' && (
+                <p className="text-xs adm-faint mt-1.5">
+                  Leer lassen = deutscher bzw. englischer Text wird angezeigt.
+                </p>
+              )}
             </div>
           </Section>
 
@@ -174,8 +224,16 @@ export default function ItemEditor({ item, isNew, subcategories, subcategoriesBy
               </div>
               <div>
                 <label className="adm-label">Kategorie *</label>
-                <select className="adm-input" value={draft.category} onChange={e => handleCategoryChange(e.target.value as MenuCategory)}>
-                  {Object.entries(CATEGORY_LABELS).map(([k, v]) => <option key={k} value={k}>{v}</option>)}
+                <select
+                  className="adm-input"
+                  value={currentCategorySelectValue}
+                  onChange={e => handleCategorySelectChange(e.target.value as AdminCategory)}
+                >
+                  {ADMIN_CATEGORY_OPTIONS.map(opt => (
+                    <option key={opt.key} value={opt.key}>
+                      {opt.label}
+                    </option>
+                  ))}
                 </select>
               </div>
 
@@ -298,7 +356,13 @@ export default function ItemEditor({ item, isNew, subcategories, subcategoriesBy
           <Section title="Allergene">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
               {Object.entries(allergenLegend).map(([code, text]) => (
-                <button key={code} type="button" className="adm-toggle-chip" aria-pressed={draft.allergens?.includes(code) || false} onClick={() => toggleCode('allergens', code)}>
+                <button
+                  key={code}
+                  type="button"
+                  className="adm-toggle-chip"
+                  aria-pressed={draft.allergens?.includes(code) || false}
+                  onClick={() => toggleCode('allergens', code)}
+                >
                   <span className="adm-code">{code}</span>{text}
                 </button>
               ))}
@@ -308,7 +372,13 @@ export default function ItemEditor({ item, isNew, subcategories, subcategoriesBy
           <Section title="Zusatzstoffe">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
               {Object.entries(additiveLegend).map(([code, text]) => (
-                <button key={code} type="button" className="adm-toggle-chip" aria-pressed={draft.additives?.includes(code) || false} onClick={() => toggleCode('additives', code)}>
+                <button
+                  key={code}
+                  type="button"
+                  className="adm-toggle-chip"
+                  aria-pressed={draft.additives?.includes(code) || false}
+                  onClick={() => toggleCode('additives', code)}
+                >
                   <span className="adm-code">{code}</span>{text}
                 </button>
               ))}
