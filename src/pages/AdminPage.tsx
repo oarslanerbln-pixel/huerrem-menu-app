@@ -11,7 +11,7 @@ import { deleteMenuItem, importMenu, saveMenuItem, saveMenuItems } from '../serv
 import { subscribeMenu } from '../services/menuFeed';
 import ItemEditor from '../components/Admin/ItemEditor';
 import Switch from '../components/Admin/Switch';
-import { CATEGORY_LABELS } from '../components/Admin/constants';
+import { CATEGORY_LABELS, DEFAULT_SUBCATEGORIES_BY_CATEGORY } from '../components/Admin/constants';
 import '../components/Admin/admin.css';
 
 const nameOf = (item: MenuItem) => (typeof item.name === 'string' ? item.name : item.name?.DE || item.name?.EN || item.id);
@@ -254,6 +254,28 @@ function MenuManager({ user }: { user: User }) {
     [all],
   );
 
+  const subcategoriesByCategory = useMemo(() => {
+    const map: Record<MenuCategory, Set<string>> = {
+      food: new Set(DEFAULT_SUBCATEGORIES_BY_CATEGORY.food),
+      drinks: new Set(DEFAULT_SUBCATEGORIES_BY_CATEGORY.drinks),
+      shisha: new Set(DEFAULT_SUBCATEGORIES_BY_CATEGORY.shisha),
+      happy_hour: new Set(DEFAULT_SUBCATEGORIES_BY_CATEGORY.happy_hour),
+      spiele: new Set(DEFAULT_SUBCATEGORIES_BY_CATEGORY.spiele),
+    };
+    all.forEach(i => {
+      if (i.category && i.subcategory) {
+        map[i.category]?.add(i.subcategory);
+      }
+    });
+    return {
+      food: Array.from(map.food),
+      drinks: Array.from(map.drinks),
+      shisha: Array.from(map.shisha),
+      happy_hour: Array.from(map.happy_hour),
+      spiele: Array.from(map.spiele),
+    };
+  }, [all]);
+
   const stats = useMemo(() => ({
     hidden: all.filter(i => i.available === false).length,
     noPhoto: all.filter(i => !i.imageUrl).length,
@@ -301,10 +323,21 @@ function MenuManager({ user }: { user: User }) {
     }
   };
 
-  const startNew = () => setEditing({
-    isNew: true,
-    item: { id: '', name: { DE: '' }, description: { DE: '' }, price: 0, category: category === 'all' ? 'drinks' : category, available: true },
-  });
+  const startNew = () => {
+    const initialCat: MenuCategory = category === 'all' ? 'food' : category;
+    setEditing({
+      isNew: true,
+      item: {
+        id: '',
+        name: { DE: '' },
+        description: { DE: '' },
+        price: 0,
+        category: initialCat,
+        subcategory: initialCat === 'food' ? 'Desserts' : (subcategoriesByCategory[initialCat]?.[0] || ''),
+        available: true,
+      },
+    });
+  };
 
   const save = async (item: MenuItem) => {
     const id = item.id || newItemId(nameOf(item));
@@ -427,6 +460,7 @@ function MenuManager({ user }: { user: User }) {
           item={editing.item}
           isNew={editing.isNew}
           subcategories={subcategories}
+          subcategoriesByCategory={subcategoriesByCategory}
           onSave={save}
           onDelete={remove}
           onClose={() => setEditing(null)}

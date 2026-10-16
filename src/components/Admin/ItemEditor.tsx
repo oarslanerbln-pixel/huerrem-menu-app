@@ -1,8 +1,8 @@
-import { useState, type DragEvent, type ReactNode } from 'react';
-import { ImagePlus, Loader2, Trash2, X } from 'lucide-react';
+﻿import { useState, useMemo, type DragEvent, type ReactNode } from 'react';
+import { ImagePlus, Loader2, Trash2, X, PlusCircle, Check } from 'lucide-react';
 import { additiveLegend, allergenLegend, type MenuCategory, type MenuItem } from '../../data/menu';
 import { uploadMenuImage } from '../../services/menuStore';
-import { CATEGORY_LABELS, LANGS } from './constants';
+import { CATEGORY_LABELS, DEFAULT_SUBCATEGORIES_BY_CATEGORY, LANGS } from './constants';
 import Switch from './Switch';
 
 type Texts = Record<string, string>;
@@ -14,6 +14,7 @@ interface Props {
   item: MenuItem;
   isNew: boolean;
   subcategories: string[];
+  subcategoriesByCategory?: Record<MenuCategory, string[]>;
   onSave: (item: MenuItem) => Promise<void>;
   onDelete: (id: string) => Promise<void>;
   onClose: () => void;
@@ -28,7 +29,7 @@ function Section({ title, children }: { title: string; children: ReactNode }) {
   );
 }
 
-export default function ItemEditor({ item, isNew, subcategories, onSave, onDelete, onClose }: Props) {
+export default function ItemEditor({ item, isNew, subcategories, subcategoriesByCategory, onSave, onDelete, onClose }: Props) {
   const [initial] = useState(() => JSON.stringify(item));
   const [draft, setDraft] = useState<MenuItem>({ ...item, name: toTexts(item.name), description: toTexts(item.description) });
   const [lang, setLang] = useState<(typeof LANGS)[number]>('DE');
@@ -36,6 +37,16 @@ export default function ItemEditor({ item, isNew, subcategories, onSave, onDelet
   const [error, setError] = useState('');
   const [dragOver, setDragOver] = useState(false);
   const [dirty, setDirty] = useState(false);
+
+  const availableSubcategories = useMemo(() => {
+    const fromCat = subcategoriesByCategory?.[draft.category] || DEFAULT_SUBCATEGORIES_BY_CATEGORY[draft.category] || subcategories || [];
+    const list = Array.from(new Set(fromCat));
+    return list;
+  }, [draft.category, subcategoriesByCategory, subcategories]);
+
+  const [isCustomSubcat, setIsCustomSubcat] = useState(() => {
+    return Boolean(draft.subcategory && !availableSubcategories.includes(draft.subcategory));
+  });
 
   const names = draft.name as Texts;
   const descriptions = draft.description as Texts;
@@ -46,6 +57,16 @@ export default function ItemEditor({ item, isNew, subcategories, onSave, onDelet
   const toggleCode = (field: 'allergens' | 'additives', code: string) => {
     const current = draft[field] || [];
     set({ [field]: current.includes(code) ? current.filter(c => c !== code) : [...current, code] });
+  };
+
+  const handleCategoryChange = (newCat: MenuCategory) => {
+    const newAvailable = subcategoriesByCategory?.[newCat] || DEFAULT_SUBCATEGORIES_BY_CATEGORY[newCat] || [];
+    const matchesCurrent = draft.subcategory && newAvailable.includes(draft.subcategory);
+    set({
+      category: newCat,
+      subcategory: matchesCurrent ? draft.subcategory : ''
+    });
+    setIsCustomSubcat(false);
   };
 
   const run = async (kind: 'save' | 'delete' | 'upload', fn: () => Promise<void>) => {
@@ -66,13 +87,15 @@ export default function ItemEditor({ item, isNew, subcategories, onSave, onDelet
   };
 
   const handleSave = () => {
-    if (!names.DE?.trim()) return setError('Bitte einen deutschen Namen eingeben.');
-    if (!(draft.price >= 0)) return setError('Bitte einen gültigen Preis eingeben.');
-    run('save', () => onSave(draft));
+    if (!names.DE?.trim()) return setError('Bitte mindestens einen deutschen Namen angeben.');
+    if (!Number.isFinite(draft.price) || draft.price < 0) return setError('Bitte einen gültigen Preis angeben.');
+    if (!draft.subcategory?.trim()) return setError('Bitte eine Unterkategorie auswählen (z. B. Desserts).');
+    run('save', () => onSave({ ...draft, price: Math.round(draft.price * 100) / 100 }));
   };
 
   const handleDelete = () => {
-    if (!window.confirm(`„${names.DE}“ endgültig löschen?`)) return;
+    const itemName = names.DE || 'Artikel';
+    if (!window.confirm(`„${itemName}“ endgültig löschen?`)) return;
     run('delete', () => onDelete(draft.id));
   };
 
@@ -136,7 +159,7 @@ export default function ItemEditor({ item, isNew, subcategories, onSave, onDelet
           <Section title="Preis & Kategorie">
             <div className="grid grid-cols-2 gap-3">
               <div>
-                <label className="adm-label">Preis</label>
+                <label className="adm-label">Preis *</label>
                 <div className="relative">
                   <input
                     className="adm-input pr-9 tabular-nums"
@@ -150,17 +173,97 @@ export default function ItemEditor({ item, isNew, subcategories, onSave, onDelet
                 </div>
               </div>
               <div>
-                <label className="adm-label">Kategorie</label>
-                <select className="adm-input" value={draft.category} onChange={e => set({ category: e.target.value as MenuCategory })}>
+                <label className="adm-label">Kategorie *</label>
+                <select className="adm-input" value={draft.category} onChange={e => handleCategoryChange(e.target.value as MenuCategory)}>
                   {Object.entries(CATEGORY_LABELS).map(([k, v]) => <option key={k} value={k}>{v}</option>)}
                 </select>
               </div>
+
               <div className="col-span-2">
-                <label className="adm-label">Unterkategorie</label>
-                <input className="adm-input" list="admin-subcategories" value={draft.subcategory || ''} onChange={e => set({ subcategory: e.target.value })} />
-                <datalist id="admin-subcategories">
-                  {subcategories.map(s => <option key={s} value={s} />)}
-                </datalist>
+                <div className="flex items-center justify-between mb-1.5">
+                  <label className="adm-label mb-0">Unterkategorie *</label>
+                  {!isCustomSubcat && (
+                    <button
+                      type="button"
+                      onClick={() => setIsCustomSubcat(true)}
+                      className="text-xs text-[var(--adm-gold)] hover:underline flex items-center gap-1"
+                    >
+                      <PlusCircle size={13} /> Eigene eingeben
+                    </button>
+                  )}
+                  {isCustomSubcat && (
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setIsCustomSubcat(false);
+                        if (!availableSubcategories.includes(draft.subcategory || '')) {
+                          set({ subcategory: '' });
+                        }
+                      }}
+                      className="text-xs text-[var(--adm-faint)] hover:text-white"
+                    >
+                      Aus Liste wählen
+                    </button>
+                  )}
+                </div>
+
+                {!isCustomSubcat ? (
+                  <>
+                    <select
+                      className="adm-input"
+                      value={draft.subcategory || ''}
+                      onChange={e => {
+                        if (e.target.value === '__custom__') {
+                          setIsCustomSubcat(true);
+                          set({ subcategory: '' });
+                        } else {
+                          set({ subcategory: e.target.value });
+                        }
+                      }}
+                    >
+                      <option value="">-- Unterkategorie wählen * --</option>
+                      {availableSubcategories.map(s => (
+                        <option key={s} value={s}>
+                          {s} {s === 'Desserts' ? '(Tatlılar)' : ''}
+                        </option>
+                      ))}
+                      <option value="__custom__">+ Andere / Neu erstellen...</option>
+                    </select>
+
+                    {/* Quick Selection Chips for touch convenience */}
+                    <div className="flex gap-1.5 flex-wrap mt-2">
+                      {availableSubcategories.slice(0, 6).map(s => {
+                        const isSelected = draft.subcategory === s;
+                        return (
+                          <button
+                            key={s}
+                            type="button"
+                            onClick={() => set({ subcategory: s })}
+                            className={`text-xs px-2.5 py-1 rounded-full border transition-all flex items-center gap-1 ${
+                              isSelected
+                                ? 'bg-[var(--adm-gold)] text-black font-semibold border-[var(--adm-gold)]'
+                                : 'bg-[var(--adm-surface-2)] text-[var(--adm-muted)] border-[var(--adm-hair)] hover:text-white hover:border-[var(--adm-gold)]'
+                            }`}
+                          >
+                            {isSelected && <Check size={12} strokeWidth={2.5} />}
+                            {s}
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </>
+                ) : (
+                  <div className="space-y-1.5">
+                    <input
+                      className="adm-input"
+                      placeholder="z. B. Saison-Specials, Desserts..."
+                      value={draft.subcategory || ''}
+                      onChange={e => set({ subcategory: e.target.value })}
+                      autoFocus
+                    />
+                    <p className="text-xs adm-faint">Freitext für eine neue Unterkategorie.</p>
+                  </div>
+                )}
               </div>
             </div>
           </Section>
