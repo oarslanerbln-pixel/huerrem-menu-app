@@ -1,5 +1,5 @@
 ﻿import { useState, useMemo, type DragEvent, type ReactNode } from 'react';
-import { ImagePlus, Loader2, Trash2, X, PlusCircle, Check } from 'lucide-react';
+import { ImagePlus, Loader2, Trash2, X, PlusCircle, Check, ChevronDown } from 'lucide-react';
 import { additiveLegend, allergenLegend, type MenuCategory, type MenuItem } from '../../data/menu';
 import { uploadMenuImage } from '../../services/menuStore';
 import {
@@ -54,6 +54,7 @@ export default function ItemEditor({
   const [error, setError] = useState('');
   const [dragOver, setDragOver] = useState(false);
   const [dirty, setDirty] = useState(false);
+  const [subcatDropdownOpen, setSubcatDropdownOpen] = useState(false);
 
   const isDessert = draft.category === 'food' && draft.subcategory === 'Desserts';
   const currentCategorySelectValue: AdminCategory = isDessert ? 'desserts' : draft.category;
@@ -221,8 +222,8 @@ export default function ItemEditor({
                         onClick={() => handleCategorySelectChange(opt.key)}
                         className={`h-11 px-3 text-[13px] font-medium border text-center transition-all flex items-center justify-center gap-2 ${
                           isSelected
-                            ? 'bg-white text-black font-semibold border-white shadow-md'
-                            : 'bg-[var(--adm-surface-2)] text-[var(--adm-muted)] border-[var(--adm-hair)] hover:text-white hover:border-[var(--adm-hair-strong)]'
+                            ? 'bg-[var(--adm-gold)] text-black font-semibold border-[var(--adm-gold)] shadow-md'
+                            : 'bg-[#161619] text-[#d4d4d8] border-white/10 hover:text-white hover:border-[var(--adm-gold)]/40'
                         }`}
                       >
                         {isSelected && <Check size={14} strokeWidth={2.5} />}
@@ -281,30 +282,94 @@ export default function ItemEditor({
 
                 {!isCustomSubcat ? (
                   <div className="space-y-3">
-                    <select
-                      className="adm-input"
-                      value={draft.subcategory || ''}
-                      onChange={e => {
-                        if (e.target.value === '__custom__') {
-                          setIsCustomSubcat(true);
-                          set({ subcategory: '' });
-                        } else {
-                          set({ subcategory: e.target.value });
-                        }
-                      }}
-                    >
-                      <option value="">-- Unterkategorie wählen * --</option>
-                      {availableSubcategories.map(s => (
-                        <option key={s} value={s}>
-                          {s} {s === 'Desserts' ? '(Tatlılar)' : ''}
-                        </option>
-                      ))}
-                      <option value="__custom__">+ Andere / Neu erstellen...</option>
-                    </select>
+                    {/* Custom Luxury Dropdown - 100% Dark Theme & High Contrast */}
+                    <div className="relative">
+                      <button
+                        type="button"
+                        onClick={() => setSubcatDropdownOpen(prev => !prev)}
+                        className={`w-full h-11 px-3.5 border flex items-center justify-between text-left transition-all ${
+                          subcatDropdownOpen
+                            ? 'bg-[#18181c] border-[var(--adm-gold)] ring-1 ring-[var(--adm-gold)]'
+                            : 'bg-[#141417] border-white/15 hover:border-[var(--adm-gold)]/50'
+                        }`}
+                      >
+                        <span className={draft.subcategory ? 'text-white font-medium text-[14px]' : 'text-[var(--adm-muted)] text-[14px]'}>
+                          {draft.subcategory ? (
+                            <span className="flex items-center gap-2">
+                              <span>{draft.subcategory}</span>
+                              {draft.subcategory === 'Desserts' && (
+                                <span className="text-xs bg-[var(--adm-gold)]/20 text-[var(--adm-gold)] px-2 py-0.5 font-normal">
+                                  Tatlılar
+                                </span>
+                              )}
+                            </span>
+                          ) : (
+                            '-- Unterkategorie wählen * --'
+                          )}
+                        </span>
+                        <ChevronDown
+                          size={16}
+                          className={`text-[var(--adm-gold)] transition-transform duration-200 ${
+                            subcatDropdownOpen ? 'rotate-180' : ''
+                          }`}
+                        />
+                      </button>
+
+                      {subcatDropdownOpen && (
+                        <>
+                          <div
+                            className="fixed inset-0 z-40"
+                            onClick={() => setSubcatDropdownOpen(false)}
+                          />
+                          <div className="absolute left-0 right-0 top-full mt-1.5 z-50 bg-[#16161a] border border-[var(--adm-gold)] shadow-2xl max-h-64 overflow-y-auto divide-y divide-white/10 rounded-none">
+                            {availableSubcategories.map(s => {
+                              const isSelected = draft.subcategory === s;
+                              return (
+                                <button
+                                  key={s}
+                                  type="button"
+                                  onClick={() => {
+                                    set({ subcategory: s });
+                                    setSubcatDropdownOpen(false);
+                                  }}
+                                  className={`w-full px-4 py-3 text-left text-[14px] flex items-center justify-between transition-colors ${
+                                    isSelected
+                                      ? 'bg-[var(--adm-gold)]/20 text-[var(--adm-gold)] font-semibold'
+                                      : 'text-[#f5f5f7] hover:bg-white/10 hover:text-white'
+                                  }`}
+                                >
+                                  <div className="flex items-center gap-2">
+                                    <span>{s}</span>
+                                    {s === 'Desserts' && (
+                                      <span className="text-xs bg-[var(--adm-gold)]/20 text-[var(--adm-gold)] px-2 py-0.5 font-normal">
+                                        Tatlılar
+                                      </span>
+                                    )}
+                                  </div>
+                                  {isSelected && <Check size={16} className="text-[var(--adm-gold)]" strokeWidth={2.5} />}
+                                </button>
+                              );
+                            })}
+                            <button
+                              type="button"
+                              onClick={() => {
+                                setIsCustomSubcat(true);
+                                set({ subcategory: '' });
+                                setSubcatDropdownOpen(false);
+                              }}
+                              className="w-full px-4 py-3 text-left text-[13px] text-[var(--adm-gold)] hover:bg-[var(--adm-gold)]/10 font-medium flex items-center gap-2 transition-colors"
+                            >
+                              <PlusCircle size={15} />
+                              <span>+ Andere / Neue Unterkategorie eingeben...</span>
+                            </button>
+                          </div>
+                        </>
+                      )}
+                    </div>
 
                     {/* Quick Selection Chips */}
                     <div>
-                      <p className="text-[11px] adm-faint mb-2">Schnell per Klick zuweisen:</p>
+                      <p className="text-[11px] text-[var(--adm-muted)] mb-2 font-medium">Hızlı Seçim (Kategoriye göre önerilenler):</p>
                       <div className="flex gap-1.5 flex-wrap">
                         {availableSubcategories.map(s => {
                           const isSelected = draft.subcategory === s;
@@ -316,11 +381,12 @@ export default function ItemEditor({
                               className={`text-xs px-3 py-1.5 border transition-all flex items-center gap-1.5 ${
                                 isSelected
                                   ? 'bg-[var(--adm-gold)] text-black font-semibold border-[var(--adm-gold)] shadow-sm'
-                                  : 'bg-[var(--adm-surface-2)] text-[var(--adm-muted)] border-[var(--adm-hair)] hover:text-white hover:border-[var(--adm-gold)]'
+                                  : 'bg-[#18181b] text-[#e4e4e7] border-white/10 hover:text-white hover:border-[var(--adm-gold)]'
                               }`}
                             >
                               {isSelected && <Check size={12} strokeWidth={2.5} />}
                               <span>{s}</span>
+                              {s === 'Desserts' && <span className="text-[10px] opacity-80">(Tatlılar)</span>}
                             </button>
                           );
                         })}

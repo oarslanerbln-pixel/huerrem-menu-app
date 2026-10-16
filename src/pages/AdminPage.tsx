@@ -546,15 +546,15 @@ function MenuManager({ user }: { user: User }) {
             </div>
             {/* Subcategory Filter Strip */}
             {category !== 'all' && activeCategorySubcategories.length > 0 && (
-              <div className="flex gap-1.5 overflow-x-auto no-scrollbar py-3 border-b border-[var(--adm-hair)] items-center">
-                <span className="text-xs adm-faint mr-1 whitespace-nowrap">Unterkategorie:</span>
+              <div className="flex gap-2 overflow-x-auto no-scrollbar py-3.5 border-b border-[var(--adm-hair)] items-center">
+                <span className="text-xs text-[var(--adm-muted)] mr-1 whitespace-nowrap font-medium">Unterkategorie:</span>
                 <button
                   type="button"
                   onClick={() => setSubcategory('all')}
-                  className={`text-xs px-3 py-1 border transition-all whitespace-nowrap ${
+                  className={`text-xs px-3.5 py-1.5 border transition-all whitespace-nowrap font-medium ${
                     subcategory === 'all'
-                      ? 'bg-white text-black font-semibold border-white'
-                      : 'bg-transparent text-[var(--adm-muted)] border-[var(--adm-hair-strong)] hover:text-white'
+                      ? 'bg-[var(--adm-gold)] text-black font-semibold border-[var(--adm-gold)] shadow-sm'
+                      : 'bg-[#18181b] text-[#d4d4d8] border-white/10 hover:text-white hover:border-[var(--adm-gold)]/50'
                   }`}
                 >
                   Alle ({categoryCounts[category] || all.length})
@@ -567,13 +567,15 @@ function MenuManager({ user }: { user: User }) {
                       key={sub}
                       type="button"
                       onClick={() => setSubcategory(sub)}
-                      className={`text-xs px-3 py-1 border transition-all whitespace-nowrap ${
+                      className={`text-xs px-3.5 py-1.5 border transition-all whitespace-nowrap font-medium flex items-center gap-1.5 ${
                         isSelected
-                          ? 'bg-[var(--adm-gold)] text-black font-semibold border-[var(--adm-gold)]'
-                          : 'bg-[var(--adm-surface-2)] text-[var(--adm-muted)] border-[var(--adm-hair)] hover:text-white hover:border-[var(--adm-hair-strong)]'
+                          ? 'bg-[var(--adm-gold)] text-black font-bold border-[var(--adm-gold)] shadow-sm'
+                          : 'bg-[#18181b] text-[#d4d4d8] border-white/10 hover:text-white hover:border-[var(--adm-gold)]/50'
                       }`}
                     >
-                      {sub} ({count})
+                      <span>{sub}</span>
+                      {sub === 'Desserts' && <span className="opacity-80 text-[10px] font-normal">(Tatlılar)</span>}
+                      <span className={isSelected ? 'text-black/75 text-[11px]' : 'text-[var(--adm-faint)] text-[11px]'}>({count})</span>
                     </button>
                   );
                 })}
